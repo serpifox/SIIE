@@ -34,7 +34,7 @@ public class RegistriMateria extends AppCompatActivity {
         btnregistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Registrar_Materia().execute("http://10.0.2.2/SIIE/Registro_Materia.php?NRC="+etnrc.getText().toString()+"&Nombre="+etnombre.getText().toString());
+                new Registrar_Materia().execute("http://10.0.2.2/siie/Registro_Materia.php?nrc="+etnrc.getText().toString()+"&nombres="+etnombre.getText().toString());
             }
         });
     }
