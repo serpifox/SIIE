@@ -20,7 +20,7 @@ public class InicioSesion extends AppCompatActivity {
         btnMateria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentMat = new Intent(InicioSesion.this,RegistriMateria.class);
+                Intent intentMat = new Intent(InicioSesion.this,activity_menu_materia.class);
                 InicioSesion.this.startActivity(intentMat);
             }
         });
