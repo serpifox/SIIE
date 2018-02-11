@@ -20,4 +20,13 @@ public class activity_menu_admin extends AppCompatActivity {
 
 
     }
+    public void chat(View view) {
+
+
+        Intent chat= new Intent(activity_menu_admin.this,chat.class);
+        startActivity(chat);
+
+
+    }
+
 }
