@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "834655093971",
+    "firebase_url": "https://insidedeveloper-1632c.firebaseio.com",
+    "project_id": "insidedeveloper-1632c",
+    "storage_bucket": "insidedeveloper-1632c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834655093971:android:6c1cf39e55e54985",
+        "android_client_info": {
+          "package_name": "com.insidedeveloper.siie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "834655093971-ek2d58nc0mh82ib8v6skrki2f48farlu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDacE-lJlZqN8EX9OE8Oty-mc_T7zO-fAA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834655093971:android:414f52909ee91bd8",
+        "android_client_info": {
+          "package_name": "com.insidedeveloper.sii"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "834655093971-ek2d58nc0mh82ib8v6skrki2f48farlu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDacE-lJlZqN8EX9OE8Oty-mc_T7zO-fAA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

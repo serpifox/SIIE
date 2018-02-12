@@ -1,5 +1,10 @@
 package com.insidedeveloper.siie;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.graphics.BitmapFactory;
+import android.media.RingtoneManager;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
@@ -27,7 +32,7 @@ import com.google.firebase.storage.UploadTask;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class chat extends AppCompatActivity {
-
+    public static final int NOTIFICACION_ID=1;
     private CircleImageView fotoPerfil;
     private EditText nombre;
     private RecyclerView rvMensajes;
@@ -108,6 +113,8 @@ public class chat extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 MensajeRecibir m = dataSnapshot.getValue(MensajeRecibir.class);
                 adapter.addMensaje(m);
+
+
             }
 
             @Override
@@ -133,6 +140,29 @@ public class chat extends AppCompatActivity {
 
     }
 
+    private void notificacion() {
+        Intent intent= new Intent(Intent.ACTION_VIEW, Uri.parse("http://developer.android.com/index.html"));
+        PendingIntent pendingIntent=PendingIntent.getActivity(this,0,intent,0);
+
+        //Construccion de la notificacion;
+        NotificationCompat.Builder builder= new NotificationCompat.Builder(this);
+        builder.setSmallIcon(R.drawable.udg);
+        builder.setContentIntent(pendingIntent);
+        builder.setAutoCancel(true);
+        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.udg));
+        builder.setContentTitle("usuario de siie");
+        builder.setContentText("mensaje nuevo");
+        builder.setSubText("ver mas");
+         Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        builder.setSound(uri);
+
+        NotificationManager notificationManager= (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(NOTIFICACION_ID,builder.build());
+
+
+    }
+
     private void setScrollbar() {
         rvMensajes.scrollToPosition(adapter.getItemCount() - 1);
     }
@@ -148,7 +178,7 @@ public class chat extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Uri u = taskSnapshot.getDownloadUrl();
-                    MensajeEnviar m = new MensajeEnviar(nombre+" te ha enviado una foto", u.toString(), nombre.getText().toString(), fotoPerfilCadena, "2", ServerValue.TIMESTAMP);
+                    MensajeEnviar m = new MensajeEnviar(" te ha enviado una foto", u.toString(), nombre.getText().toString(), fotoPerfilCadena, "2", ServerValue.TIMESTAMP);
                     databaseReference.push().setValue(m);
                 }
             });
@@ -161,7 +191,7 @@ public class chat extends AppCompatActivity {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Uri u = taskSnapshot.getDownloadUrl();
                     fotoPerfilCadena = u.toString();
-                    MensajeEnviar m = new MensajeEnviar( nombre+"ha actualizado su foto de perfil", u.toString(), nombre.getText().toString(), fotoPerfilCadena, "2", ServerValue.TIMESTAMP);
+                    MensajeEnviar m = new MensajeEnviar( "ha actualizado su foto de perfil", u.toString(), nombre.getText().toString(), fotoPerfilCadena, "2", ServerValue.TIMESTAMP);
                     databaseReference.push().setValue(m);
                     Glide.with(chat.this).load(u.toString()).into(fotoPerfil);
                 }
