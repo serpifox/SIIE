@@ -14,9 +14,7 @@ public class InicioSesion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio_sesion);
-
-        btnMateria = findViewById(R.id.btnMateria);
-
+        btnMateria =(Button) findViewById(R.id.btnMateria);
         btnMateria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

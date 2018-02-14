@@ -39,8 +39,11 @@ public class AdapterMensajes extends RecyclerView.Adapter<HolderMensaje> {
 
     @Override
     public void onBindViewHolder(HolderMensaje holder, int position) {
+
         holder.getNombre().setText(listMensaje.get(position).getNombre());
+
         holder.getMensaje().setText(listMensaje.get(position).getMensaje());
+
         if(listMensaje.get(position).getType_mensaje().equals("2")){
             holder.getFotoMensaje().setVisibility(View.VISIBLE);
             holder.getMensaje().setVisibility(View.VISIBLE);
@@ -51,9 +54,12 @@ public class AdapterMensajes extends RecyclerView.Adapter<HolderMensaje> {
         }
         if(listMensaje.get(position).getFotoPerfil().isEmpty()){
             holder.getFotoMensajePerfil().setImageResource(R.mipmap.ic_launcher);
+
         }else{
+
             Glide.with(c).load(listMensaje.get(position).getFotoPerfil()).into(holder.getFotoMensajePerfil());
         }
+
         Long codigoHora = listMensaje.get(position).getHora();
         Date d = new Date(codigoHora);
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");//a pm o am
