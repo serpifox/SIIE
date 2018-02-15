@@ -7,15 +7,18 @@
     tools:context="com.insidedeveloper.siie.InicioSesion">
     <RelativeLayout
         android:visibility="visible"
-        android:background="@drawable/bg"
+        android:background="@drawable/leongris"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+
         <ImageView
             android:alpha="0.9"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="#000000"/>
+
+
     </RelativeLayout>
 
     <LinearLayout
@@ -27,11 +30,10 @@
         android:layout_alignParentStart="true">
 
         <ImageView
-
-            android:layout_width="84dp"
-            android:layout_height="84dp"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
             android:layout_marginTop="100dp"
-            android:src="@drawable/ic_android_black_24dp" />
+            app:srcCompat="@drawable/udg" />
 
         <EditText
 
