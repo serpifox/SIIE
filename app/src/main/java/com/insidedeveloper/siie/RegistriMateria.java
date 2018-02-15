@@ -1,9 +1,12 @@
 package com.insidedeveloper.siie;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +20,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class RegistriMateria extends AppCompatActivity {
+public class RegistriMateria extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
+    GestureDetector gestureDetector;
 
     EditText etnrc, etnombre;
     Button btnregistro;
@@ -26,11 +30,13 @@ public class RegistriMateria extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registri_materia);
+        this.gestureDetector = new GestureDetector(this, (GestureDetector.OnGestureListener) this);
+        gestureDetector.setOnDoubleTapListener((GestureDetector.OnDoubleTapListener) this);
+
 
         etnrc = findViewById(R.id.etNRC);
         etnombre = findViewById(R.id.etNombre);
         btnregistro = findViewById(R.id.btnRegistrar);
-
         btnregistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,6 +44,65 @@ public class RegistriMateria extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        this.gestureDetector.onTouchEvent(event);
+        return super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean onSingleTapConfirmed(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onDoubleTap(MotionEvent e) {
+
+        return false;
+    }
+
+    @Override
+    public boolean onDoubleTapEvent(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onDown(MotionEvent e) {
+
+
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+        Intent intentMat = new Intent(RegistriMateria.this,activity_menu_admin.class);
+        RegistriMateria.this.startActivity(intentMat);
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+         finish();
+        return false;
+    }
+
+
 
     private class Registrar_Materia extends AsyncTask <String, Void, String>{
         @Override
@@ -104,4 +169,5 @@ public class RegistriMateria extends AppCompatActivity {
         reader.read(buffer);
         return new String(buffer);
     }
+
 }

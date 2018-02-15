@@ -7,7 +7,7 @@
     tools:context="com.insidedeveloper.siie.InicioSesion">
     <RelativeLayout
         android:visibility="visible"
-        android:background="@drawable/bg31"
+        android:background="@drawable/bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >

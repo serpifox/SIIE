@@ -8,7 +8,7 @@ import android.view.View;
 
 public class activity_menu_admin extends AppCompatActivity {
 
-    CardView materia,chat;
+    CardView materia,chat,maestro,alumnos,tareas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +16,9 @@ public class activity_menu_admin extends AppCompatActivity {
         setContentView(R.layout.activity_menu_admin);
         materia = (CardView) findViewById(R.id.CWMaterias);
         chat = (CardView) findViewById(R.id.chats);
+        maestro = (CardView) findViewById(R.id.maestros);
+        alumnos = (CardView) findViewById(R.id.alumnos);
+        tareas=(CardView) findViewById(R.id.tareas);
         materia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -23,6 +26,7 @@ public class activity_menu_admin extends AppCompatActivity {
                 startActivity(materia);
             }
         });
+
         chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,6 +34,34 @@ public class activity_menu_admin extends AppCompatActivity {
                 startActivity(chat);
             }
         });
+        maestro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent maestro= new Intent(activity_menu_admin.this,menu_maestro.class);
+                startActivity(maestro);
+
+            }
+        });
+        alumnos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent maestro= new Intent(activity_menu_admin.this,menu_alumno.class);
+                startActivity(maestro);
+
+            }
+        });
+        tareas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent maestro= new Intent(activity_menu_admin.this,menu_tarea.class);
+                startActivity(maestro);
+
+            }
+        });
+
+
+
+
 
 
 
