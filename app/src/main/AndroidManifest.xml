@@ -28,7 +28,8 @@
         <activity android:name=".chat" />
         <activity android:name=".menu_maestro" />
         <activity android:name=".menu_tarea" />
-        <activity android:name=".menu_alumno"></activity>
+        <activity android:name=".menu_alumno" />
+        <activity android:name=".Modificar_Materia"></activity>
     </application>
 
 </manifest>

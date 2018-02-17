@@ -20,93 +20,39 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class RegistriMateria extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
-    GestureDetector gestureDetector;
+public class Modificar_Materia extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
 
-    EditText etnrc, etnombre;
-    Button btnregistro;
+    GestureDetector gestureDetector;
+    EditText etnrc;
+    Button btnmodificar, btneliminar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registri_materia);
+        setContentView(R.layout.activity_modificar__materia);
         this.gestureDetector = new GestureDetector(this, (GestureDetector.OnGestureListener) this);
         gestureDetector.setOnDoubleTapListener((GestureDetector.OnDoubleTapListener) this);
 
-
         etnrc = findViewById(R.id.etNRC);
-        etnombre = findViewById(R.id.etNombre);
-        btnregistro = findViewById(R.id.btnRegistrar);
-        btnregistro.setOnClickListener(new View.OnClickListener() {
+        btnmodificar = findViewById(R.id.btnModificar);
+        btneliminar = findViewById(R.id.btnEliminar);
+
+        btnmodificar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                new Registrar_Materia().execute("http://192.168.0.10/siie/Registro_Materia.php?nrc="+etnrc.getText().toString()+"&nombres="+etnombre.getText().toString());
-                etnrc.setText("");
-                etnombre.setText("");
+            public void onClick(View view) {
+                new ModificarMateria().execute("http://192.168.0.10/siie/Modificar_Materia.php?nrc="+etnrc.getText().toString());
+            }
+        });
+
+        btneliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new EliminarMateria().execute("http://192.168.0.10/siie/Eliminar_Materia.php?nrc="+etnrc.getText().toString());
             }
         });
     }
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        this.gestureDetector.onTouchEvent(event);
-        return super.onTouchEvent(event);
-    }
 
-    @Override
-    public boolean onSingleTapConfirmed(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public boolean onDoubleTap(MotionEvent e) {
-
-        return false;
-    }
-
-    @Override
-    public boolean onDoubleTapEvent(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public boolean onDown(MotionEvent e) {
-
-
-        return false;
-    }
-
-    @Override
-    public void onShowPress(MotionEvent e) {
-
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent e) {
-
-        return false;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-
-        return false;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent e) {
-        Intent intentMat = new Intent(RegistriMateria.this,activity_menu_admin.class);
-        RegistriMateria.this.startActivity(intentMat);
-    }
-
-    @Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-         finish();
-        return false;
-    }
-
-
-
-    private class Registrar_Materia extends AsyncTask <String, Void, String>{
+    private class ModificarMateria extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
             try {
@@ -119,7 +65,25 @@ public class RegistriMateria extends AppCompatActivity implements GestureDetecto
         @Override
         protected void onPostExecute(String result) {
 
-            Toast.makeText(getApplicationContext(), "Se almacenaron los datos correctamente", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Se modificaron los datos correctamente", Toast.LENGTH_LONG).show();
+
+        }
+    }
+
+    private class EliminarMateria extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            try {
+                return downloadUrl(urls[0]);
+            }catch (IOException e){
+                return "No se puede recuperar la página web URL puede ser válido...";
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            Toast.makeText(getApplicationContext(), "Se eliminaron los datos correctamente", Toast.LENGTH_LONG).show();
 
         }
     }
@@ -172,4 +136,61 @@ public class RegistriMateria extends AppCompatActivity implements GestureDetecto
         return new String(buffer);
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        this.gestureDetector.onTouchEvent(event);
+        return super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean onSingleTapConfirmed(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onDoubleTap(MotionEvent e) {
+
+        return false;
+    }
+
+    @Override
+    public boolean onDoubleTapEvent(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onDown(MotionEvent e) {
+
+
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+        Intent intentMat = new Intent(Modificar_Materia.this,activity_menu_admin.class);
+        Modificar_Materia.this.startActivity(intentMat);
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        finish();
+        return false;
+    }
 }
