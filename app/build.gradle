@@ -30,7 +30,7 @@ dependencies {
     //Diseño
     compile 'com.android.support:recyclerview-v7:26+' //Lista
     compile 'com.android.support:cardview-v7:26+' //Tarjetas
-
+    compile 'com.android.support:design:25.1.0'///material design 2
     //Firebase
     compile 'com.google.firebase:firebase-database:10.2.6' //Base de Datos
     compile 'com.google.firebase:firebase-storage:10.2.6'  //Base de Archivos
