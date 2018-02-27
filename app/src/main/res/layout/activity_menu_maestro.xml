@@ -23,7 +23,6 @@
             android:foreground="?android:attr/selectableItemBackground">
 
             <LinearLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -71,7 +70,7 @@
         android:orientation="horizontal">
 
         <android.support.v7.widget.CardView
-            android:id="@+id/registrar"
+            android:id="@+id/registrar2"
             android:layout_width="340dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
@@ -127,7 +126,7 @@
         android:orientation="horizontal">
 
         <android.support.v7.widget.CardView
-            android:id="@+id/registrar"
+            android:id="@+id/registrar3"
             android:layout_width="340dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
