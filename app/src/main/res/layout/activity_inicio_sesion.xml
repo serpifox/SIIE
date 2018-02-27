@@ -42,7 +42,7 @@
 
             <EditText
 
-                android:id="@+id/editText"
+                android:id="@+id/edtUsuario"
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="200dp"
@@ -54,6 +54,7 @@
                 android:textColorHint="#fff" />
 
             <EditText
+                android:id="@+id/edtContrasenia"
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
