@@ -40,10 +40,10 @@ public class InicioSesion extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(getApplicationContext(),"usu="+edtusuario.getText().toString()+"&contra"+edtcontrasenia.getText().toString(),Toast.LENGTH_LONG).show();
-                //new Verificar_Usuario().execute("http://192.168.0.10/siie/Inicio_Sesion.php?usu="+edtusuario.getText().toString()+"&contra="+edtcontrasenia.getText().toString());
+                new Verificar_Usuario().execute("http://10.0.2.2/siie/Inicio_Sesion.php?usu="+edtusuario.getText().toString()+"&contra="+edtcontrasenia.getText().toString());
 
-                Intent intentMat = new Intent(InicioSesion.this,activity_menu_admin.class);
-                InicioSesion.this.startActivity(intentMat);
+                //Intent intentMat = new Intent(InicioSesion.this,activity_menu_admin.class);
+                //InicioSesion.this.startActivity(intentMat);
             }
         });
     }
@@ -65,23 +65,26 @@ public class InicioSesion extends AppCompatActivity {
             //Toast.makeText(getApplicationContext(),""+result,Toast.LENGTH_LONG).show();
             try{
                 ja = new JSONArray(result);
-                Toast.makeText(getApplicationContext(),""+ja,Toast.LENGTH_LONG).show();
+              //  Toast.makeText(getApplicationContext(),""+ja,Toast.LENGTH_LONG).show();
                 if(ja.length()>0){
-                    tipo = ja.getString(1);
+                    tipo = ja.getString(0);
 
-                    if(tipo.toString().equalsIgnoreCase("Alumno")){
+                    if("Alumno".equals(tipo)){
                         Intent intentAlu = new Intent(InicioSesion.this,menu_principal_alumno.class);
                         InicioSesion.this.startActivity(intentAlu);
+                        Toast.makeText(getApplicationContext(),"Menu Alumno",Toast.LENGTH_LONG).show();
                     }
                     else if("Empleado".equals(tipo)){
-                        puesto = ja.getString(2);
+                        puesto = ja.getString(1);
                         if("Administrador".equals(puesto)){
                             Intent intentAdmi = new Intent(InicioSesion.this,activity_menu_admin.class);
                             InicioSesion.this.startActivity(intentAdmi);
+                            Toast.makeText(getApplicationContext(),"Menu Administrador",Toast.LENGTH_LONG).show();
                         }
                         else{
                             Intent intentMa = new Intent(InicioSesion.this,menu_principal_maestro.class);
                             InicioSesion.this.startActivity(intentMa);
+                            Toast.makeText(getApplicationContext(),"Menu Maestro",Toast.LENGTH_LONG).show();
                         }
                     }
                 }
