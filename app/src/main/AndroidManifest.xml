@@ -31,9 +31,10 @@
         <activity android:name=".menu_alumno" />
         <activity android:name=".menu_principal_alumno" />
         <activity android:name=".menu_principal_maestro" />
-        <activity android:name=".RegistrarMaestro"/>
-        <activity android:name=".Modificar_Materia"/>
-        <activity android:name=".Registrarmaestro2"></activity>
+        <activity android:name=".RegistrarMaestro" />
+        <activity android:name=".Modificar_Materia" />
+        <activity android:name=".Registrarmaestro2" />
+        <activity android:name=".mostrar"></activity>
     </application>
 
 </manifest>
