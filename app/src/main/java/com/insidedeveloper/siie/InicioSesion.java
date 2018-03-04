@@ -39,10 +39,11 @@ public class InicioSesion extends AppCompatActivity {
         btnMateria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"usu="+edtusuario.getText().toString()+"&contra"+edtcontrasenia.getText().toString(),Toast.LENGTH_LONG).show();
-                new Verificar_Usuario().execute("http://192.168.0.10/siie/Inicio_Sesion.php?usu="+edtusuario.getText().toString()+"&contra="+edtcontrasenia.getText().toString());
+                //Toast.makeText(getApplicationContext(),"usu="+edtusuario.getText().toString()+"&contra"+edtcontrasenia.getText().toString(),Toast.LENGTH_LONG).show();
+                //new Verificar_Usuario().execute("http://192.168.0.10/siie/Inicio_Sesion.php?usu="+edtusuario.getText().toString()+"&contra="+edtcontrasenia.getText().toString());
 
-              
+                Intent intentMat = new Intent(InicioSesion.this,activity_menu_admin.class);
+                InicioSesion.this.startActivity(intentMat);
             }
         });
     }

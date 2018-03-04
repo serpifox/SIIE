@@ -87,7 +87,7 @@
                     android:text="apellido paterno"
                     android:textStyle="bold" />
                 <EditText
-                    android:id="@+id/etNRC"
+                    android:id="@+id/etPaterno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -140,7 +140,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/etNombre"
+                    android:id="@+id/etMaterno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
