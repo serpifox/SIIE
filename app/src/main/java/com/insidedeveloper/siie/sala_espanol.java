@@ -30,8 +30,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-
-public class chat extends AppCompatActivity {
+   public class sala_espanol extends AppCompatActivity {
     public static final int NOTIFICACION_ID=1;
     private CircleImageView fotoPerfil;
     private EditText nombre;
@@ -52,7 +51,7 @@ public class chat extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
+       
 
 
         fotoPerfil = (CircleImageView) findViewById(R.id.fotoPerfil);
@@ -64,7 +63,7 @@ public class chat extends AppCompatActivity {
         fotoPerfilCadena = "";
 
         database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference("avisos");//Sala de chat (nombre)
+        databaseReference = database.getReference("español");//Sala de chat (nombre)
         storage = FirebaseStorage.getInstance();
 
         adapter = new AdapterMensajes(this);
@@ -169,9 +168,13 @@ public class chat extends AppCompatActivity {
                     fotoPerfilCadena = u.toString();
                     MensajeEnviar m = new MensajeEnviar( "ha actualizado su foto de perfil", u.toString(), nombre.getText().toString(), fotoPerfilCadena, "2", ServerValue.TIMESTAMP);
                     databaseReference.push().setValue(m);
-                    Glide.with(chat.this).load(u.toString()).into(fotoPerfil);
+                    Glide.with(sala_espanol.this).load(u.toString()).into(fotoPerfil);
                 }
             });
         }
     }
 }
+
+
+
+

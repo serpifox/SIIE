@@ -3,4 +3,6 @@
     <string name="textview">TextView</string>
     <string name="name">Name</string>
     <string name="title_activity_menu_materia">activity_menu_materia</string>
+    <string name="title_activity_menu_salas">menu_salas</string>
+    <string name="title_activity_sala_avisos">sala_avisos</string>
 </resources>

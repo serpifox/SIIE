@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.insidedeveloper.siie.menu_alumno"
+    tools:context="com.insidedeveloper.siie.menu_salas"
     android:orientation="vertical">
 
     <LinearLayout
@@ -16,30 +16,30 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.CardView
-            android:id="@+id/registrar"
+            android:id="@+id/CWMaterias"
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
-            android:layout_width="340dp"
-            android:layout_height="150dp"
+            android:layout_width="160dp"
+            android:layout_height="190dp"
             android:layout_margin="10dp">
             <LinearLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center">
+
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="78dp"
+                    android:layout_height="72dp"
                     android:background="@drawable/cerclebackgroundpurple"
-                    android:src="@drawable/ic_agregar"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    android:src="@drawable/ic_notebook" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Registrar alumno"
+                    android:text="HISTORIA"
                     android:textStyle="bold" />
                 <View
                     android:layout_width="match_parent"
@@ -47,17 +47,45 @@
                     android:background="@color/lightgray"
                     android:layout_margin="10dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:text="Registrar Alumnos dentro del sistema"
-                    android:textColor="@android:color/darker_gray" />
-
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
+
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/maestros"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:layout_width="160dp"
+            android:layout_height="190dp"
+            android:layout_margin="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/cerclebackgroundpink"
+                    android:src="@drawable/ic_school_bell"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="NOTIFICACIONES"
+                    android:textStyle="bold" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/lightgray"
+                    android:layout_margin="10dp"/>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
     </LinearLayout>
     <LinearLayout
@@ -66,16 +94,14 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <android.support.v7.widget.CardView
-            android:id="@+id/registrar"
+            android:id="@+id/alumnos"
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
-            android:layout_width="340dp"
-            android:layout_height="150dp"
+            android:layout_width="160dp"
+            android:layout_height="190dp"
             android:layout_margin="10dp">
             <LinearLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -83,15 +109,15 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/cerclebackgroundpurple"
-                    android:src="@drawable/ic_search"
+                    android:background="@drawable/cerclebackgroundgreen"
+                    android:src="@drawable/ic_helmet"
                     android:padding="10dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="consultar alumno"
+                    android:text="Historia"
                     android:textStyle="bold" />
                 <View
                     android:layout_width="match_parent"
@@ -99,72 +125,46 @@
                     android:background="@color/lightgray"
                     android:layout_margin="10dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:text="consultar Alumnos dentro del sistema"
-                    android:textColor="@android:color/darker_gray" />
-
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
-
-    </LinearLayout>
-    <LinearLayout
-        android:clipToPadding="false"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
         <android.support.v7.widget.CardView
-            android:id="@+id/registrar"
+            android:id="@+id/tareas"
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
-            android:layout_width="340dp"
-            android:layout_height="150dp"
+            android:layout_width="160dp"
+            android:layout_height="190dp"
             android:layout_margin="10dp">
-            <LinearLayout
 
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/cerclebackgroundpurple"
-                    android:src="@drawable/ic_editar_maestro"
-                    android:padding="10dp"/>
+                    android:background="@drawable/cerclebackgroundyello"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_calculation" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="modificar alumno"
+                    android:text="matematicas"
                     android:textStyle="bold" />
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/lightgray"
-                    android:layout_margin="10dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:text="eliminar materias dentro del sistema"
-                    android:textColor="@android:color/darker_gray" />
+                    android:layout_margin="10dp"
+                    android:background="@color/lightgray" />
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
-
     </LinearLayout>
+
 </LinearLayout>
-
-
-

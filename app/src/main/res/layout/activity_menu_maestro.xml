@@ -89,7 +89,7 @@
                     android:layout_height="64dp"
                     android:background="@drawable/cerclebackgroundpurple"
                     android:padding="10dp"
-                    android:src="@drawable/ic_professor" />
+                    android:src="@drawable/ic_search" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -145,7 +145,7 @@
                     android:layout_height="64dp"
                     android:background="@drawable/cerclebackgroundpurple"
                     android:padding="10dp"
-                    android:src="@drawable/ic_professor" />
+                    android:src="@drawable/ic_editar_maestro" />
 
                 <TextView
                     android:layout_width="wrap_content"
