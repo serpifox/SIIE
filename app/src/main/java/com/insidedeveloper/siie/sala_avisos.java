@@ -137,7 +137,7 @@ public class sala_avisos extends AppCompatActivity {
                         .setContentInfo(nombre)
                         .setTicker("SIIE!")
                         .setSound(defaultSound)
-                .setLights(1,2,Color.RED);
+                .setLights(1,2,Color.GREEN);
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
