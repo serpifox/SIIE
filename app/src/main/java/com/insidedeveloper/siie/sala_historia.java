@@ -1,6 +1,9 @@
 package com.insidedeveloper.siie;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -61,6 +64,10 @@ import com.google.firebase.storage.UploadTask;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class sala_historia extends AppCompatActivity {
+    private static final int ID_NOTIFICACION_CREAR = 1;
+    private static final int NOTIF_ALERTA_ID = 2;
+    public static final String NOTIFICATION_CHANNEL_ID = "4565";
+    private static final CharSequence NOTIFICATION_CHANNEL_NAME = "MyChannel" ;
         public static final int NOTIFICACION_ID=1;
         private CircleImageView fotoPerfil;
         private EditText nombre;
@@ -201,9 +208,28 @@ public class sala_historia extends AppCompatActivity {
                         Glide.with(sala_historia.this).load(u.toString()).into(fotoPerfil);
                     }
                 });
-            }
-        }
+            }}
+    public void notificaciones(String nombre, String mensaje, String fotoPerfil){
+        Uri defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(sala_historia.this)
+                        .setSmallIcon(android.R.drawable.stat_notify_chat)
+                        .setLargeIcon((((BitmapDrawable)getResources()
+                                .getDrawable(R.drawable.leongris)).getBitmap()))
+                        .setContentTitle(nombre)
+                        .setContentText(mensaje)
+                        .setContentInfo(nombre)
+                        .setTicker("SIIE!")
+                        .setSound(defaultSound)
+                        .setLights(1,2, Color.GREEN);
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        mNotificationManager.notify(NOTIF_ALERTA_ID, mBuilder.build());
     }
+
+}
+
 
 
 
