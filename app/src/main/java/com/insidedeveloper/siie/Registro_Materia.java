@@ -5,13 +5,12 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,37 +20,93 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class InicioSesion extends AppCompatActivity {
+public class Registro_Materia extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
+    GestureDetector gestureDetector;
 
-    EditText edtusuario, edtcontrasenia;
-    Button btnMateria;
-    String tipo, puesto;
+    EditText etnrc, etnombre;
+    Button btnregistro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inicio_sesion);
+        setContentView(R.layout.activity_registro_materia);
+        this.gestureDetector = new GestureDetector(this, (GestureDetector.OnGestureListener) this);
+        gestureDetector.setOnDoubleTapListener((GestureDetector.OnDoubleTapListener) this);
 
-        btnMateria =(Button) findViewById(R.id.btnMateria);
-        edtusuario = findViewById(R.id.edtUsuario);
-        edtcontrasenia = findViewById(R.id.edtContrasenia);
+        etnrc = findViewById(R.id.etNRC);
+        etnombre = findViewById(R.id.etNombre);
+        btnregistro = findViewById(R.id.btnRegistrar);
 
-        btnMateria.setOnClickListener(new View.OnClickListener() {
+        btnregistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent materia= new Intent(InicioSesion.this,menu_principal_alumno.class);
-                startActivity(materia);
-
-
-                //Toast.makeText(getApplicationContext(),"usu="+edtusuario.getText().toString()+"&contra"+edtcontrasenia.getText().toString(),Toast.LENGTH_LONG).show();
-                //new Verificar_Usuario().execute("http://192.168.0.10/siie/Inicio_Sesion.php?usu="+edtusuario.getText().toString()+"&contra="+edtcontrasenia.getText().toString());
-
-              
+                new Registrar_Materia().execute("http://10.0.2.2/siie/Registro_Materia.php?nrc="+etnrc.getText().toString()+"&nombres="+etnombre.getText().toString());
+                etnrc.setText("");
+                etnombre.setText("");
             }
         });
     }
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        this.gestureDetector.onTouchEvent(event);
+        return super.onTouchEvent(event);
+    }
 
-    private class Verificar_Usuario extends AsyncTask<String, Void, String> {
+    @Override
+    public boolean onSingleTapConfirmed(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onDoubleTap(MotionEvent e) {
+
+        return false;
+    }
+
+    @Override
+    public boolean onDoubleTapEvent(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onDown(MotionEvent e) {
+
+
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+        Intent intentMat = new Intent(Registro_Materia.this,Menu_Administrador.class);
+        Registro_Materia.this.startActivity(intentMat);
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+         finish();
+        return false;
+    }
+
+
+
+    private class Registrar_Materia extends AsyncTask <String, Void, String>{
         @Override
         protected String doInBackground(String... urls) {
             try {
@@ -64,37 +119,8 @@ public class InicioSesion extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            JSONArray ja = null;
-            //Toast.makeText(getApplicationContext(),""+result,Toast.LENGTH_LONG).show();
-            try{
-                ja = new JSONArray(result);
-                Toast.makeText(getApplicationContext(),""+ja,Toast.LENGTH_LONG).show();
-                if(ja.length()>0){
-                    tipo = ja.getString(1);
+            Toast.makeText(getApplicationContext(), "Se almacenaron los datos correctamente", Toast.LENGTH_LONG).show();
 
-                    if(tipo.toString().equalsIgnoreCase("Alumno")){
-                        Intent intentAlu = new Intent(InicioSesion.this,menu_principal_alumno.class);
-                        InicioSesion.this.startActivity(intentAlu);
-                    }
-                    else if("Empleado".equals(tipo)){
-                        puesto = ja.getString(2);
-                        if("Administrador".equals(puesto)){
-                            Intent intentAdmi = new Intent(InicioSesion.this,activity_menu_admin.class);
-                            InicioSesion.this.startActivity(intentAdmi);
-                        }
-                        else{
-                            Intent intentMa = new Intent(InicioSesion.this,menu_principal_maestro.class);
-                            InicioSesion.this.startActivity(intentMa);
-                        }
-                    }
-                }
-                else{
-                    Toast.makeText(getApplicationContext(),"Registro no encontrado",Toast.LENGTH_LONG).show();
-                }
-            }catch(JSONException e){
-                e.printStackTrace();
-            }
-            //Toast.makeText(getApplicationContext(), "Inicio de sesión correcto", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -145,4 +171,5 @@ public class InicioSesion extends AppCompatActivity {
         reader.read(buffer);
         return new String(buffer);
     }
+
 }

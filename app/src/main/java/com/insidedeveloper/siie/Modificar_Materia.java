@@ -47,7 +47,7 @@ public class Modificar_Materia extends AppCompatActivity implements GestureDetec
         btneliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new EliminarMateria().execute("http://192.168.0.10/siie/Eliminar_Materia.php?nrc="+etnrc.getText().toString());
+                new EliminarMateria().execute("http://10.0.2.2/siie/Eliminar_Materia.php?nrc="+etnrc.getText().toString());
             }
         });
     }
@@ -184,7 +184,7 @@ public class Modificar_Materia extends AppCompatActivity implements GestureDetec
 
     @Override
     public void onLongPress(MotionEvent e) {
-        Intent intentMat = new Intent(Modificar_Materia.this,activity_menu_admin.class);
+        Intent intentMat = new Intent(Modificar_Materia.this,Menu_Administrador.class);
         Modificar_Materia.this.startActivity(intentMat);
     }
 

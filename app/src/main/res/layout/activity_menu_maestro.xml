@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.insidedeveloper.siie.activity_menu_admin">
+    tools:context="com.insidedeveloper.siie.Menu_Administrador">
 
     <LinearLayout
         android:layout_width="match_parent"

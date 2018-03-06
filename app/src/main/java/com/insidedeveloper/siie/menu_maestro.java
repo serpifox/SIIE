@@ -16,7 +16,7 @@ public class menu_maestro extends AppCompatActivity {
         rgMateria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent materia = new Intent(menu_maestro.this, RegistrarMaestro.class);
+                Intent materia = new Intent(menu_maestro.this, Registro_Maestro.class);
                 startActivity(materia);
             }
 

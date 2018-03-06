@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.insidedeveloper.siie.RegistrarMaestro"
+    tools:context="com.insidedeveloper.siie.Registro_Maestro"
     android:orientation="vertical">
 
     <LinearLayout
@@ -33,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="nombre del alumno"
+                    android:text="Nombre"
                     android:textStyle="bold" />
 
                 <EditText
@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="escriba el nombre del alumno"
+                    android:text="Escriba el nombre del maestro"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -84,7 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="apellido paterno"
+                    android:text="Apellido Paterno"
                     android:textStyle="bold" />
                 <EditText
                     android:id="@+id/etPaterno"
@@ -105,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Escriba su apellido paterno"
+                    android:text="Escriba apellido paterno"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -136,7 +136,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Apellido del materno"
+                    android:text="Apellido Materno"
                     android:textStyle="bold" />
 
                 <EditText
@@ -156,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="escriba el apellido Materno"
+                    android:text="Escriba apellido materno"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>

@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -64,7 +63,7 @@ public class chat extends AppCompatActivity {
         fotoPerfilCadena = "";
 
         database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference("avisos");//Sala de chat (nombre)
+        databaseReference = database.getReference("Chat");//Sala de Chat (nombre)
         storage = FirebaseStorage.getInstance();
 
         adapter = new AdapterMensajes(this);
@@ -138,6 +137,28 @@ public class chat extends AppCompatActivity {
 
     }
 
+    private void notificacion() {
+        Intent intent= new Intent(Intent.ACTION_VIEW, Uri.parse("http://developer.android.com/index.html"));
+        PendingIntent pendingIntent=PendingIntent.getActivity(this,0,intent,0);
+
+        //Construccion de la notificacion;
+        NotificationCompat.Builder builder= new NotificationCompat.Builder(this);
+        builder.setSmallIcon(R.drawable.udg);
+        builder.setContentIntent(pendingIntent);
+        builder.setAutoCancel(true);
+        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.udg));
+        builder.setContentTitle("usuario de siie");
+        builder.setContentText("mensaje nuevo");
+        builder.setSubText("ver mas");
+         Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        builder.setSound(uri);
+
+        NotificationManager notificationManager= (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(NOTIFICACION_ID,builder.build());
+
+
+    }
 
     private void setScrollbar() {
         rvMensajes.scrollToPosition(adapter.getItemCount() - 1);

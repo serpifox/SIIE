@@ -2,14 +2,11 @@ package com.insidedeveloper.siie;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-public class activity_menu_materia extends AppCompatActivity {
+public class Menu_Materia extends AppCompatActivity {
 
     CardView rgMateria,rgModificar;
 
@@ -24,7 +21,7 @@ public class activity_menu_materia extends AppCompatActivity {
         rgMateria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent materia= new Intent(activity_menu_materia.this,RegistriMateria.class);
+                Intent materia= new Intent(Menu_Materia.this,Registro_Materia.class);
                 startActivity(materia);
             }
         });
@@ -32,7 +29,7 @@ public class activity_menu_materia extends AppCompatActivity {
         rgModificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent modificar = new Intent(activity_menu_materia.this,Modificar_Materia.class);
+                Intent modificar = new Intent(Menu_Materia.this,Modificar_Materia.class);
                 startActivity(modificar);
             }
         });

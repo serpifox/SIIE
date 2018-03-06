@@ -31,22 +31,9 @@
         <activity android:name=".menu_alumno" />
         <activity android:name=".menu_principal_alumno" />
         <activity android:name=".menu_principal_maestro" />
-        <activity android:name=".RegistrarMaestro" />
-        <activity android:name=".Modificar_Materia" />
-        <activity android:name=".Registrarmaestro2" />
-        <activity android:name=".mostrar" />
-        <activity android:name=".registrar_tarea" />
-        <activity
-            android:name=".menu_salas"
-            android:label="@string/title_activity_menu_salas"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".sala_de_matematicas" />
-        <activity android:name=".sala_espanol" />
-        <activity android:name=".sala_historia" />
-        <activity
-            android:name=".sala_avisos"
-            android:label="@string/title_activity_sala_avisos"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".RegistrarMaestro"/>
+        <activity android:name=".Modificar_Materia"/>
+        <activity android:name=".Registrarmaestro2"></activity>
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.insidedeveloper.siie.menu_alumno"
+    tools:context="com.insidedeveloper.siie.Menu_Alumno"
     android:orientation="vertical">
 
     <LinearLayout

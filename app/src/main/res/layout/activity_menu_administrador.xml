@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.insidedeveloper.siie.activity_menu_admin"
+    tools:context="com.insidedeveloper.siie.Menu_Administrador"
     android:orientation="vertical">
     android:orientation="vertical"
     android:padding="10dp"

@@ -3,7 +3,7 @@ package com.insidedeveloper.siie;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class menu_alumno extends AppCompatActivity {
+public class Menu_Alumno extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
