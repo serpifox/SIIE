@@ -12,28 +12,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InicioSesion">
+        <activity android:name=".Inicio_Sesion">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegistriMateria" />
-        <activity android:name=".activity_menu_admin" />
+        <activity android:name=".Registro_Materia" />
+        <activity android:name=".Menu_Administrador" />
         <activity
-            android:name=".activity_menu_materia"
+            android:name=".Menu_Materia"
             android:label="@string/title_activity_menu_materia"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".chat" />
         <activity android:name=".menu_maestro" />
         <activity android:name=".menu_tarea" />
-        <activity android:name=".menu_alumno" />
+        <activity android:name=".Menu_Alumno" />
         <activity android:name=".menu_principal_alumno" />
         <activity android:name=".menu_principal_maestro" />
-        <activity android:name=".RegistrarMaestro"/>
-        <activity android:name=".Modificar_Materia"/>
-        <activity android:name=".Registrarmaestro2"></activity>
+        <activity android:name=".Registro_Maestro" />
+        <activity android:name=".Modificar_Materia" />
+        <activity android:name=".Registro_Maestro2" />
+        <activity android:name=".Registro_Curso"></activity>
     </application>
 
 </manifest>

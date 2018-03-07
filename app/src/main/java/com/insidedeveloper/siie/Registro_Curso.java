@@ -20,41 +20,37 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class Registro_Maestro2 extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
+public class Registro_Curso extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
 
     GestureDetector gestureDetector;
-    EditText etcorreo,etusuario,etcontrasenia,etnumempleado;
+    EditText etclave, etinicio, etfinal, etempleado, etnrc;
     Button btnregistro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro_maestro2);
+        setContentView(R.layout.activity_registro__curso);
         this.gestureDetector = new GestureDetector(this, (GestureDetector.OnGestureListener) this);
         gestureDetector.setOnDoubleTapListener((GestureDetector.OnDoubleTapListener) this);
 
-        etcorreo = findViewById(R.id.etCorreo);
-        etusuario = findViewById(R.id.etContrasenia);
-        etcontrasenia = findViewById(R.id.etContrasenia);
-        etnumempleado = findViewById(R.id.etNumEmp);
+        etclave = findViewById(R.id.etClave);
+        etinicio = findViewById(R.id.etInicio);
+        etfinal = findViewById(R.id.etFin);
+        etempleado = findViewById(R.id.etEmpleado);
+        etnrc = findViewById(R.id.etNRC);
         btnregistro = findViewById(R.id.btnRegistrar);
-        final String estatus = "Activo";
-        final String tipo = "Empleado";
-        final String puesto = "Maestro";
-        final Bundle b = getIntent().getExtras();
 
         btnregistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Registrar_Maestro().execute("http://192.168.0.10/siie/Registro_Maestro.php?nombre="+b.getString("nombre")+"&paterno="+b.getString("paterno")+
-                "&materno="+b.getString("materno")+"&correo="+etcorreo.getText().toString()+"&estatus="+estatus+"&usu="+etusuario.getText().toString()+
-                "&contra="+etcontrasenia.getText().toString()+"&tipo="+tipo+"&numempleado="+etnumempleado.getText().toString()+
-                "&puesto="+puesto);
+                new Registrar_Curso().execute("http://192.168.0.10/siie/Registro_Curso.php?clave="+etclave.getText().toString()+
+                "&fechaini="+etinicio.getText().toString()+"&fechafin="+etfinal.getText().toString()+
+                "&idemp="+etempleado.getText().toString()+"&idmat="+etnrc.getText().toString());
             }
         });
     }
 
-    private class Registrar_Maestro extends AsyncTask<String, Void, String> {
+    private class Registrar_Curso extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
             try {
@@ -168,8 +164,8 @@ public class Registro_Maestro2 extends AppCompatActivity implements GestureDetec
 
     @Override
     public void onLongPress(MotionEvent e) {
-        Intent intentMeMaestro = new Intent(Registro_Maestro2.this,menu_maestro.class);
-        startActivity(intentMeMaestro);
+        Intent intentCurso = new Intent(Registro_Curso.this,menu_maestro.class);
+        startActivity(intentCurso);
     }
 
     @Override
