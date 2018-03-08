@@ -45,16 +45,16 @@ public class Menu_Administrador extends AppCompatActivity {
         alumnos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent maestro= new Intent(Menu_Administrador.this,Menu_Alumno.class);
-                startActivity(maestro);
+                Intent alumno= new Intent(Menu_Administrador.this,Menu_Alumno.class);
+                startActivity(alumno);
 
             }
         });
         tareas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent maestro= new Intent(Menu_Administrador.this,menu_tarea.class);
-                startActivity(maestro);
+                Intent tareas= new Intent(Menu_Administrador.this,menu_tarea.class);
+                startActivity(tareas);
 
             }
         });

@@ -5,4 +5,6 @@
     <string name="title_activity_menu_materia">activity_menu_materia</string>
     <string name="title_activity_menu_salas">menu_salas</string>
     <string name="title_activity_sala_avisos">sala_avisos</string>
+    <string name="apellido_paterno">Apellido Paterno</string>
+    <string name="escriba_el_nombre_del_alumno">Escriba el nombre del alumno</string>
 </resources>

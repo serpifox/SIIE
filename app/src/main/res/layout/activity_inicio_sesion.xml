@@ -63,6 +63,7 @@
                 android:drawablePadding="10dp"
                 android:drawableTint="#fff"
                 android:hint="contraseña"
+                android:inputType="textPassword"
                 android:textColorHint="#fff" />
 
             <Button
@@ -74,6 +75,13 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 android:text="ingresar"
                 android:textColor="#fff" />
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleLargeInverse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progreso"
+                android:layout_centerHorizontal="true" />
 
         </LinearLayout>
 

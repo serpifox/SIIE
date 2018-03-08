@@ -40,7 +40,8 @@ public class Inicio_Sesion extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(getApplicationContext(),"usu="+edtusuario.getText().toString()+"&contra"+edtcontrasenia.getText().toString(),Toast.LENGTH_LONG).show();
-                new Verificar_Usuario().execute("http://192.168.0.10/siie/Inicio_Sesion.php?usu="+edtusuario.getText().toString()+"&contra="+edtcontrasenia.getText().toString());
+                new Verificar_Usuario().execute("http://192.168.0.10/siie/Inicio_Sesion.php?usu="+edtusuario.getText().toString()+
+                        "&contra="+edtcontrasenia.getText().toString());
 
                 //Intent intentMat = new Intent(Inicio_Sesion.this,Menu_Administrador.class);
                 //Inicio_Sesion.this.startActivity(intentMat);
@@ -60,7 +61,6 @@ public class Inicio_Sesion extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-
             JSONArray ja = null;
             //Toast.makeText(getApplicationContext(),""+result,Toast.LENGTH_LONG).show();
             try{
