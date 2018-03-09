@@ -36,14 +36,14 @@ public class Consultar_Materia extends AppCompatActivity implements GestureDetec
         this.gestureDetector = new GestureDetector(this, (GestureDetector.OnGestureListener) this);
         gestureDetector.setOnDoubleTapListener((GestureDetector.OnDoubleTapListener) this);
 
-        //etnrc = findViewById(R.id.etNRC);
+        etnrc = findViewById(R.id.etNRC);
         etnombre = findViewById(R.id.etNombre);
         btnconsulta = findViewById(R.id.btnConsulta);
 
         btnconsulta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Consulta_Materia().execute("http://192.168.0.10/siie/Consulta_Materia.php?nombre="+etnombre.getText().toString());
+                new Consulta_Materia().execute("http://10.0.2.2/siie/Consulta_Materia.php?nombre="+etnombre.getText().toString());
                 etnombre.setText("");
             }
         });
@@ -64,11 +64,12 @@ public class Consultar_Materia extends AppCompatActivity implements GestureDetec
 
             JSONArray ja = null;
             try {
-                Toast.makeText(getApplicationContext(), "Datos "+ ja, Toast.LENGTH_LONG).show();
+
                 ja = new JSONArray(result);
+                Toast.makeText(getApplicationContext(), "Datos "+ ja, Toast.LENGTH_LONG).show();
                 if(ja.length()>0){
                     etnombre.setText(ja.getString(0));
-                    etnrc.setText(ja.getString(1));
+                   etnrc.setText(ja.getString(1));
                 }
                 else {
                     etnombre.setText("");
