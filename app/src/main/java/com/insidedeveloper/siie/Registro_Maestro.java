@@ -16,11 +16,11 @@ public class Registro_Maestro extends AppCompatActivity implements GestureDetect
 
     public void siguiente(View view){
 
-        Intent materia= new Intent(Registro_Maestro.this,Registro_Maestro2.class);
-        materia.putExtra("nombre",etnombre.getText().toString());
-        materia.putExtra("paterno",etpaterno.getText().toString());
-        materia.putExtra("materno",etmaterno.getText().toString());
-        startActivity(materia);
+        Intent maestro= new Intent(Registro_Maestro.this,Registro_Maestro2.class);
+        maestro.putExtra("nombre",etnombre.getText().toString());
+        maestro.putExtra("paterno",etpaterno.getText().toString());
+        maestro.putExtra("materno",etmaterno.getText().toString());
+        startActivity(maestro);
     }
 
     @Override

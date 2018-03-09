@@ -8,15 +8,16 @@ import android.view.View;
 
 public class Menu_Materia extends AppCompatActivity {
 
-    CardView rgMateria,rgModificar;
+    CardView rgMateria,rgModificar,rgConsultar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_materia);
 
-        rgMateria = (CardView) findViewById(R.id.registrar);
+        rgMateria = findViewById(R.id.registrar);
         rgModificar = findViewById(R.id.modificar);
+        rgConsultar = findViewById(R.id.consultar);
 
         rgMateria.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,13 +35,16 @@ public class Menu_Materia extends AppCompatActivity {
             }
         });
 
-
-
-
+        rgConsultar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent consulta = new Intent(Menu_Materia.this,Consultar_Materia.class);
+                startActivity(consulta);
             }
-
-
+        });
 
     }
+
+}
 
 

@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,35 +23,33 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class Inicio_Sesion extends AppCompatActivity {
+public class Consultar_Materia extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
 
-    EditText edtusuario, edtcontrasenia;
-    Button btnMateria;
-    String tipo, puesto;
+    GestureDetector gestureDetector;
+    EditText etnrc, etnombre;
+    Button btnconsulta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inicio_sesion);
+        setContentView(R.layout.activity_consultar__materia);
+        this.gestureDetector = new GestureDetector(this, (GestureDetector.OnGestureListener) this);
+        gestureDetector.setOnDoubleTapListener((GestureDetector.OnDoubleTapListener) this);
 
-        btnMateria =(Button) findViewById(R.id.btnMateria);
-        edtusuario = findViewById(R.id.edtUsuario);
-        edtcontrasenia = findViewById(R.id.edtContrasenia);
+        //etnrc = findViewById(R.id.etNRC);
+        etnombre = findViewById(R.id.etNombre);
+        btnconsulta = findViewById(R.id.btnConsulta);
 
-        btnMateria.setOnClickListener(new View.OnClickListener() {
+        btnconsulta.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                //Toast.makeText(getApplicationContext(),"usu="+edtusuario.getText().toString()+"&contra"+edtcontrasenia.getText().toString(),Toast.LENGTH_LONG).show();
-                new Verificar_Usuario().execute("http://192.168.0.10/siie/Inicio_Sesion.php?usu="+edtusuario.getText().toString()+
-                        "&contra="+edtcontrasenia.getText().toString());
-
-                //Intent intentMat = new Intent(Inicio_Sesion.this,Menu_Administrador.class);
-                //Inicio_Sesion.this.startActivity(intentMat);
+            public void onClick(View view) {
+                new Consulta_Materia().execute("http://192.168.0.10/siie/Consulta_Materia.php?nombre="+etnombre.getText().toString());
+                etnombre.setText("");
             }
         });
     }
 
-    private class Verificar_Usuario extends AsyncTask<String, Void, String> {
+    private class Consulta_Materia extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
             try {
@@ -61,46 +61,23 @@ public class Inicio_Sesion extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            JSONArray ja = null;
-            //Toast.makeText(getApplicationContext(),""+result,Toast.LENGTH_LONG).show();
-            try{
-                ja = new JSONArray(result);
-              //  Toast.makeText(getApplicationContext(),""+ja,Toast.LENGTH_LONG).show();
-                if(ja.length()>0){
-                    tipo = ja.getString(0);
 
-                    if("Alumno".equals(tipo)){
-                        Intent intentAlu = new Intent(Inicio_Sesion.this,menu_principal_alumno.class);
-                        intentAlu.putExtra("usu",edtusuario.getText().toString());
-                        intentAlu.putExtra("contra",edtcontrasenia.getText().toString());
-                        startActivity(intentAlu);
-                        Toast.makeText(getApplicationContext(),"Menu Alumno",Toast.LENGTH_LONG).show();
-                    }
-                    else if("Empleado".equals(tipo)){
-                        puesto = ja.getString(1);
-                        if("Administrador".equals(puesto)){
-                            Intent intentEmp = new Intent(Inicio_Sesion.this,Menu_Administrador.class);
-                            intentEmp.putExtra("usu",edtusuario.getText().toString());
-                            intentEmp.putExtra("contra",edtcontrasenia.getText().toString());
-                            startActivity(intentEmp);
-                            Toast.makeText(getApplicationContext(),"Menu Administrador",Toast.LENGTH_LONG).show();
-                        }
-                        else{
-                            Intent intentMa = new Intent(Inicio_Sesion.this,menu_principal_maestro.class);
-                            intentMa.putExtra("usu",edtusuario.getText().toString());
-                            intentMa.putExtra("contra",edtcontrasenia.getText().toString());
-                            Inicio_Sesion.this.startActivity(intentMa);
-                            Toast.makeText(getApplicationContext(),"Menu Maestro",Toast.LENGTH_LONG).show();
-                        }
-                    }
+            JSONArray ja = null;
+            try {
+                Toast.makeText(getApplicationContext(), "Datos "+ ja, Toast.LENGTH_LONG).show();
+                ja = new JSONArray(result);
+                if(ja.length()>0){
+                    etnombre.setText(ja.getString(0));
+                    etnrc.setText(ja.getString(1));
                 }
-                else{
+                else {
+                    etnombre.setText("");
+                    etnrc.setText("");
                     Toast.makeText(getApplicationContext(),"Registro no encontrado",Toast.LENGTH_LONG).show();
                 }
-            }catch(JSONException e){
+            }catch (JSONException e){
                 e.printStackTrace();
             }
-            //Toast.makeText(getApplicationContext(), "Inicio de sesión correcto", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -150,5 +127,63 @@ public class Inicio_Sesion extends AppCompatActivity {
         char[] buffer = new char[len];
         reader.read(buffer);
         return new String(buffer);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        this.gestureDetector.onTouchEvent(event);
+        return super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean onSingleTapConfirmed(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onDoubleTap(MotionEvent e) {
+
+        return false;
+    }
+
+    @Override
+    public boolean onDoubleTapEvent(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onDown(MotionEvent e) {
+
+
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+        Intent intentMateria = new Intent(Consultar_Materia.this,Menu_Administrador.class);
+        startActivity(intentMateria);
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        finish();
+        return false;
     }
 }
