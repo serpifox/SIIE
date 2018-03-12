@@ -3,8 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://A:\SIIE_consular\SIIE.iml" filepath="A:\SIIE_consular\SIIE.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SIIE_consular.iml" filepath="$PROJECT_DIR$/SIIE_consular.iml" />
+      <module fileurl="file://D:\proyecto\SIIE_consultar\SIIE_consular.iml" filepath="D:\proyecto\SIIE_consultar\SIIE_consular.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SIIE_consultar.iml" filepath="$PROJECT_DIR$/SIIE_consultar.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\proyecto\SIIE_consultar\app\app.iml" filepath="D:\proyecto\SIIE_consultar\app\app.iml" />
     </modules>
   </component>
 </project>

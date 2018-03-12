@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -26,6 +27,7 @@ public class Inicio_Sesion extends AppCompatActivity {
     EditText edtusuario, edtcontrasenia;
     Button btnMateria;
     String tipo, puesto;
+    ProgressBar pb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class Inicio_Sesion extends AppCompatActivity {
         btnMateria =(Button) findViewById(R.id.btnMateria);
         edtusuario = findViewById(R.id.edtUsuario);
         edtcontrasenia = findViewById(R.id.edtContrasenia);
+        pb=findViewById(R.id.progreso);
 
         btnMateria.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +45,7 @@ public class Inicio_Sesion extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(),"usu="+edtusuario.getText().toString()+"&contra"+edtcontrasenia.getText().toString(),Toast.LENGTH_LONG).show();
                 new Verificar_Usuario().execute("http://10.0.2.2/siie/Inicio_Sesion.php?usu="+edtusuario.getText().toString()+
                         "&contra="+edtcontrasenia.getText().toString());
+                pb.setVisibility(View.VISIBLE);
 
                 //Intent intentMat = new Intent(Inicio_Sesion.this,Menu_Administrador.class);
                 //Inicio_Sesion.this.startActivity(intentMat);
@@ -75,6 +79,7 @@ public class Inicio_Sesion extends AppCompatActivity {
                         intentAlu.putExtra("contra",edtcontrasenia.getText().toString());
                         startActivity(intentAlu);
                         Toast.makeText(getApplicationContext(),"Menu Alumno",Toast.LENGTH_LONG).show();
+                        pb.setVisibility(View.INVISIBLE);
                     }
                     else if("Empleado".equals(tipo)){
                         puesto = ja.getString(1);
@@ -84,6 +89,7 @@ public class Inicio_Sesion extends AppCompatActivity {
                             intentEmp.putExtra("contra",edtcontrasenia.getText().toString());
                             startActivity(intentEmp);
                             Toast.makeText(getApplicationContext(),"Menu Administrador",Toast.LENGTH_LONG).show();
+                            pb.setVisibility(View.INVISIBLE);
                         }
                         else{
                             Intent intentEmp = new Intent(Inicio_Sesion.this,Menu_Administrador.class);
@@ -94,12 +100,14 @@ public class Inicio_Sesion extends AppCompatActivity {
                             intentMa.putExtra("usu",edtusuario.getText().toString());
                             intentMa.putExtra("contra",edtcontrasenia.getText().toString());
                             Inicio_Sesion.this.startActivity(intentMa);*/
+                            pb.setVisibility(View.INVISIBLE);
                             Toast.makeText(getApplicationContext(),"Menu Maestro",Toast.LENGTH_LONG).show();
                         }
                     }
                 }
                 else{
                     Toast.makeText(getApplicationContext(),"Registro no encontrado",Toast.LENGTH_LONG).show();
+                    pb.setVisibility(View.INVISIBLE);
                 }
             }catch(JSONException e){
                 e.printStackTrace();
@@ -143,6 +151,7 @@ public class Inicio_Sesion extends AppCompatActivity {
         } finally {
             if (is != null) {
                 is.close();
+
             }
         }
     }

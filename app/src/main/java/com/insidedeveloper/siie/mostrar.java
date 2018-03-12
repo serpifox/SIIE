@@ -69,8 +69,9 @@ private class Consulta_Materia extends AsyncTask<String, Void, String> {
                 ja = new JSONArray(result);
 
                 Toast.makeText(getApplicationContext(), "Datos "+ ja, Toast.LENGTH_LONG).show();
-             for(int i=0;i<ja.length();i++){
-                    items.add(new Materia(ja.getString(1), ja.getString(2)));
+             for(int i=0;i<=ja.length();i++){
+
+                 items.add(new Materia(ja.getString(2), ja.getString(1)));
                     adapter = new AnimeAdapter(items);
                     recycler.setAdapter(adapter);
                 }

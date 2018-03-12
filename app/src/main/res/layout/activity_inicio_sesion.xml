@@ -7,16 +7,9 @@
     tools:context="com.insidedeveloper.siie.Inicio_Sesion">
     <RelativeLayout
         android:visibility="visible"
-        android:background="@drawable/leongris"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-
-        <ImageView
-            android:alpha="0.9"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="#000000"/>
 
         <ImageView
             android:layout_width="match_parent"
@@ -32,13 +25,14 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="visible">
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:layout_margin="10dp"
-                android:background="@color/black_overlay" />
+                />
 
             <EditText
 
@@ -77,10 +71,11 @@
                 android:textColor="#fff" />
 
             <ProgressBar
+                android:id="@+id/progreso"
+                android:visibility="gone"
                 style="?android:attr/progressBarStyleLargeInverse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/progreso"
                 android:layout_centerHorizontal="true" />
 
         </LinearLayout>
