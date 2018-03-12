@@ -38,7 +38,7 @@ public class Menu_Materia extends AppCompatActivity {
         rgConsultar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent consulta = new Intent(Menu_Materia.this,Consultar_Materia.class);
+                Intent consulta = new Intent(Menu_Materia.this,mostrar.class);
                 startActivity(consulta);
             }
         });

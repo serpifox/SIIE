@@ -86,10 +86,14 @@ public class Inicio_Sesion extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Menu Administrador",Toast.LENGTH_LONG).show();
                         }
                         else{
-                            Intent intentMa = new Intent(Inicio_Sesion.this,menu_principal_maestro.class);
+                            Intent intentEmp = new Intent(Inicio_Sesion.this,Menu_Administrador.class);
+                            intentEmp.putExtra("usu",edtusuario.getText().toString());
+                            intentEmp.putExtra("contra",edtcontrasenia.getText().toString());
+                            startActivity(intentEmp);
+                           /* Intent intentMa = new Intent(Inicio_Sesion.this,menu_principal_maestro.class);
                             intentMa.putExtra("usu",edtusuario.getText().toString());
                             intentMa.putExtra("contra",edtcontrasenia.getText().toString());
-                            Inicio_Sesion.this.startActivity(intentMa);
+                            Inicio_Sesion.this.startActivity(intentMa);*/
                             Toast.makeText(getApplicationContext(),"Menu Maestro",Toast.LENGTH_LONG).show();
                         }
                     }
