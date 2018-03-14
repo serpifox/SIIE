@@ -65,13 +65,25 @@ private class Consulta_Materia extends AsyncTask<String, Void, String> {
         protected void onPostExecute(String result) {
             Materia Materias = null;
             JSONArray ja = null;
+            String nombre;
+            String nrc;
             try {
-                ja = new JSONArray(result);
-
-                Toast.makeText(getApplicationContext(), "Datos "+ ja, Toast.LENGTH_LONG).show();
+                JSONObject objson=new JSONObject(result);
+                ja = objson.getJSONArray("materia");
+               // JSONArray json=ja.optJSONArray(1);
+                //Toast.makeText(getApplicationContext(), "Datos "+ ja, Toast.LENGTH_LONG).show();
              for(int i=0;i<=ja.length();i++){
+                // ja = new JSONArray(result);
+                 JSONObject jsa =ja.getJSONObject(i);
+                 nombre=jsa.getString("nombre");
+                 nrc=jsa.getString("NRC");
 
-                 items.add(new Materia(ja.getString(2), ja.getString(1)));
+
+
+                /* JSONObject obj= ja.getJSONObject(i);
+                 nombre =(obj.getString("nombre"));nrc =(obj.getString("Nrc"));
+                 Toast.makeText(getApplicationContext(), "Datos "+ nrc, Toast.LENGTH_LONG).show();*/
+                 items.add(new Materia(nombre,nrc));
                     adapter = new AnimeAdapter(items);
                     recycler.setAdapter(adapter);
                 }
