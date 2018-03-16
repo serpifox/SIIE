@@ -69,7 +69,7 @@ private class Consulta_Materia extends AsyncTask<String, Void, String> {
             String nrc;
             try {
                 JSONObject objson=new JSONObject(result);
-                ja = objson.getJSONArray("materia");
+                ja = objson.getJSONArray("Materia");
                // JSONArray json=ja.optJSONArray(1);
                 //Toast.makeText(getApplicationContext(), "Datos "+ ja, Toast.LENGTH_LONG).show();
              for(int i=0;i<=ja.length();i++){

@@ -36,8 +36,9 @@
         <activity android:name=".Registro_Maestro2" />
         <activity android:name=".Registro_Alumno" />
         <activity android:name=".Registro_Curso" />
-        <activity android:name=".mostrar"/>
-        <activity android:name=".Consultar_Materia"></activity>
+        <activity android:name=".mostrar" />
+        <activity android:name=".Consultar_Materia" />
+        <activity android:name=".ConsultarMaestro"></activity>
     </application>
 
 </manifest>
