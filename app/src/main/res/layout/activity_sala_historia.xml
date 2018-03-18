@@ -19,14 +19,14 @@
                 android:layout_height="48sp"
                 android:src="@mipmap/ic_launcher" />
 
-            <EditText
-                android:id="@+id/nombre"
+            <TextView
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="nombre" />
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView

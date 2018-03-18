@@ -19,13 +19,16 @@
             android:layout_height="48sp"
             android:src="@mipmap/ic_launcher" />
 
-        <EditText
+        <TextView
             android:id="@+id/nombre"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:ems="10"
-            android:text="administrador" />
+            android:text="fjgjhjffg"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

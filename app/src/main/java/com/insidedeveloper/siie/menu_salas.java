@@ -18,7 +18,8 @@ public class menu_salas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_salas);
-
+        Bundle bundle = getIntent().getExtras();
+         final String Nombre = bundle.getString("nombre");
         materia = (CardView) findViewById(R.id.CWMaterias);
 
         maestro = (CardView) findViewById(R.id.maestros);
@@ -29,6 +30,7 @@ public class menu_salas extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent chat= new Intent(menu_salas.this,sala_historia.class);
+                chat.putExtra("Nombre",Nombre);
                 startActivity(chat);
             }
         });
@@ -36,6 +38,7 @@ public class menu_salas extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent maestro= new Intent(menu_salas.this,sala_avisos.class);
+                maestro.putExtra("Nombre",Nombre);
                 startActivity(maestro);
 
             }
@@ -44,6 +47,7 @@ public class menu_salas extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent maestro= new Intent(menu_salas.this,sala_historia.class);
+                maestro.putExtra("Nombre",Nombre);
                 startActivity(maestro);
 
             }
@@ -52,6 +56,7 @@ public class menu_salas extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent maestro= new Intent(menu_salas.this,sala_espanol.class);
+                maestro.putExtra("Nombre",Nombre);
                 startActivity(maestro);
 
             }

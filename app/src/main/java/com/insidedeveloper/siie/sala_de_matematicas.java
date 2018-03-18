@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -41,7 +42,7 @@ public class sala_de_matematicas extends AppCompatActivity {
     private static final CharSequence NOTIFICATION_CHANNEL_NAME = "MyChannel";
     public static final int NOTIFICACION_ID = 1;
     private CircleImageView fotoPerfil;
-    private EditText nombre;
+    private TextView nombre;
     private RecyclerView rvMensajes;
     private EditText txtMensaje;
     private Button btnEnviar;
@@ -63,12 +64,17 @@ public class sala_de_matematicas extends AppCompatActivity {
 
 
         fotoPerfil = (CircleImageView) findViewById(R.id.fotoPerfil);
-        nombre = (EditText) findViewById(R.id.nombre);
+        nombre = (TextView) findViewById(R.id.nombre);
         rvMensajes = (RecyclerView) findViewById(R.id.rvMensajes);
         txtMensaje = (EditText) findViewById(R.id.txtMensaje);
         btnEnviar = (Button) findViewById(R.id.btnEnviar);
         btnEnviarFoto = (ImageButton) findViewById(R.id.btnEnviarFoto);
         fotoPerfilCadena = "";
+        Bundle bundle = getIntent().getExtras();
+        String nombreusu;
+        nombreusu= bundle.getString("Nombre");
+        nombre.setText(nombreusu);
+
 
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("matematicas");//Sala de chat (nombre)
@@ -82,10 +88,17 @@ public class sala_de_matematicas extends AppCompatActivity {
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                databaseReference.push().setValue(new MensajeEnviar(txtMensaje.getText().toString(), nombre.getText().toString(), fotoPerfilCadena, "1", ServerValue.TIMESTAMP));
-                txtMensaje.setText("");
+                if(txtMensaje.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(),"mensaje vacio",Toast.LENGTH_LONG).show();
+                }else{
+                    databaseReference.push().setValue(new MensajeEnviar(txtMensaje.getText().toString(), nombre.getText().toString(), fotoPerfilCadena, "1", ServerValue.TIMESTAMP));
+                    txtMensaje.setText("");
+                }
             }
+
         });
+
+
 
         btnEnviarFoto.setOnClickListener(new View.OnClickListener() {
             @Override

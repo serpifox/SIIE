@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Registrar materias dentro del sistema"
+                    android:text="Registra Tareas  dentro del sistema"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -104,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="consultar materias dentro del sistema"
+                    android:text="Consultar Tareas dentro del sistema"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -156,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="eliminar materias dentro del sistema"
+                    android:text="Eliminar tareas dentro del sistema"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>

@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,6 +46,9 @@ public class Inicio_Sesion extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(),"usu="+edtusuario.getText().toString()+"&contra"+edtcontrasenia.getText().toString(),Toast.LENGTH_LONG).show();
                 new Verificar_Usuario().execute("http://10.0.2.2/siie/Inicio_Sesion.php?usu="+edtusuario.getText().toString()+
                         "&contra="+edtcontrasenia.getText().toString());
+                edtusuario.setVisibility(View.INVISIBLE);
+                edtcontrasenia.setVisibility(View.INVISIBLE);
+                btnMateria.setVisibility(View.INVISIBLE);
                 pb.setVisibility(View.VISIBLE);
 
                 //Intent intentMat = new Intent(Inicio_Sesion.this,Menu_Administrador.class);
@@ -163,5 +167,18 @@ public class Inicio_Sesion extends AppCompatActivity {
         char[] buffer = new char[len];
         reader.read(buffer);
         return new String(buffer);
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+                    edtusuario.setVisibility(View.VISIBLE);
+                    edtcontrasenia.setVisibility(View.VISIBLE);
+                    btnMateria.setVisibility(View.VISIBLE);
+                    pb.setVisibility(View.INVISIBLE);
+                    finish();
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

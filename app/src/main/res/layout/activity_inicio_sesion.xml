@@ -14,9 +14,9 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="17dp"
             app:srcCompat="@drawable/udg" />
 
         <LinearLayout
@@ -28,55 +28,65 @@
             android:orientation="vertical"
             android:visibility="visible">
 
-            <View
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_margin="10dp"
-                />
+                android:layout_height="match_parent">
 
-            <EditText
+                <EditText
 
-                android:id="@+id/edtUsuario"
-                android:layout_width="320dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="200dp"
-                android:background="@drawable/gradienteditext"
-                android:drawableLeft="@drawable/ic_lightbulb_outline_black_24dp"
-                android:drawablePadding="10dp"
-                android:drawableTint="#fff"
-                android:hint="nombre de usuario"
-                android:textColorHint="#fff" />
+                    android:id="@+id/edtUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/gradienteditext"
+                    android:drawableLeft="@drawable/ic_lightbulb_outline_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:drawableTint="#fff"
+                    android:hint="usario"
+                    android:textColorHint="#fff"
+                    android:textSize="18sp" />
 
-            <EditText
-                android:id="@+id/edtContrasenia"
-                android:layout_width="320dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/gradienteditext"
-                android:drawableLeft="@drawable/ic_lightbulb_outline_black_24dp"
-                android:drawablePadding="10dp"
-                android:drawableTint="#fff"
-                android:hint="contraseña"
-                android:inputType="textPassword"
-                android:textColorHint="#fff" />
+                <EditText
+                    android:id="@+id/edtContrasenia"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
 
-            <Button
-                android:id="@+id/btnMateria"
-                android:layout_width="148dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/gradienteditext"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:text="ingresar"
-                android:textColor="#fff" />
+                    android:layout_below="@+id/edtUsuario"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="18dp"
+                    android:background="@drawable/gradienteditext"
+                    android:drawableLeft="@drawable/ic_lightbulb_outline_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:drawableTint="#fff"
+                    android:hint="contraseña"
+                    android:inputType="textPassword"
+                    android:textColorHint="#fff" />
 
-            <ProgressBar
-                android:id="@+id/progreso"
-                android:visibility="gone"
-                style="?android:attr/progressBarStyleLargeInverse"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true" />
+                <Button
+                    android:id="@+id/btnMateria"
+                    android:layout_width="148dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edtContrasenia"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="32dp"
+                    android:background="@drawable/gradienteditext"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:text="ingresar"
+                    android:textColor="#fff" />
+
+                <ProgressBar
+                    android:id="@+id/progreso"
+                    style="?android:attr/progressBarStyleLargeInverse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/btnMateria"
+                    android:visibility="gone"
+                    android:layout_alignLeft="@+id/btnMateria"
+                    android:layout_marginBottom="17dp"
+                    android:layout_marginLeft="28dp" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 

@@ -46,7 +46,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="tareas"
+                        android:text="Tareas"
                         android:textStyle="bold" />
 
                     <View
@@ -60,7 +60,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="registrar"
+                        android:text="Sube las tareas asinadas."
                         android:textColor="@android:color/darker_gray" />
 
                 </LinearLayout>
@@ -97,7 +97,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="chat"
+                        android:text="Chat"
                         android:textStyle="bold" />
                     <View
                         android:layout_width="match_parent"
@@ -110,7 +110,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="chatea con tus compañeros"
+                        android:text="Chatea con tus compañeros"
                         android:textColor="@android:color/darker_gray" />
 
                 </LinearLayout>
