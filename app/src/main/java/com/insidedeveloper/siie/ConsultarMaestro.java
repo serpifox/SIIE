@@ -1,6 +1,8 @@
 package com.insidedeveloper.siie;
 
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,8 +33,8 @@ public class ConsultarMaestro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultar_maestro);
-        new Consulta_Maestro().execute("http://192.168.0.10/siie/Consulta_Maestro.php");
-
+       // new Consulta_Maestro().execute("http://192.168.0.10/siie/Consulta_Maestro.php");
+        new Consulta_Maestro().execute("http://10.0.2.2/siie/Consulta_Maestro.php");
         // Obtener el Recycler
         recycler = (RecyclerView) findViewById(R.id.reciclador);
         recycler.setHasFixedSize(true);
@@ -42,6 +44,7 @@ public class ConsultarMaestro extends AppCompatActivity {
         recycler.setLayoutManager(lManager);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     private class Consulta_Maestro extends AsyncTask<String, Void, String> {
 
         List<Maestro> items = new ArrayList<>();
@@ -71,9 +74,11 @@ public class ConsultarMaestro extends AppCompatActivity {
                     numemp = jsa.getString("numemp");
                     puesto = jsa.getString("puesto");
                     email = jsa.getString("email");
-
+                    //agregamos los datos al arraylist
                     items.add(new Maestro(nombre,paterno,materno,numemp,puesto,email));
+                    //madams el arraylist al adapter
                     adapter = new adapterMaestro(items);
+                    //el asiganos al recicler la tarjeta que no retorna el adapter
                     recycler.setAdapter(adapter);
                 }
 

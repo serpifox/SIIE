@@ -11,7 +11,7 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="55dp"
             android:layout_height="match_parent"
             android:padding="10sp">
 
@@ -56,15 +56,30 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/Nrc"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="29dp" />
+                android:layout_height="wrap_content"
+                android:padding="10sp">
+
+                <TextView
+                    android:id="@+id/Nrc"
+                    android:layout_width="83dp"
+                    android:layout_height="29dp"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/ puesto"
+                    android:layout_width="63dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/correo"
                 android:layout_width="match_parent"
-                android:layout_height="34dp"
+                android:layout_height="48dp"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
