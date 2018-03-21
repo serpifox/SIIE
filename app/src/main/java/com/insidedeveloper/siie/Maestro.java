@@ -5,15 +5,21 @@ package com.insidedeveloper.siie;
  */
 
 public class Maestro {
+
     String Nombre;
     String Amaterno;
     String Apaterno;
     String Email;
-    public Maestro(String nom,String mat,String pat,String email){
-        this.Nombre=nom;
-        this.Amaterno=mat;
-        this.Apaterno=pat;
-        this.Email=mat;
+    String NumEmp;
+    String Puesto;
+
+    public Maestro(String nom,String pat,String mat,String emp,String email,String pues){
+        this.Nombre = nom;
+        this.Apaterno = pat;
+        this.Amaterno = mat;
+        this.NumEmp = emp;
+        this.Email = email;
+        this.Puesto = pues;
     }
 
     public String getNombre() {
@@ -46,5 +52,21 @@ public class Maestro {
 
     public void setEmail(String email) {
         Email = email;
+    }
+
+    public String getNumEmp() {
+        return NumEmp;
+    }
+
+    public void setNumEmp(String numemp) {
+        NumEmp = numemp;
+    }
+
+    public String getPuesto() {
+        return  Puesto;
+    }
+
+    public void setPuesto(String puesto) {
+        Puesto = puesto;
     }
 }

@@ -9,9 +9,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Creado por Hermosa Programación
- */
 public class adapterMaestro extends RecyclerView.Adapter<adapterMaestro.AnimeViewHolder> {
     private List<Maestro> items;
 
@@ -21,7 +18,7 @@ public class adapterMaestro extends RecyclerView.Adapter<adapterMaestro.AnimeVie
         public TextView nombre;
         public TextView amaterno;
         public TextView apaterno;
-        public TextView email;
+        public TextView email, numemp, puesto;
 
 
         public AnimeViewHolder(View v) {
@@ -30,7 +27,8 @@ public class adapterMaestro extends RecyclerView.Adapter<adapterMaestro.AnimeVie
             nombre = (TextView) v.findViewById(R.id.nombre);
             apaterno = (TextView) v.findViewById(R.id.paterno);
             amaterno = (TextView) v.findViewById(R.id.materno);
-                    email= (TextView) v.findViewById(R.id.correo);
+            email= (TextView) v.findViewById(R.id.correo);
+
         }
     }
 

@@ -7,15 +7,12 @@ package com.insidedeveloper.siie;
 public class Materia {
     String nombre;
 String materia;
+
 public Materia(String nom, String id){
 
     this.nombre=nom;
     this.materia=id;
 }
-
-    public Materia() {
-
-    }
 
     public String getNombre() {
         return nombre;

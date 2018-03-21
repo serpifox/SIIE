@@ -70,7 +70,7 @@
         android:orientation="horizontal">
 
         <android.support.v7.widget.CardView
-            android:id="@+id/registrar2"
+            android:id="@+id/consultar"
             android:layout_width="340dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
@@ -126,7 +126,7 @@
         android:orientation="horizontal">
 
         <android.support.v7.widget.CardView
-            android:id="@+id/registrar3"
+            android:id="@+id/modificar"
             android:layout_width="340dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"

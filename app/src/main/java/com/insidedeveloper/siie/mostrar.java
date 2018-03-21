@@ -6,11 +6,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,7 +29,7 @@ public class mostrar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostar);
-        new Consulta_Materia().execute("http://10.0.2.2/siie/Consulta_Materia.php");
+        new Consulta_Materia().execute("http://192.168.0.10/siie/Consulta_Materia.php");
 
         // Obtener el Recycler
         recycler = (RecyclerView) findViewById(R.id.reciclador);
@@ -63,7 +58,7 @@ private class Consulta_Materia extends AsyncTask<String, Void, String> {
 
         @Override
         protected void onPostExecute(String result) {
-            Materia Materias = null;
+
             JSONArray ja = null;
             String nombre;
             String nrc;
@@ -73,16 +68,9 @@ private class Consulta_Materia extends AsyncTask<String, Void, String> {
                // JSONArray json=ja.optJSONArray(1);
                 //Toast.makeText(getApplicationContext(), "Datos "+ ja, Toast.LENGTH_LONG).show();
              for(int i=0;i<=ja.length();i++){
-                // ja = new JSONArray(result);
                  JSONObject jsa =ja.getJSONObject(i);
                  nombre=jsa.getString("nombre");
                  nrc=jsa.getString("NRC");
-
-
-
-                /* JSONObject obj= ja.getJSONObject(i);
-                 nombre =(obj.getString("nombre"));nrc =(obj.getString("Nrc"));
-                 Toast.makeText(getApplicationContext(), "Datos "+ nrc, Toast.LENGTH_LONG).show();*/
                  items.add(new Materia(nombre,nrc));
                     adapter = new AnimeAdapter(items);
                     recycler.setAdapter(adapter);
