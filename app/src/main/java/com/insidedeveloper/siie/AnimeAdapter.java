@@ -1,5 +1,7 @@
 package com.insidedeveloper.siie;
 
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,17 +19,19 @@ import java.util.List;
 public class AnimeAdapter extends RecyclerView.Adapter<AnimeAdapter.AnimeViewHolder> {
     private List<Materia> items;
 
-    public static class AnimeViewHolder extends RecyclerView.ViewHolder {
+    public class AnimeViewHolder extends RecyclerView.ViewHolder {
         // Campos respectivos de un item
         public ImageView imagen;
         public TextView nombre;
         public TextView visitas;
+        CardView maestros;
 
         public AnimeViewHolder(View v) {
             super(v);
             imagen = (ImageView) v.findViewById(R.id.fotoPerfilMensaje);
             nombre = (TextView) v.findViewById(R.id.nombre);
             visitas = (TextView) v.findViewById(R.id.Nrc);
+            maestros=(CardView)v.findViewById(R.id.mas);
         }
     }
 

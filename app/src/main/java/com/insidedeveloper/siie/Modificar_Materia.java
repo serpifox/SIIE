@@ -25,13 +25,14 @@ public class Modificar_Materia extends AppCompatActivity implements GestureDetec
     GestureDetector gestureDetector;
     EditText etnrc;
     Button btnmodificar, btneliminar;
-
+String nombre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modificar__materia);
         this.gestureDetector = new GestureDetector(this, (GestureDetector.OnGestureListener) this);
         gestureDetector.setOnDoubleTapListener((GestureDetector.OnDoubleTapListener) this);
+
 
         etnrc = findViewById(R.id.etNRC);
         btnmodificar = findViewById(R.id.btnModificar);

@@ -8,7 +8,7 @@ import android.view.View;
 
 public class Menu_Administrador extends AppCompatActivity {
 
-    CardView materia,chat,maestro,alumnos,tareas;
+    CardView materia,chat,maestro,alumnos,tareas,cursos;
     String nombre;
 
     @Override
@@ -20,6 +20,7 @@ public class Menu_Administrador extends AppCompatActivity {
         maestro = (CardView) findViewById(R.id.maestros);
         alumnos = (CardView) findViewById(R.id.alumnos);
         tareas=(CardView) findViewById(R.id.tareas);
+        cursos=(CardView) findViewById(R.id.curso);
         Bundle bundle = getIntent().getExtras();
         nombre = bundle.getString("usu");
 
@@ -65,7 +66,14 @@ public class Menu_Administrador extends AppCompatActivity {
         });
 
 
+        cursos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent tareas= new Intent(Menu_Administrador.this,Menu_Curso.class);
+                startActivity(tareas);
 
+            }
+        });
 
 
 

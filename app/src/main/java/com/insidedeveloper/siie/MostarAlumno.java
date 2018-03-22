@@ -1,6 +1,8 @@
 package com.insidedeveloper.siie;
 
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,17 +23,18 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class mostrar extends AppCompatActivity {
+public class MostarAlumno extends AppCompatActivity {
     private RecyclerView recycler;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager lManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mostar);
-        //new Consulta_Materia().execute("http://192.168.0.10/siie/Consulta_Materia.php");
-        new Consulta_Materia().execute("http://10.0.2.2/siie/Consulta_Materia.php");
-
+        setContentView(R.layout.activity_mostar_alumno);
+        setContentView(R.layout.activity_consultar_maestro);
+        // new Consulta_Maestro().execute("http://192.168.0.10/siie/Consulta_Maestro.php");
+        new MostarAlumno.Consulta_Alumno().execute("http://10.0.2.2/siie/Consulta_Alumno.php");
         // Obtener el Recycler
         recycler = (RecyclerView) findViewById(R.id.reciclador);
         recycler.setHasFixedSize(true);
@@ -39,15 +42,12 @@ public class mostrar extends AppCompatActivity {
         // Usar un administrador para LinearLayout
         lManager = new LinearLayoutManager(this);
         recycler.setLayoutManager(lManager);
-
-        // Crear un nuevo adaptador
-
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
+    private class Consulta_Alumno extends AsyncTask<String, Void, String> {
 
-private class Consulta_Materia extends AsyncTask<String, Void, String> {
-
-        List<Materia> items = new ArrayList<>();
+        List<Alumno> items = new ArrayList<>();
 
         protected String doInBackground(String... urls) {
             try {
@@ -59,23 +59,30 @@ private class Consulta_Materia extends AsyncTask<String, Void, String> {
 
         @Override
         protected void onPostExecute(String result) {
-
             JSONArray ja = null;
-            String nombre;
-            String nrc;
+            String nombre,paterno,materno,numemp,puesto,email;
+
             try {
                 JSONObject objson=new JSONObject(result);
-                ja = objson.getJSONArray("Materia");
-               // JSONArray json=ja.optJSONArray(1);
-                //Toast.makeText(getApplicationContext(), "Datos "+ ja, Toast.LENGTH_LONG).show();
-             for(int i=0;i<=ja.length();i++){
-                 JSONObject jsa =ja.getJSONObject(i);
-                 nombre=jsa.getString("nombre");
-                 nrc=jsa.getString("NRC");
-                 items.add(new Materia(nombre,nrc));
-                    adapter = new AnimeAdapter(items);
+                ja = objson.getJSONArray("Alumno");
+
+                for(int i=0;i<=ja.length();i++){
+                    JSONObject jsa =ja.getJSONObject(i);
+                    nombre = jsa.getString("nombre");
+                    paterno = jsa.getString("paterno");
+                    materno = jsa.getString("materno");
+                    numemp = jsa.getString("matricula");
+                    email = jsa.getString("email");
+                    //agregamos los datos al arraylist
+                    items.add(new Alumno(nombre,paterno,materno,numemp,email));
+                    //madams el arraylist al adapter
+                    adapter = new AdapterAlumno(items);
+                    //el asiganos al recicler la tarjeta que no retorna el adapter
                     recycler.setAdapter(adapter);
+
+
                 }
+
 
             }catch (JSONException e){
                 e.printStackTrace();
@@ -130,8 +137,4 @@ private class Consulta_Materia extends AsyncTask<String, Void, String> {
         reader.read(buffer);
         return new String(buffer);
     }
-
-
-    }
-
-
+}

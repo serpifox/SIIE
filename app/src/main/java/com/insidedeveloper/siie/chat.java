@@ -55,8 +55,6 @@ String nombreusu;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         Bundle bundle = getIntent().getExtras();
-
-
         fotoPerfil = (CircleImageView) findViewById(R.id.fotoPerfil);
         nombre = (TextView) findViewById(R.id.nombre);
         rvMensajes = (RecyclerView) findViewById(R.id.rvMensajes);

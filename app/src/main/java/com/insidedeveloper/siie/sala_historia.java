@@ -85,7 +85,7 @@ public class sala_historia extends AppCompatActivity {
         private static final int PHOTO_SEND = 1;
         private static final int PHOTO_PERFIL = 2;
         private String fotoPerfilCadena;
-
+    String nombreusu;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -98,11 +98,12 @@ public class sala_historia extends AppCompatActivity {
             txtMensaje = (EditText) findViewById(R.id.txtMensaje);
             btnEnviar = (Button) findViewById(R.id.btnEnviar);
             btnEnviarFoto = (ImageButton) findViewById(R.id.btnEnviarFoto);
-            fotoPerfilCadena = ""; Bundle bundle = getIntent().getExtras();
-            String nombreusu;
+            fotoPerfilCadena = "";
+            Bundle bundle = getIntent().getExtras();
             nombreusu= bundle.getString("Nombre");
-            nombre.setText(nombreusu);
-
+            if(nombreusu!=null) {
+                nombre.setText(nombreusu);
+            }
 
             database = FirebaseDatabase.getInstance();
             databaseReference = database.getReference("historia");//Sala de chat (nombre)

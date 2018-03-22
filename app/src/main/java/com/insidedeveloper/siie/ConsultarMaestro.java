@@ -1,13 +1,17 @@
 package com.insidedeveloper.siie;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,14 +28,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConsultarMaestro extends AppCompatActivity {
-
+CardView maestros;
     private RecyclerView recycler;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager lManager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         setContentView(R.layout.activity_consultar_maestro);
        // new Consulta_Maestro().execute("http://192.168.0.10/siie/Consulta_Maestro.php");
         new Consulta_Maestro().execute("http://10.0.2.2/siie/Consulta_Maestro.php");
@@ -42,7 +50,11 @@ public class ConsultarMaestro extends AppCompatActivity {
         // Usar un administrador para LinearLayout
         lManager = new LinearLayoutManager(this);
         recycler.setLayoutManager(lManager);
-    }
+
+
+
+        }
+
 
     @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     private class Consulta_Maestro extends AsyncTask<String, Void, String> {
@@ -80,7 +92,10 @@ public class ConsultarMaestro extends AppCompatActivity {
                     adapter = new adapterMaestro(items);
                     //el asiganos al recicler la tarjeta que no retorna el adapter
                     recycler.setAdapter(adapter);
+
+
                 }
+
 
             }catch (JSONException e){
                 e.printStackTrace();
