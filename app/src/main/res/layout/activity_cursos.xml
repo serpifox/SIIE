@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    tools:context="com.insidedeveloper.siie.Cursos">
+
+    <EditText
+        android:id="@+id/etnomlis"
+        android:layout_width="367dp"
+        android:layout_height="54dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:hint="Nombre"
+        tools:layout_editor_absoluteX="-7dp"
+        tools:layout_editor_absoluteY="-8dp" />
+
+    <Button
+        android:id="@+id/btn_buscalis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:text="Buscar" />
+
+    <ListView
+        android:id="@+id/lvnombres"
+        style="@android:style/Widget.DeviceDefault.ExpandableListView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/btn_buscalis"
+        android:background="@color/lightgray"
+        android:cacheColorHint="@color/cardview_dark_background"
+        android:divider="@color/backgroundcolor"
+        android:scrollbars="horizontal"
+        android:theme="@style/Animation.AppCompat.DropDownUp" />
+
+
+</RelativeLayout>

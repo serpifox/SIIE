@@ -7,7 +7,7 @@ import android.support.v7.widget.CardView;
 import android.view.View;
 
 public class menu_principal_alumno extends AppCompatActivity {
-CardView tarea;
+CardView tarea,chat;
 public String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,11 +15,11 @@ public String name;
         setContentView(R.layout.activity_menu_principal_alumno);
         Bundle bundle = getIntent().getExtras();
         name = bundle.getString("usu");
-        tarea= (CardView) findViewById(R.id.chat);
+        tarea= (CardView) findViewById(R.id.tareas);
         tarea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent salas= new Intent(menu_principal_alumno.this,menu_salas.class);
+                Intent salas= new Intent(menu_principal_alumno.this,Cursos.class);
                 salas.putExtra("nombre",name);
                 startActivity(salas);
             }

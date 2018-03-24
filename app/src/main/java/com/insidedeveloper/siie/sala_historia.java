@@ -220,26 +220,10 @@ public class sala_historia extends AppCompatActivity {
                     }
                 });
             }}
-    public void notificaciones(String nombre, String mensaje, String fotoPerfil){
-        Uri defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(sala_historia.this)
-                        .setSmallIcon(android.R.drawable.stat_notify_chat)
-                        .setLargeIcon((((BitmapDrawable)getResources()
-                                .getDrawable(R.drawable.leongris)).getBitmap()))
-                        .setContentTitle(nombre)
-                        .setContentText(mensaje)
-                        .setContentInfo(nombre)
-                        .setTicker("SIIE!")
-                        .setSound(defaultSound)
-                        .setLights(1,2, Color.GREEN);
-        NotificationManager mNotificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        mNotificationManager.notify(NOTIF_ALERTA_ID, mBuilder.build());
     }
 
-}
+
 
 
 

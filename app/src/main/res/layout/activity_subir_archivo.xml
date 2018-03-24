@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.insidedeveloper.siie.subir_archivo">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="458dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/Nombre"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:textStyle="italic" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="10dp"
+                android:background="@color/lightgray" />
+
+            <TextView
+                android:id="@+id/desk"
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="197dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="fecha de entrega"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="10dp"
+                android:background="@color/lightgray" />
+
+            <TextView
+                android:id="@+id/fecha"
+                android:layout_width="194dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnEnviar"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="subir tarea"
+            android:textAlignment="center"
+            android:textStyle="bold|italic" />
+    </LinearLayout>
+</LinearLayout>
+
+
+
+
+
+

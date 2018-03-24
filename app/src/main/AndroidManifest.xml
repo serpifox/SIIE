@@ -84,7 +84,9 @@
         <activity
             android:name=".Menu_Curso"
             android:label="Menu Curso" />
-        <activity android:name=".MostarAlumno"></activity>
+        <activity android:name=".MostarAlumno" />
+        <activity android:name=".subir_archivo" />
+        <activity android:name=".Cursos"></activity>
     </application>
 
 </manifest>
