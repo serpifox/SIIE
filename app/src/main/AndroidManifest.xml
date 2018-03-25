@@ -45,9 +45,6 @@
             android:name=".menu_principal_maestro"
             android:label="Menu Principal" />
         <activity
-            android:name=".Registro_Maestro"
-            android:label="Registrar Maestro" />
-        <activity
             android:name=".Modificar_Materia"
             android:label="Modificar Materia" />
         <activity android:name=".Registro_Maestro2" />

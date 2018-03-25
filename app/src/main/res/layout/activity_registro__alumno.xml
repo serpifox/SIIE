@@ -50,6 +50,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ems="10"
+                            android:maxLength="50"
                             android:inputType="textPersonName" />
 
                         <View
@@ -104,6 +105,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ems="10"
+                            android:maxLength="50"
                             android:inputType="textPersonName" />
 
                         <View
@@ -157,6 +159,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ems="10"
+                            android:maxLength="50"
                             android:inputType="textPersonName" />
 
 
@@ -212,6 +215,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ems="10"
+                            android:maxLength="50"
                             android:inputType="textEmailAddress" />
 
                         <View
@@ -257,114 +261,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Usuario"
-                            android:textStyle="bold" />
-
-                        <EditText
-                            android:id="@+id/etUsuario"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:inputType="textPersonName" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_margin="10dp"
-                            android:background="@color/lightgray" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:padding="5dp"
-                            android:text="Escriba el nombre de usuario del alumno"
-                            android:textColor="@android:color/darker_gray" />
-
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="340dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="10dp"
-                    android:foreground="?android:attr/selectableItemBackground">
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:text="Contraseña"
-                            android:textStyle="bold" />
-
-                        <EditText
-                            android:id="@+id/etContrasenia"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:inputType="textPassword" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_margin="10dp"
-                            android:background="@color/lightgray" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:padding="5dp"
-                            android:text="Escriba la contraseña del alumno"
-                            android:textColor="@android:color/darker_gray" />
-
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="340dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="10dp"
-                    android:foreground="?android:attr/selectableItemBackground">
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
                             android:text="Matricula"
                             android:textStyle="bold" />
 
@@ -373,6 +269,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ems="10"
+                            android:maxLength="9"
                             android:inputType="number" />
 
                         <View

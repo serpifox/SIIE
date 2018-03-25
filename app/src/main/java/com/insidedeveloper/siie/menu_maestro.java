@@ -22,7 +22,7 @@ public class menu_maestro extends AppCompatActivity {
         rgMaestro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent regMaestro = new Intent(menu_maestro.this, Registro_Maestro.class);
+                Intent regMaestro = new Intent(menu_maestro.this, Registro_Maestro2.class);
                 startActivity(regMaestro);
             }
         });

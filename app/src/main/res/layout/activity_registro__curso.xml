@@ -50,7 +50,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:maxLength="5"
+                        android:inputType="textPersonName" />
 
                     <View
                         android:layout_width="match_parent"
@@ -104,6 +105,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ems="10"
+                            android:maxLength="10"
                             android:inputType="date" />
 
                         <View
@@ -157,6 +159,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ems="10"
+                            android:maxLength="10"
                             android:inputType="date" />
 
 
@@ -212,6 +215,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ems="10"
+                            android:maxLength="10"
                             android:inputType="number" />
 
                         <View
@@ -265,6 +269,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ems="10"
+                            android:maxLength="5"
                             android:inputType="number" />
 
                         <View

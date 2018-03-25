@@ -23,7 +23,7 @@ import java.net.URL;
 public class Registro_Alumno extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
 
     GestureDetector gestureDetector;
-    EditText etnombre, etpaterno, etmaterno, etcorreo, etusuario, etcontra, etmatricula;
+    EditText etnombre, etpaterno, etmaterno, etcorreo, etmatricula;
     Button btnregistro;
 
     @Override
@@ -37,8 +37,6 @@ public class Registro_Alumno extends AppCompatActivity implements GestureDetecto
         etpaterno = findViewById(R.id.etPaterno);
         etmaterno = findViewById(R.id.etMaterno);
         etcorreo = findViewById(R.id.etCorreo);
-        etusuario = findViewById(R.id.etUsuario);
-        etcontra = findViewById(R.id.etContrasenia);
         etmatricula = findViewById(R.id.etMatricula);
         btnregistro = findViewById(R.id.btnRegistrar);
         final String estatus = "Activo";
@@ -49,7 +47,7 @@ public class Registro_Alumno extends AppCompatActivity implements GestureDetecto
             public void onClick(View view) {
                 new Registrar_Alumno().execute("http://10.0.2.2/siie/Registro_Alumno.php?nombre="+etnombre.getText().toString()+
                 "&paterno="+etpaterno.getText().toString()+"&materno="+etmaterno.getText().toString()+"&correo="+etcorreo.getText().toString()+
-                "&estatus="+estatus+"&usu="+etusuario.getText().toString()+"&contra="+etcontra.getText().toString()+
+                "&estatus="+estatus+"&usu="+etmatricula.getText().toString()+"&contra="+etmatricula.getText().toString()+
                 "&tipo="+tipo+"&matricula="+etmatricula.getText().toString());
             }
         });
