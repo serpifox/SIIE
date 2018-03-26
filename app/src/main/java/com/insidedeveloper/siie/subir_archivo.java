@@ -84,7 +84,7 @@ public class subir_archivo extends AppCompatActivity {
         databaseReference = database.getReference("a");//Sala de Chat (nombre)
         storage = FirebaseStorage.getInstance();
 
-        new subir_archivo.Consulta_Tareas().execute("http://10.0.2.2/siie/Buscar_Tarea.php?nombre="+maloso);
+        new subir_archivo.Consulta_Tareas().execute("http://192.168.0.16/siie/Buscar_Tarea.php?nombre="+maloso);
 
 
         btnEnviar.setOnClickListener(new View.OnClickListener() {

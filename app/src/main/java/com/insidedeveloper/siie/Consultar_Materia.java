@@ -36,6 +36,7 @@ public class Consultar_Materia extends AppCompatActivity implements GestureDetec
         this.gestureDetector = new GestureDetector(this, (GestureDetector.OnGestureListener) this);
         gestureDetector.setOnDoubleTapListener((GestureDetector.OnDoubleTapListener) this);
 
+
         etnrc = findViewById(R.id.etNRC);
         etnombre = findViewById(R.id.etNombre);
         btnconsulta = findViewById(R.id.btnConsulta);
@@ -43,7 +44,7 @@ public class Consultar_Materia extends AppCompatActivity implements GestureDetec
         btnconsulta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Consulta_Materia().execute("http://10.0.2.2/siie/Consulta_Materia.php?nombre="+etnombre.getText().toString());
+                new Consulta_Materia().execute("http://192.168.0.16/siie/Consulta_Materia.php?nombre="+etnombre.getText().toString());
                 etnombre.setText("");
             }
         });

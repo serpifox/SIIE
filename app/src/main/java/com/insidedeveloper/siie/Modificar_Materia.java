@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -23,32 +26,37 @@ import java.net.URL;
 public class Modificar_Materia extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
 
     GestureDetector gestureDetector;
-    EditText etnrc;
+    EditText etnrc,etnombre;
     Button btnmodificar, btneliminar;
 String nombre;
+    String maloso;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modificar__materia);
         this.gestureDetector = new GestureDetector(this, (GestureDetector.OnGestureListener) this);
         gestureDetector.setOnDoubleTapListener((GestureDetector.OnDoubleTapListener) this);
-
-
         etnrc = findViewById(R.id.etNRC);
         btnmodificar = findViewById(R.id.btnModificar);
         btneliminar = findViewById(R.id.btnEliminar);
+        etnombre = findViewById(R.id.etNombre);
+        Bundle bundle = getIntent().getExtras();
+        maloso=bundle.getString("nombre");
+
+        new Modificar_Materia.Consulta_Materia().execute("http://192.168.0.16/siie/Buscar_Materias.php?nombre="+maloso);
+
 
         btnmodificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new ModificarMateria().execute("http://192.168.0.10/siie/Modificar_Materia.php?nrc="+etnrc.getText().toString());
+                new ModificarMateria().execute("http://192.168.0.16/siie/Modificar_Materia.php?nrc="+etnrc.getText().toString());
             }
         });
 
         btneliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new EliminarMateria().execute("http://192.168.0.10/siie/Eliminar_Materia.php?nrc="+etnrc.getText().toString());
+                new EliminarMateria().execute("http://192.168.0.16/siie/Eliminar_Materia.php?nrc="+etnrc.getText().toString());
             }
         });
     }
@@ -81,11 +89,44 @@ String nombre;
             }
         }
 
+
         @Override
         protected void onPostExecute(String result) {
 
             Toast.makeText(getApplicationContext(), "Se eliminaron los datos correctamente", Toast.LENGTH_LONG).show();
 
+        }
+    }
+    private class Consulta_Materia extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            try {
+                return downloadUrl(urls[0]);
+            }catch (IOException e){
+                return "No se puede recuperar la página web URL puede ser válido...";
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            JSONArray ja = null;
+            try {
+
+                ja = new JSONArray(result);
+                Toast.makeText(getApplicationContext(), "Datos "+ ja, Toast.LENGTH_LONG).show();
+                if(ja.length()>0){
+                    etnombre.setText(ja.getString(2));
+                    etnrc.setText(ja.getString(1));
+                }
+                else {
+                    etnombre.setText("");
+                    etnrc.setText("");
+                    Toast.makeText(getApplicationContext(),"Registro no encontrado",Toast.LENGTH_LONG).show();
+                }
+            }catch (JSONException e){
+                e.printStackTrace();
+            }
         }
     }
 
@@ -194,4 +235,10 @@ String nombre;
         finish();
         return false;
     }
-}
+
+    }
+
+
+
+
+

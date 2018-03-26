@@ -11,6 +11,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -32,25 +37,29 @@ CardView maestros;
     private RecyclerView recycler;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager lManager;
-
+    ListView listanombres;
+    Button btnbuscalis;
+    EditText nomlis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
-
         setContentView(R.layout.activity_consultar_maestro);
-       // new Consulta_Maestro().execute("http://192.168.0.10/siie/Consulta_Maestro.php");
-        new Consulta_Maestro().execute("http://10.0.2.2/siie/Consulta_Maestro.php");
+        listanombres = (ListView) findViewById(R.id.lvnombres);
+        btnbuscalis = (Button) findViewById(R.id.btn_buscalis);
+        nomlis = (EditText) findViewById(R.id.etnomlis);
+        // new Consulta_Maestro().execute("http://192.168.0.10/siie/Consulta_Maestro.php");
+        new Consulta_Maestro().execute("http://192.168.0.16/siie/Consulta_Maestro.php");
         // Obtener el Recycler
-        recycler = (RecyclerView) findViewById(R.id.reciclador);
-        recycler.setHasFixedSize(true);
+    }
 
-        // Usar un administrador para LinearLayout
-        lManager = new LinearLayoutManager(this);
-        recycler.setLayoutManager(lManager);
 
+
+        public void llenarLista(ArrayList lis){
+        ArrayAdapter adaptador= new ArrayAdapter(this,android.R.layout.simple_list_item_1, lis);
+        listanombres.setAdapter(adaptador);
 
 
         }
@@ -60,6 +69,7 @@ CardView maestros;
     private class Consulta_Maestro extends AsyncTask<String, Void, String> {
 
         List<Maestro> items = new ArrayList<>();
+        ArrayList lis= new ArrayList();
 
         protected String doInBackground(String... urls) {
             try {
@@ -89,10 +99,8 @@ CardView maestros;
                     //agregamos los datos al arraylist
                     items.add(new Maestro(nombre,paterno,materno,numemp,puesto,email));
                     //madams el arraylist al adapter
-                    adapter = new adapterMaestro(items);
-                    //el asiganos al recicler la tarjeta que no retorna el adapter
-                    recycler.setAdapter(adapter);
-
+                    lis.add(items.get(i).getNombre());
+                    llenarLista(lis);
 
                 }
 

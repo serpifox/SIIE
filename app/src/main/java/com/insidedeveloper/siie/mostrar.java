@@ -1,11 +1,19 @@
 package com.insidedeveloper.siie;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,32 +30,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class mostrar extends AppCompatActivity {
-    private RecyclerView recycler;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager lManager;
+    ListView listanombres;
+    Button btnbuscalis;
+    EditText nomlis;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostar);
         //new Consulta_Materia().execute("http://192.168.0.10/siie/Consulta_Materia.php");
-        new Consulta_Materia().execute("http://10.0.2.2/siie/Consulta_Materia.php");
+        new Consulta_Materia().execute("http://192.168.0.16/siie/Consulta_Materia.php");
+        listanombres =(ListView) findViewById(R.id.lvnombres);
+        btnbuscalis = (Button) findViewById(R.id.btn_buscalis);
+        nomlis = (EditText) findViewById(R.id.etnomlis);
 
-        // Obtener el Recycler
-        recycler = (RecyclerView) findViewById(R.id.reciclador);
-        recycler.setHasFixedSize(true);
+     listanombres.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
-        // Usar un administrador para LinearLayout
-        lManager = new LinearLayoutManager(this);
-        recycler.setLayoutManager(lManager);
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+            int item = position;
 
-        // Crear un nuevo adaptador
+            String itemval = (String) listanombres.getItemAtPosition(position);
+            Intent intentAlu = new Intent(mostrar.this,Modificar_Materia.class);
+            String nombre=String.valueOf(itemval);
+            intentAlu.putExtra("nombre",nombre);
+            startActivity(intentAlu);
+            Toast.makeText(getApplicationContext(), "Position: "+ item+" - Valor: "+itemval, Toast.LENGTH_LONG).show();
+        }
+
+    });}
+
+
+    public void llenarLista(ArrayList lis){
+        ArrayAdapter adaptador= new ArrayAdapter(this,android.R.layout.simple_list_item_1, lis);
+        listanombres.setAdapter(adaptador);
+
 
     }
 
 
 private class Consulta_Materia extends AsyncTask<String, Void, String> {
 
-        List<Materia> items = new ArrayList<>();
+    List<Materia> items = new ArrayList<>();
+    ArrayList lis= new ArrayList();
 
         protected String doInBackground(String... urls) {
             try {
@@ -74,7 +98,8 @@ private class Consulta_Materia extends AsyncTask<String, Void, String> {
                  nrc=jsa.getString("NRC");
                  items.add(new Materia(nombre,nrc));
                     adapter = new AnimeAdapter(items);
-                    recycler.setAdapter(adapter);
+                 lis.add(items.get(i).getNombre());
+                 llenarLista(lis);
                 }
 
             }catch (JSONException e){

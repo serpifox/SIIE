@@ -40,7 +40,8 @@ public class Cursos extends AppCompatActivity {
         listanombres =(ListView) findViewById(R.id.lvnombres);
         btnbuscalis = (Button) findViewById(R.id.btn_buscalis);
         nomlis = (EditText) findViewById(R.id.etnomlis);
-        new Cursos.Consulta_Tareas().execute("http://10.0.2.2/siie/Consulta_Tarea.php");
+        new Cursos.Consulta_Tareas().execute("http://192.168.0.16/siie/Consulta_Tarea.php");
+
         listanombres.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
