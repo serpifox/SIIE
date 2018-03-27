@@ -44,7 +44,7 @@ public class Consultar_Materia extends AppCompatActivity implements GestureDetec
         btnconsulta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Consulta_Materia().execute("http://192.168.0.16/siie/Consulta_Materia.php?nombre="+etnombre.getText().toString());
+                new Consulta_Materia().execute("http://192.168.0.10/siie/Consulta_Materia.php?nombre="+etnombre.getText().toString());
                 etnombre.setText("");
             }
         });

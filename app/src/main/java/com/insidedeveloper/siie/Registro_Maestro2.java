@@ -23,7 +23,7 @@ import java.net.URL;
 public class Registro_Maestro2 extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
 
     GestureDetector gestureDetector;
-    EditText etcorreo,etusuario,etcontrasenia,etnumempleado;
+    EditText etnombre,etpaterno,etmaterno,etcorreo,etnumempleado;
     Button btnregistro;
 
     @Override
@@ -33,23 +33,24 @@ public class Registro_Maestro2 extends AppCompatActivity implements GestureDetec
         this.gestureDetector = new GestureDetector(this, (GestureDetector.OnGestureListener) this);
         gestureDetector.setOnDoubleTapListener((GestureDetector.OnDoubleTapListener) this);
 
+        etnombre = findViewById(R.id.etNombre);
+        etpaterno = findViewById(R.id.etPaterno);
+        etmaterno = findViewById(R.id.etMaterno);
         etcorreo = findViewById(R.id.etCorreo);
-        etusuario = findViewById(R.id.etUsuario);
-      etcontrasenia = findViewById(R.id.etContrasenia);
         etnumempleado = findViewById(R.id.etNumEmp);
         btnregistro = findViewById(R.id.btnRegistrar);
         final String estatus = "Activo";
         final String tipo = "Empleado";
         final String puesto = "Maestro";
-        final Bundle b = getIntent().getExtras();
 
         btnregistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Registrar_Maestro().execute("http://192.168.0.16/siie/Registro_Maestro.php?nombre="+b.getString("nombre")+"&paterno="+b.getString("paterno")+
-                "&materno="+b.getString("materno")+"&correo="+etcorreo.getText().toString()+"&estatus="+estatus+"&usu="+etusuario.getText().toString()+
-                "&contra="+etcontrasenia.getText().toString()+"&tipo="+tipo+"&numempleado="+etnumempleado.getText().toString()+
-                "&puesto="+puesto);
+                new Registrar_Maestro().execute("http://192.168.0.10/siie/Registro_Maestro.php?nombre="+etnombre.getText().toString()+
+                        "&paterno="+etpaterno.getText().toString()+"&materno="+etmaterno.getText().toString()+
+                        "&correo="+etcorreo.getText().toString()+"&estatus="+estatus+"&usu="+etnumempleado.getText().toString()+
+                        "&contra="+etnumempleado.getText().toString()+"&tipo="+tipo+"&numempleado="+etnumempleado.getText().toString()+
+                        "&puesto="+puesto);
             }
         });
     }

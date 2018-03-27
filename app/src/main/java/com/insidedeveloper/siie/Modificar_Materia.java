@@ -28,7 +28,7 @@ public class Modificar_Materia extends AppCompatActivity implements GestureDetec
     GestureDetector gestureDetector;
     EditText etnrc,etnombre;
     Button btnmodificar, btneliminar;
-String nombre;
+    String nombre;
     String maloso;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,20 +43,26 @@ String nombre;
         Bundle bundle = getIntent().getExtras();
         maloso=bundle.getString("nombre");
 
-        new Modificar_Materia.Consulta_Materia().execute("http://192.168.0.16/siie/Buscar_Materias.php?nombre="+maloso);
+        new Modificar_Materia.Consulta_Materia().execute("http://192.168.0.10/siie/Buscar_Materia.php?nombre="+maloso);
+        etnrc.setEnabled(false);
 
 
         btnmodificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new ModificarMateria().execute("http://192.168.0.16/siie/Modificar_Materia.php?nrc="+etnrc.getText().toString());
+                new ModificarMateria().execute("http://192.168.0.10/siie/Modificar_Materia.php?nrc="+etnrc.getText().toString()+
+                "&nombres="+etnombre.getText().toString());
+                etnombre.setText("");
+                etnrc.setText("");
             }
         });
 
         btneliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new EliminarMateria().execute("http://192.168.0.16/siie/Eliminar_Materia.php?nrc="+etnrc.getText().toString());
+                new EliminarMateria().execute("http://192.168.0.10/siie/Eliminar_Materia.php?nrc="+etnrc.getText().toString());
+                etnombre.setText("");
+                etnrc.setText("");
             }
         });
     }
@@ -114,10 +120,9 @@ String nombre;
             try {
 
                 ja = new JSONArray(result);
-                Toast.makeText(getApplicationContext(), "Datos "+ ja, Toast.LENGTH_LONG).show();
                 if(ja.length()>0){
-                    etnombre.setText(ja.getString(2));
-                    etnrc.setText(ja.getString(1));
+                    etnrc.setText(ja.getString(0));
+                    etnombre.setText(ja.getString(1));
                 }
                 else {
                     etnombre.setText("");
@@ -227,7 +232,7 @@ String nombre;
     @Override
     public void onLongPress(MotionEvent e) {
         Intent intentMat = new Intent(Modificar_Materia.this,Menu_Administrador.class);
-        Modificar_Materia.this.startActivity(intentMat);
+        startActivity(intentMat);
     }
 
     @Override
@@ -237,8 +242,3 @@ String nombre;
     }
 
     }
-
-
-
-
-

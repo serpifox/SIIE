@@ -45,7 +45,7 @@ public class Registro_Alumno extends AppCompatActivity implements GestureDetecto
         btnregistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Registrar_Alumno().execute("http://192.168.0.16/siie/Registro_Alumno.php?nombre="+etnombre.getText().toString()+
+                new Registrar_Alumno().execute("http://192.168.0.10/siie/Registro_Alumno.php?nombre="+etnombre.getText().toString()+
                 "&paterno="+etpaterno.getText().toString()+"&materno="+etmaterno.getText().toString()+"&correo="+etcorreo.getText().toString()+
                 "&estatus="+estatus+"&usu="+etmatricula.getText().toString()+"&contra="+etmatricula.getText().toString()+
                 "&tipo="+tipo+"&matricula="+etmatricula.getText().toString());
