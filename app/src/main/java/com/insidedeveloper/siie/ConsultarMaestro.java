@@ -51,7 +51,7 @@ CardView maestros;
         btnbuscalis = (Button) findViewById(R.id.btn_buscalis);
         nomlis = (EditText) findViewById(R.id.etnomlis);
         // new Consulta_Maestro().execute("http://192.168.0.10/siie/Consulta_Maestro.php");
-        new Consulta_Maestro().execute("http://192.168.0.10/siie/Consulta_Maestro.php");
+        new Consulta_Maestro().execute("http://192.168.0.17/siie/Consulta_Maestro.php");
         // Obtener el Recycler
     }
 

@@ -1,30 +1,41 @@
 package com.insidedeveloper.siie;
 
-import android.annotation.SuppressLint;
+
+import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.AsyncTask;
+import android.content.pm.PackageManager;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.webkit.MimeTypeMap;
+import android.widget.Button;
+
+import com.nbsp.materialfilepicker.MaterialFilePicker;
+import com.nbsp.materialfilepicker.ui.FilePickerActivity;
+
+import java.io.File;
+import java.io.IOException;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import android.*;
+import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -35,6 +46,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -68,6 +80,7 @@ public class subir_archivo extends AppCompatActivity {
     private Spinner tarea;
     TextView nombre,desc,fecha;
     String maloso;
+    String malosos;
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,75 +92,110 @@ public class subir_archivo extends AppCompatActivity {
         fecha=(TextView) findViewById(R.id.fecha);
         Bundle bundle = getIntent().getExtras();
          maloso=bundle.getString("nombre");
-        fotoPerfilCadena = "";
-        database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference("a");//Sala de Chat (nombre)
-        storage = FirebaseStorage.getInstance();
+        new subir_archivo.Consulta_Tareas().execute("http://192.168.0.17/siie/Buscar_Tarea.php?nombre="+maloso);
+         malosos=maloso+"/";
 
-        new subir_archivo.Consulta_Tareas().execute("http://192.168.0.16/siie/Buscar_Tarea.php?nombre="+maloso);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                requestPermissions(new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},100);
+                return;
+            }
+        }
 
+        enable_button();
+    }
+
+    private void enable_button() {
 
         btnEnviar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent i = new Intent(Intent.ACTION_GET_CONTENT);
-                    i.setType("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-                    i.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
-                    startActivityForResult(Intent.createChooser(i, "Selecciona una foto"), PHOTO_SEND);
-                }
-            });
+            @Override
+            public void onClick(View view) {
+                new MaterialFilePicker()
+                        .withActivity(subir_archivo.this)
+                        .withRequestCode(10)
+                        .start();
 
-
-
-
-            databaseReference.addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                }
-
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-                }
-
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-                }
-
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
-        }
-
-
+            }
+        });
+    }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PHOTO_SEND && resultCode == RESULT_OK) {
-            Uri u = data.getData();
-            storageReference = storage.getReference(maloso);//imagenes_chat
-            final StorageReference fotoReferencia = storageReference.child(u.getLastPathSegment());
-            fotoReferencia.putFile(u).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Uri u = taskSnapshot.getDownloadUrl();
-                    databaseReference.push();
-                }
-            });
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == 100 && (grantResults[0] == PackageManager.PERMISSION_GRANTED)){
+            enable_button();
+        }else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},100);
+            }
         }
     }
-        private class Consulta_Tareas extends AsyncTask<String, Void, String> {
+
+    ProgressDialog progress;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
+        if(requestCode == 10 && resultCode == RESULT_OK){
+
+            progress = new ProgressDialog(subir_archivo.this);
+            progress.setTitle("subiendo");
+            progress.setMessage("Porfavor espere...");
+            progress.show();
+
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    File f  = new File(data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH));
+                    String content_type  = getMimeType(f.getPath());
+
+                    String file_path = f.getAbsolutePath();
+                    OkHttpClient client = new OkHttpClient();
+                    RequestBody file_body = RequestBody.create(MediaType.parse(content_type),f);
+
+                    RequestBody request_body = new MultipartBody.Builder()
+                            .setType(MultipartBody.FORM)
+                            .addFormDataPart("type",content_type)
+                            .addFormDataPart("uploaded_file",file_path.substring(file_path.lastIndexOf("/")+1), file_body)
+                            .build();
+
+                    Request request = new Request.Builder()
+                            .url("http://192.168.0.17/siie/upload.php")
+                            .post(request_body)
+                            .build();
+                    http://192.168.0.17/siie/tareas/123456.doc
+
+                    try {
+                        Response response = client.newCall(request).execute();
+
+                        if(!response.isSuccessful()){
+                            throw new IOException("Error : "+response);
+                        }
+
+                        progress.dismiss();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            });
+
+            t.start();
+
+
+
+
+        }
+    }
+
+    private String getMimeType(String path) {
+
+        String extension = MimeTypeMap.getFileExtensionFromUrl(path);
+
+        return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+    }
+private class Consulta_Tareas extends AsyncTask<String, Void, String> {
             @Override
             protected String doInBackground(String... urls) {
                 try {
@@ -177,7 +225,7 @@ public class subir_archivo extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }
+}
 
     /* Dado un URL, establece un conexion HttpURLConnection y respuesta
        El contenido de la página web lo crea un InputStream, que se vuelve
