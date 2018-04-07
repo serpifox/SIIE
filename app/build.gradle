@@ -15,8 +15,8 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        repositories{
-            maven{
+        repositories {
+            maven {
                 url "http://dl.bintray.com/lukaville/maven"
             }
         }

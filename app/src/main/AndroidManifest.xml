@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -82,10 +82,15 @@
         <activity
             android:name=".Menu_Curso"
             android:label="Menu Curso" />
+        <activity
+            android:name=".registrar_tarea"
+            android:label="Registar Tarea" />
         <activity android:name=".MostarAlumno" />
-        <activity android:name=".subir_archivo"
-            android:label="Tarea"/>
-        <activity android:name=".Cursos"></activity>
+        <activity
+            android:name=".subir_archivo"
+            android:label="Tarea" />
+        <activity android:name=".Cursos" />
+        <activity android:name=".consultar_archivos"></activity>
     </application>
 
 </manifest>

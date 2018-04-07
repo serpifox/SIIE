@@ -81,6 +81,7 @@ public class subir_archivo extends AppCompatActivity {
     TextView nombre,desc,fecha;
     String maloso;
     String malosos;
+    Long ID;
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,8 +92,12 @@ public class subir_archivo extends AppCompatActivity {
         desc=(TextView) findViewById(R.id.desk) ;
         fecha=(TextView) findViewById(R.id.fecha);
         Bundle bundle = getIntent().getExtras();
-         maloso=bundle.getString("nombre");
-        new subir_archivo.Consulta_Tareas().execute("http://192.168.0.17/siie/Buscar_Tarea.php?nombre="+maloso);
+        maloso=bundle.getString("nombre");
+        nombreusu=bundle.getString("usuario");
+        ID=bundle.getLong("Id");
+
+
+        new subir_archivo.Consulta_Tareas().execute("http://192.168.0.10/siie/Buscar_Tarea.php?nombre="+maloso);
          malosos=maloso+"/";
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
@@ -114,9 +119,15 @@ public class subir_archivo extends AppCompatActivity {
                         .withActivity(subir_archivo.this)
                         .withRequestCode(10)
                         .start();
+                registrararchivo();
 
             }
         });
+    }
+
+    private void registrararchivo() {
+        new subir_archivo.Registrar_Tarea().execute("http://192.168.0.10/siie/Registro_Actividad.php?id="+ID+
+                "&nombre="+nombreusu+"&url="+"http://192.168.0.10/siie/tareas/"+nombreusu+"docx");
     }
 
     @Override
@@ -159,7 +170,7 @@ public class subir_archivo extends AppCompatActivity {
                             .build();
 
                     Request request = new Request.Builder()
-                            .url("http://192.168.0.17/siie/upload.php")
+                            .url("http://192.168.0.10/siie/upload.php")
                             .post(request_body)
                             .build();
                     http://192.168.0.17/siie/tareas/123456.doc
@@ -195,37 +206,106 @@ public class subir_archivo extends AppCompatActivity {
 
         return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
     }
+
 private class Consulta_Tareas extends AsyncTask<String, Void, String> {
-            @Override
-            protected String doInBackground(String... urls) {
-                try {
-                    return downloadUrl(urls[0]);
-                }catch (IOException e){
-                    return "No se puede recuperar la página web URL puede ser válido...";
-                }
+    @Override
+    protected String doInBackground(String... urls) {
+        try {
+            return downloadUrl(urls[0]);
+        } catch (IOException e) {
+            return "No se puede recuperar la página web URL puede ser válido...";
+        }
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+
+        JSONArray ja = null;
+        try {
+
+            ja = new JSONArray(result);
+            Toast.makeText(getApplicationContext(), "Datos " + ja, Toast.LENGTH_LONG).show();
+            if (ja.length() > 0) {
+                nombre.setText(ja.getString(2));
+                desc.setText(ja.getString(3));
+                fecha.setText(ja.getString(4));
+            } else {
+
             }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
-            @Override
-            protected void onPostExecute(String result) {
 
-                JSONArray ja = null;
-                try {
+    /* Dado un URL, establece un conexion HttpURLConnection y respuesta
+       El contenido de la página web lo crea un InputStream, que se vuelve
+     una cadena.*/
+    private String downloadUrl(String myurl) throws IOException {
+        Log.i("URL", "" + myurl);
+        myurl = myurl.replace(" ", "%20");
+        InputStream is = null;
+        // Mostrar sólo los primeros 500 caracteres del
+        // contenido de la página web.
+        int len = 500;
 
-                    ja = new JSONArray(result);
-                    Toast.makeText(getApplicationContext(), "Datos "+ ja, Toast.LENGTH_LONG).show();
-                    if(ja.length()>0){
-                        nombre.setText(ja.getString(2));
-                        desc.setText(ja.getString(3));
-                        fecha.setText(ja.getString(4));
-                    }
-                    else {
+        try {
+            URL url = new URL(myurl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(10000 /* milliseconds */);
+            conn.setConnectTimeout(15000 /* milliseconds */);
+            conn.setRequestMethod("GET");
+            conn.setDoInput(true);
+            // Inicia la consulta
+            conn.connect();
+            //EL metodo getResponseCode devuelve un codigo de estado,
+            // donde un codigo 200 significa exito en la conexion
+            int response = conn.getResponseCode();
+            Log.d("respuesta", "The response is: " + response);
+            is = conn.getInputStream();
 
-                    }
-                }catch (JSONException e){
-                    e.printStackTrace();
-                }
+            // Convertir el InputStream en una cadena
+            String contentAsString = readIt(is, len);
+            return contentAsString;
+
+            // Asegurarnos de que el InputStream se cierra después de que la aplicación ha
+            // terminado de utilizarlo.
+        } finally {
+            if (is != null) {
+                is.close();
             }
+        }
+    }
+
+    // Lee un InputStream y lo convierte en una cadena.
+    public String readIt(InputStream stream, int len) throws IOException, UnsupportedEncodingException {
+        Reader reader = null;
+        reader = new InputStreamReader(stream, "UTF-8");
+        char[] buffer = new char[len];
+        reader.read(buffer);
+        return new String(buffer);
+    }
+
 }
+
+    private class Registrar_Tarea extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            try {
+                return downloadUrl(urls[0]);
+            }catch (IOException e){
+                return "No se puede recuperar la página web URL puede ser válido...";
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            Toast.makeText(getApplicationContext(), "Se almacenaron los datos correctamente", Toast.LENGTH_LONG).show();
+
+        }
+    }
+
 
     /* Dado un URL, establece un conexion HttpURLConnection y respuesta
        El contenido de la página web lo crea un InputStream, que se vuelve

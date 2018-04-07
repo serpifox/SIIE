@@ -1,6 +1,7 @@
 package com.insidedeveloper.siie;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -29,7 +30,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cursos extends AppCompatActivity {
+public class consultar_archivos extends AppCompatActivity {
     ListView listanombres;
     Button btnbuscalis;
     EditText nomlis;
@@ -37,80 +38,77 @@ public class Cursos extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cursos);
-        listanombres =(ListView) findViewById(R.id.lvnombres);
+        setContentView(R.layout.activity_consultar_archivos);
+        listanombres = (ListView) findViewById(R.id.lvnombres);
         btnbuscalis = (Button) findViewById(R.id.btn_buscalis);
         nomlis = (EditText) findViewById(R.id.etnomlis);
         Bundle bundle = getIntent().getExtras();
-        usuario=bundle.getString("nombre");
-        new Cursos.Consulta_Tareas().execute("http://192.168.0.10/siie/Consulta_Tarea.php");
 
-        listanombres.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        new consultar_archivos.Consulta_Tareas().execute("http://192.168.0.10/siie/Consulta_Actividad.php");
 
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                int item = position;
+        listanombres.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-                String itemval = (String) listanombres.getItemAtPosition(position);
-                Intent intentAlu = new Intent(Cursos.this,subir_archivo.class);
-                String nombre=String.valueOf(itemval);
-                intentAlu.putExtra("nombre",nombre);
-                intentAlu.putExtra("Id",id);
-                intentAlu.putExtra("usuario",usuario);
-                startActivity(intentAlu);
-                Toast.makeText(getApplicationContext(), "Position: "+ item+" - Valor: "+itemval, Toast.LENGTH_LONG).show();
-            }
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+            int item = position;
+            String itemval = (String) listanombres.getItemAtPosition(position);
+            String nombre=String.valueOf(itemval);
+            Uri uri = Uri.parse("http://192.168.0.10/siie/tareas/"+nombre+".docx");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+            Toast.makeText(getApplicationContext(), "Position: "+ item+" - Valor: "+itemval, Toast.LENGTH_LONG).show();
+        }
 
-        });
-    }
+    });
+}
 
     public void llenarLista(ArrayList lis){
         ArrayAdapter adaptador= new ArrayAdapter(this,android.R.layout.simple_list_item_1, lis);
         listanombres.setAdapter(adaptador);
     }
-    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
-    private class Consulta_Tareas extends AsyncTask<String, Void, String> {
-        List<Tarea> items = new ArrayList<>();
-        ArrayList lis= new ArrayList();
+@RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
+private class Consulta_Tareas extends AsyncTask<String, Void, String> {
+    List<actividad> items = new ArrayList<>();
+    ArrayList lis= new ArrayList();
 
-        protected String doInBackground(String... urls) {
-            try {
-                return downloadUrl(urls[0]);
-            }catch (IOException e){
-                return "No se puede recuperar la página web URL puede ser válido...";
+    protected String doInBackground(String... urls) {
+        try {
+            return downloadUrl(urls[0]);
+        }catch (IOException e){
+            return "No se puede recuperar la página web URL puede ser válido...";
+        }
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+        JSONArray ja = null;
+        String nombre,Descripcion,id,url;
+
+        try {
+            JSONObject objson=new JSONObject(result);
+            ja = objson.getJSONArray("Actividad");
+
+            for(int i=0;i<=ja.length();i++){
+                JSONObject jsa =ja.getJSONObject(i);
+                nombre = jsa.getString("nombre");
+                id = jsa.getString("id");
+             url="";
+
+                items.add(new actividad(id,nombre,url));
+                lis.add(items.get(i).getNombre());
+                llenarLista(lis);
             }
+
+
+        }catch (JSONException e){
+            e.printStackTrace();
         }
-
-        @Override
-        protected void onPostExecute(String result) {
-            JSONArray ja = null;
-            String nombre,Descripcion,id,fecha;
-
-            try {
-                JSONObject objson=new JSONObject(result);
-                ja = objson.getJSONArray("Tarea");
-
-                for(int i=0;i<=ja.length();i++){
-                    JSONObject jsa =ja.getJSONObject(i);
-                    nombre = jsa.getString("nombre");
-                    id = jsa.getString("id");
-                    Descripcion= jsa.getString("descripcion");
-                    fecha = jsa.getString("fecha");
-                    items.add(new Tarea(id,nombre,Descripcion,fecha));
-                    lis.add(items.get(i).getNombre());
-                    llenarLista(lis);
-                }
-
-
-            }catch (JSONException e){
-                e.printStackTrace();
-            }
-        }
+    }
 
 
 
 
 
-        }
+}
 
 
     /* Dado un URL, establece un conexion HttpURLConnection y respuesta
