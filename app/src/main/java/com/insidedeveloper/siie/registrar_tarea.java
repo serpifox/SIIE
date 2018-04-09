@@ -43,12 +43,14 @@ public class registrar_tarea extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                new Registrar_Tarea().execute("http://192.168.0.17/siie/Registro_Tarea.php?nombre="+edtnombre.getText().toString()+
+                new Registrar_Tarea().execute("http://10.0.2.2/siie/Registro_Tarea.php?nombre="+edtnombre.getText().toString()+
                         "&descripcion="+edtdescripcion.getText().toString()+"&fecha="+etPlannedDate.getText().toString());
+
+                edtnombre.setText("");
+                edtdescripcion.setText("");
+                etPlannedDate.setText("");
             }
         });
-
-
 
         etPlannedDate.setOnClickListener(new View.OnClickListener() {
 
@@ -57,7 +59,9 @@ public class registrar_tarea extends AppCompatActivity {
                 obtenerFecha();
             }
         });
-        }
+
+    }
+
     private void obtenerFecha(){
         DatePickerDialog recogerFecha = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -84,13 +88,7 @@ public class registrar_tarea extends AppCompatActivity {
 
     }
 
-
-
-
-
-
-
-private class Registrar_Tarea extends AsyncTask<String, Void, String> {
+    private class Registrar_Tarea extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
             try {
@@ -107,7 +105,6 @@ private class Registrar_Tarea extends AsyncTask<String, Void, String> {
 
         }
     }
-
 
     /* Dado un URL, establece un conexion HttpURLConnection y respuesta
        El contenido de la página web lo crea un InputStream, que se vuelve

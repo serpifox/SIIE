@@ -35,19 +35,19 @@ public class Inicio_Sesion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio_sesion);
 
-        btnMateria =(Button) findViewById(R.id.btnMateria);
+        btnMateria = (Button) findViewById(R.id.btnMateria);
         edtusuario = findViewById(R.id.edtUsuario);
         edtcontrasenia = findViewById(R.id.edtContrasenia);
-        pb=findViewById(R.id.progreso);
+        pb = findViewById(R.id.progreso);
 
         btnMateria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(getApplicationContext(),"usu="+edtusuario.getText().toString()+"&contra"+edtcontrasenia.getText().toString(),Toast.LENGTH_LONG).show();
-                new Verificar_Usuario().execute("http://192.168.0.10/siie/Inicio_Sesion.php?usu="+edtusuario.getText().toString()+
-                        "&contra="+edtcontrasenia.getText().toString());
+                new Verificar_Usuario().execute("http://10.0.2.2/siie/Inicio_Sesion.php?usu=" + edtusuario.getText().toString() +
+                        "&contra=" + edtcontrasenia.getText().toString());
                 //new Verificar_Usuario().execute("http://192.168.0.10/siie/Inicio_Sesion.php?usu="+edtusuario.getText().toString()+
-                        //"&contra="+edtcontrasenia.getText().toString());
+                //"&contra="+edtcontrasenia.getText().toString());
                 edtusuario.setVisibility(View.INVISIBLE);
                 edtcontrasenia.setVisibility(View.INVISIBLE);
                 btnMateria.setVisibility(View.INVISIBLE);
@@ -64,7 +64,7 @@ public class Inicio_Sesion extends AppCompatActivity {
         protected String doInBackground(String... urls) {
             try {
                 return downloadUrl(urls[0]);
-            }catch (IOException e){
+            } catch (IOException e) {
                 return "No se puede recuperar la página web URL puede ser válido...";
             }
         }
@@ -73,49 +73,47 @@ public class Inicio_Sesion extends AppCompatActivity {
         protected void onPostExecute(String result) {
             JSONArray ja = null;
             //Toast.makeText(getApplicationContext(),""+result,Toast.LENGTH_LONG).show();
-            try{
+            try {
                 ja = new JSONArray(result);
-              //  Toast.makeText(getApplicationContext(),""+ja,Toast.LENGTH_LONG).show();
-                if(ja.length()>0){
+                //  Toast.makeText(getApplicationContext(),""+ja,Toast.LENGTH_LONG).show();
+                if (ja.length() > 0) {
                     tipo = ja.getString(0);
 
-                    if("Alumno".equals(tipo)){
-                        Intent intentAlu = new Intent(Inicio_Sesion.this,menu_principal_alumno.class);
-                        intentAlu.putExtra("usu",edtusuario.getText().toString());
-                        intentAlu.putExtra("contra",edtcontrasenia.getText().toString());
+                    if ("Alumno".equals(tipo)) {
+                        Intent intentAlu = new Intent(Inicio_Sesion.this, menu_principal_alumno.class);
+                        intentAlu.putExtra("usu", edtusuario.getText().toString());
+                        intentAlu.putExtra("contra", edtcontrasenia.getText().toString());
                         startActivity(intentAlu);
-                        Toast.makeText(getApplicationContext(),"Menu Alumno",Toast.LENGTH_LONG).show();
+                        finish();
+                        Toast.makeText(getApplicationContext(), "Menu Alumno", Toast.LENGTH_LONG).show();
                         pb.setVisibility(View.INVISIBLE);
-                    }
-                    else if("Empleado".equals(tipo)){
+                    } else if ("Empleado".equals(tipo)) {
                         puesto = ja.getString(1);
-                        if("Administrador".equals(puesto)){
-                            Intent intentEmp = new Intent(Inicio_Sesion.this,Menu_Administrador.class);
-                            intentEmp.putExtra("usu",edtusuario.getText().toString());
-                            intentEmp.putExtra("contra",edtcontrasenia.getText().toString());
+                        if ("Administrador".equals(puesto)) {
+                            Intent intentEmp = new Intent(Inicio_Sesion.this, Menu_Administrador.class);
+                            intentEmp.putExtra("usu", edtusuario.getText().toString());
+                            intentEmp.putExtra("contra", edtcontrasenia.getText().toString());
                             startActivity(intentEmp);
-                            Toast.makeText(getApplicationContext(),"Menu Administrador",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Menu Administrador", Toast.LENGTH_LONG).show();
                             pb.setVisibility(View.INVISIBLE);
-                        }
-                        else{
-                            Intent intentEmp = new Intent(Inicio_Sesion.this,Menu_Administrador.class);
-                            intentEmp.putExtra("usu",edtusuario.getText().toString());
-                            intentEmp.putExtra("contra",edtcontrasenia.getText().toString());
+                        } else {
+                            Intent intentEmp = new Intent(Inicio_Sesion.this, menu_principal_maestro.class);
+                            intentEmp.putExtra("usu", edtusuario.getText().toString());
+                            intentEmp.putExtra("contra", edtcontrasenia.getText().toString());
                             startActivity(intentEmp);
                            /* Intent intentMa = new Intent(Inicio_Sesion.this,menu_principal_maestro.class);
                             intentMa.putExtra("usu",edtusuario.getText().toString());
                             intentMa.putExtra("contra",edtcontrasenia.getText().toString());
                             Inicio_Sesion.this.startActivity(intentMa);*/
                             pb.setVisibility(View.INVISIBLE);
-                            Toast.makeText(getApplicationContext(),"Menu Maestro",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Menu Maestro", Toast.LENGTH_LONG).show();
                         }
                     }
-                }
-                else{
-                    Toast.makeText(getApplicationContext(),"Registro no encontrado",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Registro no encontrado", Toast.LENGTH_LONG).show();
                     pb.setVisibility(View.INVISIBLE);
                 }
-            }catch(JSONException e){
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
             //Toast.makeText(getApplicationContext(), "Inicio de sesión correcto", Toast.LENGTH_LONG).show();
@@ -126,8 +124,8 @@ public class Inicio_Sesion extends AppCompatActivity {
        El contenido de la página web lo crea un InputStream, que se vuelve
      una cadena.*/
     private String downloadUrl(String myurl) throws IOException {
-        Log.i("URL",""+myurl);
-        myurl = myurl.replace(" ","%20");
+        Log.i("URL", "" + myurl);
+        myurl = myurl.replace(" ", "%20");
         InputStream is = null;
         // Mostrar sólo los primeros 500 caracteres del
         // contenido de la página web.
@@ -170,6 +168,7 @@ public class Inicio_Sesion extends AppCompatActivity {
         reader.read(buffer);
         return new String(buffer);
     }
+
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             switch (keyCode) {

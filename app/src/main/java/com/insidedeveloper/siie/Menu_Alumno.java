@@ -37,7 +37,7 @@ public class Menu_Alumno extends AppCompatActivity {
         consultar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Mostar= new Intent(Menu_Alumno.this,MostarAlumno.class);
+                Intent Mostar= new Intent(Menu_Alumno.this,Consultar_Alumno.class);
                 startActivity(Mostar);
 
             }

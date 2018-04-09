@@ -43,12 +43,16 @@ public class Registro_Curso extends AppCompatActivity implements GestureDetector
         btnregistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* new Registrar_Curso().execute("http://192.168.0.10/siie/Registro_Curso.php?clave="+etclave.getText().toString()+
-                "&fechaini="+etinicio.getText().toString()+"&fechafin="+etfinal.getText().toString()+
-                "&idemp="+etempleado.getText().toString()+"&idmat="+etnrc.getText().toString());*/
-                         new Registrar_Curso().execute("http://192.168.0.16/siie/Registro_Curso.php?clave="+etclave.getText().toString()+
+
+                new Registrar_Curso().execute("http://10.0.2.2/siie/Registro_Curso.php?clave="+etclave.getText().toString()+
                 "&fechaini="+etinicio.getText().toString()+"&fechafin="+etfinal.getText().toString()+
                 "&idemp="+etempleado.getText().toString()+"&idmat="+etnrc.getText().toString());
+
+                etclave.setText("");
+                etinicio.setText("");
+                etfinal.setText("");
+                etempleado.setText("");
+                etnrc.setText("");
             }
         });
     }

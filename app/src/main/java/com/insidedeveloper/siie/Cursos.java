@@ -43,7 +43,7 @@ public class Cursos extends AppCompatActivity {
         nomlis = (EditText) findViewById(R.id.etnomlis);
         Bundle bundle = getIntent().getExtras();
         usuario=bundle.getString("nombre");
-        new Cursos.Consulta_Tareas().execute("http://192.168.0.10/siie/Consulta_Tarea.php");
+        new Cursos.Consulta_Tareas().execute("http://10.0.0.2/siie/Consulta_Tarea.php");
 
         listanombres.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 

@@ -43,14 +43,14 @@ public class Modificar_Materia extends AppCompatActivity implements GestureDetec
         Bundle bundle = getIntent().getExtras();
         maloso=bundle.getString("nombre");
 
-        new Modificar_Materia.Consulta_Materia().execute("http://192.168.0.10/siie/Buscar_Materia.php?nombre="+maloso);
+        new Modificar_Materia.Consulta_Materia().execute("http://10.0.2.2/siie/Buscar_Materia.php?nombre="+maloso);
         etnrc.setEnabled(false);
 
 
         btnmodificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new ModificarMateria().execute("http://192.168.0.10/siie/Modificar_Materia.php?nrc="+etnrc.getText().toString()+
+                new ModificarMateria().execute("http://10.0.2.2/siie/Modificar_Materia.php?nrc="+etnrc.getText().toString()+
                 "&nombres="+etnombre.getText().toString());
                 etnombre.setText("");
                 etnrc.setText("");
@@ -60,7 +60,7 @@ public class Modificar_Materia extends AppCompatActivity implements GestureDetec
         btneliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new EliminarMateria().execute("http://192.168.0.10/siie/Eliminar_Materia.php?nrc="+etnrc.getText().toString());
+                new EliminarMateria().execute("http://10.0.2.2/siie/Eliminar_Materia.php?nrc="+etnrc.getText().toString());
                 etnombre.setText("");
                 etnrc.setText("");
             }

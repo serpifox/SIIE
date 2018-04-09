@@ -58,12 +58,12 @@ public class Maestro {
         return NumEmp;
     }
 
-    public void setNumEmp(String numemp) {
-        NumEmp = numemp;
+    public void setNumEmp(String numEmp) {
+        NumEmp = numEmp;
     }
 
     public String getPuesto() {
-        return  Puesto;
+        return Puesto;
     }
 
     public void setPuesto(String puesto) {

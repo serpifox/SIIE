@@ -97,7 +97,7 @@ public class subir_archivo extends AppCompatActivity {
         ID=bundle.getLong("Id");
 
 
-        new subir_archivo.Consulta_Tareas().execute("http://192.168.0.10/siie/Buscar_Tarea.php?nombre="+maloso);
+        new subir_archivo.Consulta_Tareas().execute("http://10.0.2.2/siie/Buscar_Tarea.php?nombre="+maloso);
          malosos=maloso+"/";
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
@@ -126,8 +126,8 @@ public class subir_archivo extends AppCompatActivity {
     }
 
     private void registrararchivo() {
-        new subir_archivo.Registrar_Tarea().execute("http://192.168.0.10/siie/Registro_Actividad.php?id="+ID+
-                "&nombre="+nombreusu+"&url="+"http://192.168.0.10/siie/tareas/"+nombreusu+"docx");
+        new subir_archivo.Registrar_Tarea().execute("http://10.0.2.2/siie/Registro_Actividad.php?id="+ID+
+                "&nombre="+nombreusu+"&url="+"http://10.0.2.2/siie/tareas/"+nombreusu+"docx");
     }
 
     @Override
@@ -170,7 +170,7 @@ public class subir_archivo extends AppCompatActivity {
                             .build();
 
                     Request request = new Request.Builder()
-                            .url("http://192.168.0.10/siie/upload.php")
+                            .url("http://10.0.2.2/siie/upload.php")
                             .post(request_body)
                             .build();
                     http://192.168.0.17/siie/tareas/123456.doc

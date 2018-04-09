@@ -40,7 +40,8 @@ public class Registro_Materia extends AppCompatActivity implements GestureDetect
         btnregistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Registrar_Materia().execute("http://192.168.0.16/siie/Registro_Materia.php?nrc="+etnrc.getText().toString()+"&nombres="+etnombre.getText().toString());
+                new Registrar_Materia().execute("http://10.0.2.2/siie/Registro_Materia.php?nrc="+etnrc.getText().toString()+"&nombres="+etnombre.getText().toString());
+
                 etnrc.setText("");
                 etnombre.setText("");
             }

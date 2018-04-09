@@ -90,7 +90,8 @@
             android:name=".subir_archivo"
             android:label="Tarea" />
         <activity android:name=".Cursos" />
-        <activity android:name=".consultar_archivos"></activity>
+        <activity android:name=".consultar_archivos" />
+        <activity android:name=".Consultar_Alumno"></activity>
     </application>
 
 </manifest>

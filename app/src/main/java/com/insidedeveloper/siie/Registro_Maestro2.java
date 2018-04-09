@@ -46,11 +46,18 @@ public class Registro_Maestro2 extends AppCompatActivity implements GestureDetec
         btnregistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Registrar_Maestro().execute("http://192.168.0.10/siie/Registro_Maestro.php?nombre="+etnombre.getText().toString()+
+
+                new Registrar_Maestro().execute("http://10.0.2.2/siie/Registro_Maestro.php?nombre="+etnombre.getText().toString()+
                         "&paterno="+etpaterno.getText().toString()+"&materno="+etmaterno.getText().toString()+
                         "&correo="+etcorreo.getText().toString()+"&estatus="+estatus+"&usu="+etnumempleado.getText().toString()+
                         "&contra="+etnumempleado.getText().toString()+"&tipo="+tipo+"&numempleado="+etnumempleado.getText().toString()+
                         "&puesto="+puesto);
+
+                etnombre.setText("");
+                etpaterno.setText("");
+                etmaterno.setText("");
+                etcorreo.setText("");
+                etnumempleado.setText("");
             }
         });
     }
