@@ -42,6 +42,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:maxLength="50"
+                    android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMnNnÑñOoPpQqRrSsTtUuVvWwXxYyZz1234567890 "
                     android:inputType="textPersonName"/>
                 <View
                     android:layout_width="match_parent"
@@ -93,6 +94,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:maxLength="5"
+                    android:digits="1234567890"
                     android:inputType="number" />
 
 

@@ -1,11 +1,14 @@
 package com.insidedeveloper.siie;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,11 +43,29 @@ public class Consultar_Alumno extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultar__alumno);
 
+        new Consulta_Alumnos().execute("http://10.0.2.2/siie/Consulta_Alumno.php");
+
         listanombres = findViewById(R.id.etlista);
         nomlis = findViewById(R.id.etnombre);
         btnbuscalis = findViewById(R.id.btnbuscar);
 
-        new Consulta_Alumnos().execute("http://10.0.2.2/siie/Consulta_Alumno.php");
+        listanombres.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                int item =  i;
+                String itemval = (String) listanombres.getItemAtPosition(i);
+                Intent intentModAlu = new Intent(Consultar_Alumno.this,Modificar_Alumno.class);
+                String nombre=String.valueOf(itemval);
+                String paterno=String.valueOf(itemval);
+                String materno=String.valueOf(itemval);
+                intentModAlu.putExtra("nombre",nombre);
+                intentModAlu.putExtra("paterno",paterno);
+                intentModAlu.putExtra("materno",materno);
+                startActivity(intentModAlu);
+            }
+        });
+
     }
 
     public void Llenar_Lista (ArrayList list) {

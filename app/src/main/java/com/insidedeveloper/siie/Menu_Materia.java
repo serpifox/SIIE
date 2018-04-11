@@ -27,14 +27,6 @@ public class Menu_Materia extends AppCompatActivity {
             }
         });
 
-        rgModificar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent modificar = new Intent(Menu_Materia.this,Modificar_Materia.class);
-                startActivity(modificar);
-            }
-        });
-
         rgConsultar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

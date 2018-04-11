@@ -39,7 +39,7 @@ public class mostrar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostar);
         //new Consulta_Materia().execute("http://192.168.0.10/siie/Consulta_Materia.php");
-        new Consulta_Materia().execute("http://192.168.0.10/siie/Consulta_Materia.php");
+        new Consulta_Materia().execute("http://10.0.2.2/siie/Consulta_Materia.php");
         listanombres =(ListView) findViewById(R.id.lvnombres);
         btnbuscalis = (Button) findViewById(R.id.btn_buscalis);
         nomlis = (EditText) findViewById(R.id.etnomlis);
@@ -54,7 +54,7 @@ public class mostrar extends AppCompatActivity {
             String nombre=String.valueOf(itemval);
             intentAlu.putExtra("nombre",nombre);
             startActivity(intentAlu);
-            Toast.makeText(getApplicationContext(), "Position: "+ item+" - Valor: "+itemval, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "Position: "+ item+" - Valor: "+itemval, Toast.LENGTH_LONG).show();
         }
 
     });}

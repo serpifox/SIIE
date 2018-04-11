@@ -1,16 +1,16 @@
 package com.insidedeveloper.siie;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,56 +20,53 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class Registro_Alumno extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
+public class Modificar_Alumno extends AppCompatActivity {
 
-    GestureDetector gestureDetector;
-    EditText etnombre, etpaterno, etmaterno, etmatricula;
-    Button btnregistro;
-    Validaciones val = new Validaciones();
+    EditText etnombre, etpaterno, etmaterno, etmatricula, etusuario, etcontra, etcorreo;
+    Button btnmodificar;
+    String anombre,apaterno,amaterno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro__alumno);
-        this.gestureDetector = new GestureDetector(this, (GestureDetector.OnGestureListener) this);
-        gestureDetector.setOnDoubleTapListener((GestureDetector.OnDoubleTapListener) this);
+        setContentView(R.layout.activity_modificar__alumno);
 
         etnombre = findViewById(R.id.etNombre);
         etpaterno = findViewById(R.id.etPaterno);
         etmaterno = findViewById(R.id.etMaterno);
         etmatricula = findViewById(R.id.etMatricula);
-        btnregistro = findViewById(R.id.btnRegistrar);
+        etusuario = findViewById(R.id.etUsuario);
+        etcontra = findViewById(R.id.etContra);
+        etcorreo = findViewById(R.id.etCorreo);
+        Bundle bundle = getIntent().getExtras();
+        anombre = bundle.getString("nombre");
+        apaterno = bundle.getString("paterno");
+        amaterno = bundle.getString("materno");
         final String estatus = "Activo";
         final String tipo = "Alumno";
-        final String correo = "@udg.mx";
 
-        btnregistro.setOnClickListener(new View.OnClickListener() {
+        new Modificar_Alumno.ConsultaAlumno().execute("http://10.0.2.2/siie/Buscar_Usuario.php?nombre="+anombre+"&paterno="+apaterno+
+            "&materno="+amaterno);
+        etusuario.setEnabled(false);
+
+        btnmodificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                /*while(!val.ValidarNombre(etnombre.getText().toString())){
-                    Toast.makeText(getApplicationContext(), "Caracteres invalidos", Toast.LENGTH_LONG).show();
-                }*/
-
-                new Registrar_Alumno().execute("http://10.0.2.2/siie/Registro_Alumno.php?nombre="+etnombre.getText().toString()+
-                "&paterno="+etpaterno.getText().toString()+"&materno="+etmaterno.getText().toString()+"&correo="+etmatricula.getText().toString().concat(correo)+
-                "&estatus="+estatus+"&usu="+etmatricula.getText().toString()+"&contra="+etmatricula.getText().toString()+
-                "&tipo="+tipo+"&matricula="+etmatricula.getText().toString());
-
-                etnombre.setText("");
-                etpaterno.setText("");
-                etmaterno.setText("");
-                etmatricula.setText("");
+                new ModificarAlumno().execute("http://10.0.2.2/siie/Modificar_Alumno.php?nombre="+etnombre.getText().toString()+
+                        "&paterno="+etpaterno.getText().toString()+"&materno="+etmaterno.getText().toString()+"&correo="+etcorreo.getText().toString()+
+                        "&estatus="+estatus+"&usu="+etusuario.getText().toString()+"&contra="+etcontra.getText().toString()+
+                        "&tipo="+tipo+"&matricula="+etmatricula.getText().toString());
             }
         });
     }
 
-    private class Registrar_Alumno extends AsyncTask<String, Void, String> {
+    private class ConsultaAlumno extends AsyncTask<String, Void, String> {
+
         @Override
         protected String doInBackground(String... urls) {
             try {
                 return downloadUrl(urls[0]);
-            }catch (IOException e){
+            }catch (IOException e) {
                 return "No se puede recuperar la página web URL puede ser válido...";
             }
         }
@@ -77,8 +74,49 @@ public class Registro_Alumno extends AppCompatActivity implements GestureDetecto
         @Override
         protected void onPostExecute(String result) {
 
-            Toast.makeText(getApplicationContext(), "Se almacenaron los datos correctamente", Toast.LENGTH_LONG).show();
+            JSONArray ja = null;
 
+            try {
+                ja = new JSONArray(result);
+                if(ja.length()>0) {
+                    etnombre.setText(ja.getString(0));
+                    etpaterno.setText(ja.getString(1));
+                    etmaterno.setText(ja.getString(2));
+                    etcorreo.setText(ja.getString(3));
+                    etusuario.setText(ja.getString(4));
+                    etcontra.setText(ja.getString(5));
+                    etmatricula.setText(ja.getString(6));
+                }
+                else{
+                    etnombre.setText("");
+                    etpaterno.setText("");
+                    etmaterno.setText("");
+                    etcorreo.setText("");
+                    etusuario.setText("");
+                    etcontra.setText("");
+                    etmatricula.setText("");
+                    Toast.makeText(getApplicationContext(),"Registro no encontrado",Toast.LENGTH_LONG).show();
+                }
+            }catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private class ModificarAlumno extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            try {
+                return downloadUrl(urls[0]);
+            }catch (IOException e) {
+                return "No se puede recuperar la página web URL puede ser válido...";
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Toast.makeText(getApplicationContext(), "Se modificaron los datos correctamente", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -128,63 +166,5 @@ public class Registro_Alumno extends AppCompatActivity implements GestureDetecto
         char[] buffer = new char[len];
         reader.read(buffer);
         return new String(buffer);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        this.gestureDetector.onTouchEvent(event);
-        return super.onTouchEvent(event);
-    }
-
-    @Override
-    public boolean onSingleTapConfirmed(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public boolean onDoubleTap(MotionEvent e) {
-
-        return false;
-    }
-
-    @Override
-    public boolean onDoubleTapEvent(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public boolean onDown(MotionEvent e) {
-
-
-        return false;
-    }
-
-    @Override
-    public void onShowPress(MotionEvent e) {
-
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent e) {
-
-        return false;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-
-        return false;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent e) {
-        Intent intentAlumno = new Intent(Registro_Alumno.this,Menu_Administrador.class);
-        startActivity(intentAlumno);
-    }
-
-    @Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        finish();
-        return false;
     }
 }
