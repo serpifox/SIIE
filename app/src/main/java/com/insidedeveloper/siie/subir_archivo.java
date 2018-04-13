@@ -119,7 +119,7 @@ public class subir_archivo extends AppCompatActivity {
                         .withActivity(subir_archivo.this)
                         .withRequestCode(10)
                         .start();
-                registrararchivo();
+                       registrararchivo();
 
             }
         });
@@ -193,9 +193,6 @@ public class subir_archivo extends AppCompatActivity {
             });
 
             t.start();
-
-
-
 
         }
     }

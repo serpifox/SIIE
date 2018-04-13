@@ -52,7 +52,7 @@ public class consultar_archivos extends AppCompatActivity {
             int item = position;
             String itemval = (String) listanombres.getItemAtPosition(position);
             String nombre=String.valueOf(itemval);
-            Uri uri = Uri.parse("http://192.168.0.10/siie/tareas/"+nombre+".docx");
+            Uri uri = Uri.parse("http://10.0.2.2/siie/tareas/"+nombre+".docx");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
             Toast.makeText(getApplicationContext(), "Position: "+ item+" - Valor: "+itemval, Toast.LENGTH_LONG).show();

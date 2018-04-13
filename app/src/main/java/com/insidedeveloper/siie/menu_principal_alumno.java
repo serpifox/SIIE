@@ -16,10 +16,20 @@ public String name;
         Bundle bundle = getIntent().getExtras();
         name = bundle.getString("usu");
         tarea= (CardView) findViewById(R.id.tareas);
+        chat= (CardView) findViewById(R.id.chat);
         tarea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent salas= new Intent(menu_principal_alumno.this,Cursos.class);
+                salas.putExtra("nombre",name);
+                startActivity(salas);
+            }
+        });
+
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent salas= new Intent(menu_principal_alumno.this,menu_salas.class);
                 salas.putExtra("nombre",name);
                 startActivity(salas);
             }

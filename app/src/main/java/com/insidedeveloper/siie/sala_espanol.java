@@ -60,9 +60,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getIntent().getExtras();
-        String nombreusu;
-        nombreusu= bundle.getString("Nombre");
-        nombre.setText(nombreusu);
         fotoPerfil = (CircleImageView) findViewById(R.id.fotoPerfil);
         nombre = (TextView) findViewById(R.id.nombre);
         rvMensajes = (RecyclerView) findViewById(R.id.rvMensajes);

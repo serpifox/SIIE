@@ -72,8 +72,7 @@ public class sala_de_matematicas extends AppCompatActivity {
         fotoPerfilCadena = "";
         Bundle bundle = getIntent().getExtras();
         String nombreusu;
-        nombreusu= bundle.getString("Nombre");
-        nombre.setText(nombreusu);
+
 
 
         database = FirebaseDatabase.getInstance();

@@ -100,10 +100,7 @@ public class sala_historia extends AppCompatActivity {
             btnEnviarFoto = (ImageButton) findViewById(R.id.btnEnviarFoto);
             fotoPerfilCadena = "";
             Bundle bundle = getIntent().getExtras();
-            nombreusu= bundle.getString("Nombre");
-            if(nombreusu!=null) {
-                nombre.setText(nombreusu);
-            }
+
 
             database = FirebaseDatabase.getInstance();
             databaseReference = database.getReference("historia");//Sala de chat (nombre)
