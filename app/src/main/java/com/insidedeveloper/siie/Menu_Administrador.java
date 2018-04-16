@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 public class Menu_Administrador extends AppCompatActivity {
@@ -15,12 +17,13 @@ public class Menu_Administrador extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_administrador);
-        materia = (CardView) findViewById(R.id.CWMaterias);
-        chat = (CardView) findViewById(R.id.chat);
-        maestro = (CardView) findViewById(R.id.maestros);
-        alumnos = (CardView) findViewById(R.id.alumnos);
-        tareas=(CardView) findViewById(R.id.tareas);
-        cursos=(CardView) findViewById(R.id.curso);
+
+        materia = findViewById(R.id.CWMaterias);
+        chat = findViewById(R.id.chat);
+        maestro = findViewById(R.id.maestros);
+        alumnos = findViewById(R.id.alumnos);
+        tareas=findViewById(R.id.tareas);
+        cursos= findViewById(R.id.curso);
         Bundle bundle = getIntent().getExtras();
         nombre = bundle.getString("usu");
 
@@ -74,9 +77,6 @@ public class Menu_Administrador extends AppCompatActivity {
 
             }
         });
-
-
-
 
     }
 

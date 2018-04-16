@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.insidedeveloper.siie.Menu_Administrador"
-    android:orientation="vertical">
     android:orientation="vertical"
     android:padding="10dp"
     android:background="#fcfcfc"
     android:gravity="center"
     android:id="@+id/ll">
+
     <LinearLayout
         android:clipToPadding="false"
         android:gravity="center"
@@ -24,8 +22,8 @@
             android:layout_width="130dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
-            android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground">
+            android:foreground="?android:attr/selectableItemBackground"
+            android:focusable="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -38,13 +36,14 @@
                     android:layout_height="72dp"
                     android:background="@drawable/cerclebackgroundpurple"
                     android:padding="10dp"
-                    android:src="@drawable/ic_notebook" />
+                    android:src="@drawable/ic_notebook"
+                    android:contentDescription="@string/todo" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Materias"
+                    android:text="@string/materias"
                     android:textStyle="bold" />
 
                 <View
@@ -58,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="ACTIVIDADES"
+                    android:text="Administra materias"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -104,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="registar"
+                    android:text="Administra maestros"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -157,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="registar"
+                    android:text="@string/administra_alumno"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -202,7 +201,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="registrar"
+                    android:text="Administra tareas"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -221,8 +220,8 @@
             android:layout_width="130dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
-            android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground">
+            android:foreground="?android:attr/selectableItemBackground"
+            android:focusable="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -255,7 +254,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Informacion"
+                    android:text="Da un aviso"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -286,7 +285,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Curso"
+                    android:text="Cursos"
                     android:textStyle="bold" />
 
                 <View
@@ -300,7 +299,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Registrar Cuso"
+                    android:text="Administra cursos"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
