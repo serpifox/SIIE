@@ -41,7 +41,7 @@ public class Registro_Maestro2 extends AppCompatActivity implements GestureDetec
         final String estatus = "Activo";
         final String tipo = "Empleado";
         final String puesto = "Maestro";
-        final String correo = "@udg.com";
+        final String email = "@udg.com";
 
         btnregistro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +49,7 @@ public class Registro_Maestro2 extends AppCompatActivity implements GestureDetec
 
                 new Registrar_Maestro().execute("http://10.0.2.2/siie/Registro_Maestro.php?nombre="+etnombre.getText().toString()+
                         "&paterno="+etpaterno.getText().toString()+"&materno="+etmaterno.getText().toString()+
-                        "&correo="+etnumempleado.getText().toString().concat(correo)+"&estatus="+estatus+"&usu="+etnumempleado.getText().toString()+
+                        "&correo="+etnumempleado.getText().toString().concat(email)+"&estatus="+estatus+"&usu="+etnumempleado.getText().toString()+
                         "&contra="+etnumempleado.getText().toString()+"&tipo="+tipo+"&numempleado="+etnumempleado.getText().toString()+
                         "&puesto="+puesto);
 
