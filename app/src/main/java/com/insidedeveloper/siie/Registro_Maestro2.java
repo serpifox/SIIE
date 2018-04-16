@@ -23,7 +23,7 @@ import java.net.URL;
 public class Registro_Maestro2 extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
 
     GestureDetector gestureDetector;
-    EditText etnombre,etpaterno,etmaterno,etcorreo,etnumempleado;
+    EditText etnombre,etpaterno,etmaterno,etnumempleado;
     Button btnregistro;
 
     @Override
@@ -36,21 +36,27 @@ public class Registro_Maestro2 extends AppCompatActivity implements GestureDetec
         etnombre = findViewById(R.id.etNombre);
         etpaterno = findViewById(R.id.etPaterno);
         etmaterno = findViewById(R.id.etMaterno);
-        etcorreo = findViewById(R.id.etCorreo);
         etnumempleado = findViewById(R.id.etNumEmp);
         btnregistro = findViewById(R.id.btnRegistrar);
         final String estatus = "Activo";
         final String tipo = "Empleado";
         final String puesto = "Maestro";
+        final String email = "@udg.com";
 
         btnregistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 new Registrar_Maestro().execute("http://10.0.2.2/siie/Registro_Maestro.php?nombre="+etnombre.getText().toString()+
                         "&paterno="+etpaterno.getText().toString()+"&materno="+etmaterno.getText().toString()+
-                        "&correo="+etcorreo.getText().toString()+"&estatus="+estatus+"&usu="+etnumempleado.getText().toString()+
+                        "&correo="+etnumempleado.getText().toString().concat(email)+"&estatus="+estatus+"&usu="+etnumempleado.getText().toString()+
                         "&contra="+etnumempleado.getText().toString()+"&tipo="+tipo+"&numempleado="+etnumempleado.getText().toString()+
                         "&puesto="+puesto);
+
+                etnombre.setText("");
+                etpaterno.setText("");
+                etmaterno.setText("");
+                etnumempleado.setText("");
             }
         });
     }
@@ -121,6 +127,7 @@ public class Registro_Maestro2 extends AppCompatActivity implements GestureDetec
         return new String(buffer);
     }
 
+    @Override
     public boolean onTouchEvent(MotionEvent event) {
         this.gestureDetector.onTouchEvent(event);
         return super.onTouchEvent(event);
