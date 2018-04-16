@@ -1,5 +1,6 @@
 package com.insidedeveloper.siie;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -8,6 +9,8 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,15 +42,30 @@ CardView maestros;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_consultar_maestro);
+
         listanombres = (ListView) findViewById(R.id.lvnombres);
         btnbuscalis = (Button) findViewById(R.id.btn_buscalis);
         nomlis = (EditText) findViewById(R.id.etnomlis);
-        // new Consulta_Maestro().execute("http://192.168.0.10/siie/Consulta_Maestro.php");
+
         new Consulta_Maestro().execute("http://10.0.2.2/siie/Consulta_Maestro.php");
-        // Obtener el Recycler
+
+        listanombres.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                int item = i;
+                String itemval = (String) listanombres.getItemAtPosition(i);
+                Intent intentModMaestro = new Intent(ConsultarMaestro.this,Modificar_Maestro.class);
+                String nombre=String.valueOf(itemval);
+                String paterno=String.valueOf(itemval);
+                String materno=String.valueOf(itemval);
+                intentModMaestro.putExtra("nombre",nombre);
+                intentModMaestro.putExtra("paterno",paterno);
+                intentModMaestro.putExtra("materno",materno);
+                startActivity(intentModMaestro);
+            }
+        });
     }
         public void llenarLista(ArrayList lis){
         ArrayAdapter adaptador= new ArrayAdapter(this,android.R.layout.simple_list_item_1, lis);

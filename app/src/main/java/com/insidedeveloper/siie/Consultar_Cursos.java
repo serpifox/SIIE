@@ -24,9 +24,10 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class Consultar_Alumno extends AppCompatActivity {
+public class Consultar_Cursos extends AppCompatActivity {
 
     ListView listanombres;
     Button btnbuscalis;
@@ -35,9 +36,7 @@ public class Consultar_Alumno extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consultar__alumno);
-
-        new Consulta_Alumnos().execute("http://10.0.2.2/siie/Consulta_Alumno.php");
+        setContentView(R.layout.activity_consultar__cursos);
 
         listanombres = findViewById(R.id.etlista);
         nomlis = findViewById(R.id.etnombre);
@@ -49,28 +48,23 @@ public class Consultar_Alumno extends AppCompatActivity {
 
                 int item = i;
                 String itemval = (String) listanombres.getItemAtPosition(i);
-                Intent intentModAlu = new Intent(Consultar_Alumno.this, Modificar_Alumno.class);
-                String nombre = String.valueOf(itemval);
-                String paterno = String.valueOf(itemval);
-                String materno = String.valueOf(itemval);
-                intentModAlu.putExtra("nombre", nombre);
-                intentModAlu.putExtra("paterno", paterno);
-                intentModAlu.putExtra("materno", materno);
-                startActivity(intentModAlu);
+                Intent modCurso = new Intent(Consultar_Cursos.this,Modificar_Curso.class);
+                String clave = String.valueOf(itemval);
+                modCurso.putExtra("clave", clave);
+                startActivity(modCurso);
             }
         });
-
     }
 
-    public void Llenar_Lista(ArrayList list) {
+    public void Llenar_Lista (ArrayList list) {
 
         ArrayAdapter adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
         listanombres.setAdapter(adaptador);
     }
 
-    private class Consulta_Alumnos extends AsyncTask<String, Void, String> {
+    private class Consulta_Cursos extends AsyncTask<String, Void, String> {
 
-        List<Alumno> items = new ArrayList<>();
+        List<Curso> items = new ArrayList<>();
         ArrayList list = new ArrayList();
 
         @Override
@@ -85,25 +79,25 @@ public class Consultar_Alumno extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             JSONArray ja = null;
-            String nombre, paterno, materno, matricula, email;
+            String clave, id_emp, id_mat, fecha_ini, fecha_fin;
 
             try {
                 JSONObject objson = new JSONObject(result);
-                ja = objson.getJSONArray("Alumno");
+                ja = objson.getJSONArray("Curso");
 
                 for (int i = 0; i <= ja.length(); i++) {
                     JSONObject jsa = ja.getJSONObject(i);
-                    nombre = jsa.getString("nombre");
-                    paterno = jsa.getString("paterno");
-                    materno = jsa.getString("materno");
-                    matricula = jsa.getString("matricula");
-                    email = jsa.getString("email");
+                    clave = jsa.getString("Clave");
+                    id_emp = jsa.getString("Id_Emp");
+                    id_mat = jsa.getString("Id_Mat");
+                    fecha_ini = jsa.getString("Fecha_Ini");
+                    fecha_fin = jsa.getString("Fecha_Fin");
 
-                    items.add(new Alumno(nombre, paterno, materno, matricula, email));
-                    list.add(items.get(i).getNombre());
+                    items.add(new Curso(clave,id_emp,id_mat,fecha_ini,fecha_fin));
+                    list.add(items.get(i).getClave());
                     Llenar_Lista(list);
                 }
-            } catch (JSONException e) {
+            }catch (JSONException e) {
                 e.printStackTrace();
             }
         }
@@ -156,5 +150,4 @@ public class Consultar_Alumno extends AppCompatActivity {
         reader.read(buffer);
         return new String(buffer);
     }
-
 }

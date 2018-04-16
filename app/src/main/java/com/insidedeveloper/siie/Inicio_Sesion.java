@@ -46,6 +46,8 @@ public class Inicio_Sesion extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(),"usu="+edtusuario.getText().toString()+"&contra"+edtcontrasenia.getText().toString(),Toast.LENGTH_LONG).show();
                 new Verificar_Usuario().execute("http://10.0.2.2/siie/Inicio_Sesion.php?usu=" + edtusuario.getText().toString() +
                         "&contra=" + edtcontrasenia.getText().toString());
+                edtusuario.setText("");
+                edtcontrasenia.setText("");
                 //new Verificar_Usuario().execute("http://192.168.0.10/siie/Inicio_Sesion.php?usu="+edtusuario.getText().toString()+
                 //"&contra="+edtcontrasenia.getText().toString());
                 edtusuario.setVisibility(View.INVISIBLE);

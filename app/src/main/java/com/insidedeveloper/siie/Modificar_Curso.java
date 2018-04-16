@@ -6,15 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,89 +20,98 @@ import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
-public class Consultar_Alumno extends AppCompatActivity {
+public class Modificar_Curso extends AppCompatActivity {
 
-    ListView listanombres;
-    Button btnbuscalis;
-    EditText nomlis;
+    EditText etclave, etinicio, etfinal, etempleado, etnrc;
+    Button btnmodificar;
+    String clave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consultar__alumno);
+        setContentView(R.layout.activity_modificar__curso);
 
-        new Consulta_Alumnos().execute("http://10.0.2.2/siie/Consulta_Alumno.php");
+        etclave = findViewById(R.id.etClave);
+        etinicio = findViewById(R.id.etInicio);
+        etfinal = findViewById(R.id.etFin);
+        etempleado = findViewById(R.id.etEmpleado);
+        etnrc = findViewById(R.id.etNRC);
+        btnmodificar = findViewById(R.id.btnModificar);
+        Bundle bundle = getIntent().getExtras();
+        clave = bundle.getString("clave");
 
-        listanombres = findViewById(R.id.etlista);
-        nomlis = findViewById(R.id.etnombre);
-        btnbuscalis = findViewById(R.id.btnbuscar);
+        new Modificar_Curso.Consulta_Curso().execute("http://10.0.2.2/siie/Buscar_Curso.php?clave="+clave);
 
-        listanombres.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        btnmodificar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                int item = i;
-                String itemval = (String) listanombres.getItemAtPosition(i);
-                Intent intentModAlu = new Intent(Consultar_Alumno.this, Modificar_Alumno.class);
-                String nombre = String.valueOf(itemval);
-                String paterno = String.valueOf(itemval);
-                String materno = String.valueOf(itemval);
-                intentModAlu.putExtra("nombre", nombre);
-                intentModAlu.putExtra("paterno", paterno);
-                intentModAlu.putExtra("materno", materno);
-                startActivity(intentModAlu);
+            public void onClick(View view) {
+                new Modificar_Curso.Modificar().execute("http://10.0.2.2/siie/Modificar_Curso.php?clave="+etclave.getText().toString()+
+                        "&fechaini="+etinicio.getText().toString()+"&fechafin="+etfinal.getText().toString()+
+                        "&idemp="+etempleado.getText().toString()+"&idmat="+etnrc.getText().toString());
             }
         });
-
     }
 
-    public void Llenar_Lista(ArrayList list) {
-
-        ArrayAdapter adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
-        listanombres.setAdapter(adaptador);
-    }
-
-    private class Consulta_Alumnos extends AsyncTask<String, Void, String> {
-
-        List<Alumno> items = new ArrayList<>();
-        ArrayList list = new ArrayList();
+    private class Consulta_Curso extends AsyncTask <String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {
             try {
                 return downloadUrl(urls[0]);
-            } catch (IOException e) {
+            }catch (IOException e){
                 return "No se puede recuperar la página web URL puede ser válido...";
             }
         }
 
         @Override
         protected void onPostExecute(String result) {
+
             JSONArray ja = null;
-            String nombre, paterno, materno, matricula, email;
-
             try {
-                JSONObject objson = new JSONObject(result);
-                ja = objson.getJSONArray("Alumno");
-
-                for (int i = 0; i <= ja.length(); i++) {
-                    JSONObject jsa = ja.getJSONObject(i);
-                    nombre = jsa.getString("nombre");
-                    paterno = jsa.getString("paterno");
-                    materno = jsa.getString("materno");
-                    matricula = jsa.getString("matricula");
-                    email = jsa.getString("email");
-
-                    items.add(new Alumno(nombre, paterno, materno, matricula, email));
-                    list.add(items.get(i).getNombre());
-                    Llenar_Lista(list);
+                ja = new JSONArray(result);
+                if(ja.length()>0) {
+                    etclave.setText(ja.getString(0));
+                    etempleado.setText(ja.getString(1));
+                    etnrc.setText(ja.getString(2));
+                    etinicio.setText(ja.getString(3));
+                    etfinal.setText(ja.getString(4));
                 }
-            } catch (JSONException e) {
+                else {
+                    etclave.setText("");
+                    etempleado.setText("");
+                    etnrc.setText("");
+                    etinicio.setText("");
+                    etfinal.setText("");
+                }
+            }catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private class Modificar extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            try {
+                return downloadUrl(urls[0]);
+            }catch (IOException e){
+                return "No se puede recuperar la página web URL puede ser válido...";
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            Toast.makeText(getApplicationContext(), "Se modificaron los datos correctamente", Toast.LENGTH_LONG).show();
+            etclave.setText("");
+            etempleado.setText("");
+            etnrc.setText("");
+            etinicio.setText("");
+            etfinal.setText("");
+            Intent consultacurso = new Intent(Modificar_Curso.this,Consultar_Cursos.class);
+            startActivity(consultacurso);
         }
     }
 
@@ -113,8 +119,8 @@ public class Consultar_Alumno extends AppCompatActivity {
        El contenido de la página web lo crea un InputStream, que se vuelve
      una cadena.*/
     private String downloadUrl(String myurl) throws IOException {
-        Log.i("URL", "" + myurl);
-        myurl = myurl.replace(" ", "%20");
+        Log.i("URL",""+myurl);
+        myurl = myurl.replace(" ","%20");
         InputStream is = null;
         // Mostrar sólo los primeros 500 caracteres del
         // contenido de la página web.
@@ -156,5 +162,4 @@ public class Consultar_Alumno extends AppCompatActivity {
         reader.read(buffer);
         return new String(buffer);
     }
-
 }

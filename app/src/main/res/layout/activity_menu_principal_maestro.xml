@@ -19,7 +19,7 @@
             android:layout_height="wrap_content">
 
             <android.support.v7.widget.CardView
-                android:id="@+id/registrar"
+                android:id="@+id/Cursos"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:layout_width="160dp"
@@ -34,15 +34,15 @@
                     <ImageView
                         android:layout_width="78dp"
                         android:layout_height="72dp"
-                        android:background="@drawable/cerclebackgroundpurple"
+                        android:background="@drawable/cerclebackgroundyello"
                         android:padding="10dp"
-                        android:src="@drawable/ic_notebook" />
+                        android:src="@drawable/ic_languages" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="materias"
+                        android:text="Cursos"
                         android:textStyle="bold" />
                     <View
                         android:layout_width="match_parent"
@@ -53,7 +53,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="ACTIVIDADES"
+                        android:text="Administra tus cursos"
                         android:padding="5dp"
                         android:textColor="@android:color/darker_gray"/>
 
@@ -61,7 +61,7 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
-                android:id="@+id/alumnos"
+                android:id="@+id/Alumnos"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:layout_width="160dp"
@@ -76,14 +76,14 @@
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:background="@drawable/cerclebackgroundgreen"
-                        android:src="@drawable/ic_control_point_black_24dp"
+                        android:src="@drawable/ic_student"
                         android:padding="10dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="alumnos"
+                        android:text="Alumnos"
                         android:textStyle="bold" />
                     <View
                         android:layout_width="match_parent"
@@ -94,7 +94,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="registar"
+                        android:text="Administra alumnos"
                         android:padding="5dp"
                         android:textColor="@android:color/darker_gray"/>
 
@@ -110,7 +110,7 @@
             android:layout_height="wrap_content">
 
             <android.support.v7.widget.CardView
-                android:id="@+id/chats"
+                android:id="@+id/Chat"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:layout_width="160dp"
@@ -134,7 +134,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="chat"
+                        android:text="Chat"
                         android:textStyle="bold" />
 
                     <View
@@ -160,7 +160,7 @@
 
 
             <android.support.v7.widget.CardView
-                android:id="@+id/tareas"
+                android:id="@+id/Tareas"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:layout_width="160dp"
@@ -198,7 +198,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="Registra una tarea dentro del sistema"
+                        android:text="Administra tus tareas"
                         android:textColor="@android:color/darker_gray" />
 
                 </LinearLayout>

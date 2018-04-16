@@ -30,16 +30,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class mostrar extends AppCompatActivity {
+
     private RecyclerView.Adapter adapter;
     ListView listanombres;
     Button btnbuscalis;
     EditText nomlis;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostar);
+
         //new Consulta_Materia().execute("http://192.168.0.10/siie/Consulta_Materia.php");
         new Consulta_Materia().execute("http://10.0.2.2/siie/Consulta_Materia.php");
+
         listanombres =(ListView) findViewById(R.id.lvnombres);
         btnbuscalis = (Button) findViewById(R.id.btn_buscalis);
         nomlis = (EditText) findViewById(R.id.etnomlis);
@@ -96,8 +100,9 @@ private class Consulta_Materia extends AsyncTask<String, Void, String> {
                  JSONObject jsa =ja.getJSONObject(i);
                  nombre=jsa.getString("nombre");
                  nrc=jsa.getString("NRC");
+
                  items.add(new Materia(nombre,nrc));
-                    adapter = new AnimeAdapter(items);
+                 adapter = new AnimeAdapter(items);
                  lis.add(items.get(i).getNombre());
                  llenarLista(lis);
                 }

@@ -10,6 +10,7 @@ public class Alumno {
     String materno;
     String correo;
     String matricula;
+
     public Alumno(String nom ,String pat, String mat, String cor, String matr){
 
         this.nombre=nom;

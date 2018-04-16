@@ -32,7 +32,7 @@
         <activity android:name=".chat" />
         <activity
             android:name=".menu_maestro"
-            android:label="menu maestro" />
+            android:label="Menu maestro" />
         <activity
             android:name=".menu_tarea"
             android:label="Menu Tareas" />
@@ -48,7 +48,9 @@
         <activity
             android:name=".Modificar_Materia"
             android:label="Modificar Materia" />
-        <activity android:name=".Registro_Maestro2" />
+        <activity
+            android:name=".Registro_Maestro2"
+            android:label="Registro maestro" />
         <activity
             android:name=".Registro_Alumno"
             android:label="Registar Alumno" />
@@ -85,14 +87,29 @@
         <activity
             android:name=".registrar_tarea"
             android:label="Registar Tarea" />
-        <activity android:name=".MostarAlumno" />
+        <activity
+            android:name=".MostarAlumno"
+            android:label="Mostrar alumno" />
         <activity
             android:name=".subir_archivo"
             android:label="Tarea" />
-        <activity android:name=".Cursos" />
+        <activity
+            android:name=".Cursos"
+            android:label="Cursos" />
         <activity android:name=".consultar_archivos" />
-        <activity android:name=".Consultar_Alumno" />
-        <activity android:name=".Modificar_Alumno"></activity>
+        <activity
+            android:name=".Consultar_Alumno"
+            android:label="Consultar alumno" />
+        <activity
+            android:name=".Modificar_Alumno"
+            android:label="Modificar alumno" />
+        <activity
+            android:name=".Modificar_Maestro"
+            android:label="Modificar maestro" />
+        <activity
+            android:name=".Consultar_Cursos"
+            android:label="Consultar Cursos" />
+        <activity android:name=".Modificar_Curso"></activity>
     </application>
 
 </manifest>
