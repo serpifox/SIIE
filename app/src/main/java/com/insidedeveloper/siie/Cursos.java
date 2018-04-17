@@ -41,8 +41,9 @@ public class Cursos extends AppCompatActivity {
         listanombres =(ListView) findViewById(R.id.lvnombres);
         btnbuscalis = (Button) findViewById(R.id.btn_buscalis);
         nomlis = (EditText) findViewById(R.id.etnomlis);
-        Bundle bundle = getIntent().getExtras();
-        usuario=bundle.getString("nombre");
+        Bundle bund = getIntent().getExtras();
+        usuario=bund.getString("nombre");
+        Toast.makeText(getApplicationContext(),usuario,Toast.LENGTH_LONG).show();
         new Cursos.Consulta_Tareas().execute("http://10.0.2.2/siie/Consulta_Tarea.php");
 
         listanombres.setOnItemClickListener(new AdapterView.OnItemClickListener(){

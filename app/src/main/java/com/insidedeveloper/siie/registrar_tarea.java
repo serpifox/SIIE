@@ -43,7 +43,7 @@ public class registrar_tarea extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                new Registrar_Tarea().execute("http://10.0.2.2/siie/Registro_Tarea.php?nombre="+edtnombre.getText().toString()+
+                new Registrar_Tarea().execute("http://10.0.2.2/siie/Registra_Tarea.php?nombre="+edtnombre.getText().toString()+
                         "&descripcion="+edtdescripcion.getText().toString()+"&fecha="+etPlannedDate.getText().toString());
 
                 edtnombre.setText("");

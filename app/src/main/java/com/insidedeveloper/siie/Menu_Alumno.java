@@ -16,7 +16,6 @@ public class Menu_Alumno extends AppCompatActivity {
         setContentView(R.layout.activity_menu_alumno);
 
         registro = findViewById(R.id.registrar);
-        modificar = findViewById(R.id.modificar);
         consultar = findViewById(R.id.consultar);
 
         registro.setOnClickListener(new View.OnClickListener() {
@@ -27,12 +26,6 @@ public class Menu_Alumno extends AppCompatActivity {
             }
         });
 
-        modificar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
         consultar.setOnClickListener(new View.OnClickListener() {
             @Override

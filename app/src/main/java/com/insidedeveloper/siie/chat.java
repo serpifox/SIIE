@@ -66,7 +66,7 @@ String nombreusu;
         nombre.setText(nombreusu);
 
         database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference("Chat");//Sala de Chat (nombre)
+        databaseReference = database.getReference("avisos");//Sala de Chat (nombre)
         storage = FirebaseStorage.getInstance();
 
         adapter = new AdapterMensajes(this);

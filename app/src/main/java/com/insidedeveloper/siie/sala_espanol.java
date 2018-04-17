@@ -62,14 +62,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
         Bundle bundle = getIntent().getExtras();
         fotoPerfil = (CircleImageView) findViewById(R.id.fotoPerfil);
         nombre = (TextView) findViewById(R.id.nombre);
-        rvMensajes = (RecyclerView) findViewById(R.id.rvMensajes);
+        rvMensajes = (RecyclerView) findViewById(R.id.rvMensaje);
         txtMensaje = (EditText) findViewById(R.id.txtMensaje);
         btnEnviar = (Button) findViewById(R.id.btnEnviar);
         btnEnviarFoto = (ImageButton) findViewById(R.id.btnEnviarFoto);
         fotoPerfilCadena = "";
-
         database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference("español");//Sala de chat (nombre)
+        databaseReference = database.getReference("español");//Sala de Chat (nombre)
         storage = FirebaseStorage.getInstance();
 
         adapter = new AdapterMensajes(this);
@@ -148,63 +147,62 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
     }
 
+       private void notificacion() {
+           Intent intent= new Intent(Intent.ACTION_VIEW, Uri.parse("http://developer.android.com/index.html"));
+           PendingIntent pendingIntent=PendingIntent.getActivity(this,0,intent,0);
 
-    private void setScrollbar() {
-        rvMensajes.scrollToPosition(adapter.getItemCount() - 1);
-    }
+           //Construccion de la notificacion;
+           NotificationCompat.Builder builder= new NotificationCompat.Builder(this);
+           builder.setSmallIcon(R.drawable.udg);
+           builder.setContentIntent(pendingIntent);
+           builder.setAutoCancel(true);
+           builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.udg));
+           builder.setContentTitle("usuario de siie");
+           builder.setContentText("mensaje nuevo");
+           builder.setSubText("ver mas");
+           Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PHOTO_SEND && resultCode == RESULT_OK) {
-            Uri u = data.getData();
-            storageReference = storage.getReference("imagenes_chat");//imagenes_chat
-            final StorageReference fotoReferencia = storageReference.child(u.getLastPathSegment());
-            fotoReferencia.putFile(u).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Uri u = taskSnapshot.getDownloadUrl();
-                    MensajeEnviar m = new MensajeEnviar(" te ha enviado una foto", u.toString(), nombre.getText().toString(), fotoPerfilCadena, "2", ServerValue.TIMESTAMP);
-                    databaseReference.push().setValue(m);
-                }
-            });
-        } else if (requestCode == PHOTO_PERFIL && resultCode == RESULT_OK) {
-            Uri u = data.getData();
-            storageReference = storage.getReference("foto_perfil");//imagenes_chat
-            final StorageReference fotoReferencia = storageReference.child(u.getLastPathSegment());
-            fotoReferencia.putFile(u).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Uri u = taskSnapshot.getDownloadUrl();
-                    fotoPerfilCadena = u.toString();
-                    MensajeEnviar m = new MensajeEnviar( "ha actualizado su foto de perfil", u.toString(), nombre.getText().toString(), fotoPerfilCadena, "2", ServerValue.TIMESTAMP);
-                    databaseReference.push().setValue(m);
-                    Glide.with(sala_espanol.this).load(u.toString()).into(fotoPerfil);
-                }
-            });
-        }
-    }
-       public void notificaciones(String nombre, String mensaje, String fotoPerfil){
-           Uri defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-           NotificationCompat.Builder mBuilder =
-                   new NotificationCompat.Builder(sala_espanol.this)
-                           .setSmallIcon(android.R.drawable.stat_notify_chat)
-                           .setLargeIcon((((BitmapDrawable)getResources()
-                                   .getDrawable(R.drawable.leongris)).getBitmap()))
-                           .setContentTitle(nombre)
-                           .setContentText(mensaje)
-                           .setContentInfo(nombre)
-                           .setTicker("SIIE!")
-                           .setSound(defaultSound)
-                           .setLights(1,2, Color.GREEN);
-           NotificationManager mNotificationManager =
-                   (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+           builder.setSound(uri);
 
-           mNotificationManager.notify(NOTIF_ALERTA_ID, mBuilder.build());
+           NotificationManager notificationManager= (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+           notificationManager.notify(NOTIFICACION_ID,builder.build());
+
+
        }
 
+       private void setScrollbar() {
+           rvMensajes.scrollToPosition(adapter.getItemCount() - 1);
+       }
+
+       @Override
+       protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+           super.onActivityResult(requestCode, resultCode, data);
+           if (requestCode == PHOTO_SEND && resultCode == RESULT_OK) {
+               Uri u = data.getData();
+               storageReference = storage.getReference("imagenes_chat");//imagenes_chat
+               final StorageReference fotoReferencia = storageReference.child(u.getLastPathSegment());
+               fotoReferencia.putFile(u).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                   @Override
+                   public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                       Uri u = taskSnapshot.getDownloadUrl();
+                       MensajeEnviar m = new MensajeEnviar(" te ha enviado una foto", u.toString(), nombre.getText().toString(), fotoPerfilCadena, "2", ServerValue.TIMESTAMP);
+                       databaseReference.push().setValue(m);
+                   }
+               });
+           } else if (requestCode == PHOTO_PERFIL && resultCode == RESULT_OK) {
+               Uri u = data.getData();
+               storageReference = storage.getReference("foto_perfil");//imagenes_chat
+               final StorageReference fotoReferencia = storageReference.child(u.getLastPathSegment());
+               fotoReferencia.putFile(u).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                   @Override
+                   public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                       Uri u = taskSnapshot.getDownloadUrl();
+                       fotoPerfilCadena = u.toString();
+                       MensajeEnviar m = new MensajeEnviar( "ha actualizado su foto de perfil", u.toString(), nombre.getText().toString(), fotoPerfilCadena, "2", ServerValue.TIMESTAMP);
+                       databaseReference.push().setValue(m);
+                       Glide.with(sala_espanol.this).load(u.toString()).into(fotoPerfil);
+                   }
+               });
+           }
+       }
    }
-
-
-
-

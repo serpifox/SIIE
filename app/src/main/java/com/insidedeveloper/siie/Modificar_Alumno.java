@@ -38,6 +38,7 @@ public class Modificar_Alumno extends AppCompatActivity {
         etusuario = findViewById(R.id.etUsuario);
         etcontra = findViewById(R.id.etContra);
         etcorreo = findViewById(R.id.etCorreo);
+        btnmodificar= findViewById(R.id.btnModificar);
         Bundle bundle = getIntent().getExtras();
         anombre = bundle.getString("nombre");
         apaterno = bundle.getString("paterno");

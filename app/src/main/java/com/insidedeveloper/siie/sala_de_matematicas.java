@@ -70,13 +70,8 @@ public class sala_de_matematicas extends AppCompatActivity {
         btnEnviar = (Button) findViewById(R.id.btnEnviar);
         btnEnviarFoto = (ImageButton) findViewById(R.id.btnEnviarFoto);
         fotoPerfilCadena = "";
-        Bundle bundle = getIntent().getExtras();
-        String nombreusu;
-
-
-
         database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference("matematicas");//Sala de chat (nombre)
+        databaseReference = database.getReference("matematicas");//Sala de Chat (nombre)
         storage = FirebaseStorage.getInstance();
 
         adapter = new AdapterMensajes(this);
@@ -96,8 +91,6 @@ public class sala_de_matematicas extends AppCompatActivity {
             }
 
         });
-
-
 
         btnEnviarFoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,6 +150,28 @@ public class sala_de_matematicas extends AppCompatActivity {
 
     }
 
+    private void notificacion() {
+        Intent intent= new Intent(Intent.ACTION_VIEW, Uri.parse("http://developer.android.com/index.html"));
+        PendingIntent pendingIntent=PendingIntent.getActivity(this,0,intent,0);
+
+        //Construccion de la notificacion;
+        NotificationCompat.Builder builder= new NotificationCompat.Builder(this);
+        builder.setSmallIcon(R.drawable.udg);
+        builder.setContentIntent(pendingIntent);
+        builder.setAutoCancel(true);
+        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.udg));
+        builder.setContentTitle("usuario de siie");
+        builder.setContentText("mensaje nuevo");
+        builder.setSubText("ver mas");
+        Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        builder.setSound(uri);
+
+        NotificationManager notificationManager= (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(NOTIFICACION_ID,builder.build());
+
+
+    }
 
     private void setScrollbar() {
         rvMensajes.scrollToPosition(adapter.getItemCount() - 1);
@@ -186,35 +201,11 @@ public class sala_de_matematicas extends AppCompatActivity {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Uri u = taskSnapshot.getDownloadUrl();
                     fotoPerfilCadena = u.toString();
-                    MensajeEnviar m = new MensajeEnviar("ha actualizado su foto de perfil", u.toString(), nombre.getText().toString(), fotoPerfilCadena, "2", ServerValue.TIMESTAMP);
+                    MensajeEnviar m = new MensajeEnviar( "ha actualizado su foto de perfil", u.toString(), nombre.getText().toString(), fotoPerfilCadena, "2", ServerValue.TIMESTAMP);
                     databaseReference.push().setValue(m);
                     Glide.with(sala_de_matematicas.this).load(u.toString()).into(fotoPerfil);
                 }
             });
-
-        }}
-    public void notificaciones(String nombre, String mensaje, String fotoPerfil) {
-        Uri defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(sala_de_matematicas.this)
-                        .setSmallIcon(android.R.drawable.stat_notify_chat)
-                        .setLargeIcon((((BitmapDrawable) getResources()
-                                .getDrawable(R.drawable.leongris)).getBitmap()))
-                        .setContentTitle(nombre)
-                        .setContentText(mensaje)
-                        .setContentInfo(nombre)
-                        .setTicker("SIIE!")
-                        .setSound(defaultSound)
-                        .setLights(1, 2, Color.GREEN);
-        NotificationManager mNotificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        mNotificationManager.notify(NOTIF_ALERTA_ID, mBuilder.build());
+        }
     }
-
 }
-
-
-
-
-

@@ -96,7 +96,7 @@ public class subir_archivo extends AppCompatActivity {
         nombreusu=bundle.getString("usuario");
         ID=bundle.getLong("Id");
 
-
+        Toast.makeText(getApplicationContext(),nombreusu,Toast.LENGTH_LONG).show();
         new subir_archivo.Consulta_Tareas().execute("http://10.0.2.2/siie/Buscar_Tarea.php?nombre="+maloso);
          malosos=maloso+"/";
 

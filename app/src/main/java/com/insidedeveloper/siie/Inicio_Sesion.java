@@ -46,8 +46,6 @@ public class Inicio_Sesion extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(),"usu="+edtusuario.getText().toString()+"&contra"+edtcontrasenia.getText().toString(),Toast.LENGTH_LONG).show();
                 new Verificar_Usuario().execute("http://10.0.2.2/siie/Inicio_Sesion.php?usu=" + edtusuario.getText().toString() +
                         "&contra=" + edtcontrasenia.getText().toString());
-                edtusuario.setText("");
-                edtcontrasenia.setText("");
                 //new Verificar_Usuario().execute("http://192.168.0.10/siie/Inicio_Sesion.php?usu="+edtusuario.getText().toString()+
                 //"&contra="+edtcontrasenia.getText().toString());
                 edtusuario.setVisibility(View.INVISIBLE);
@@ -80,10 +78,11 @@ public class Inicio_Sesion extends AppCompatActivity {
                 //  Toast.makeText(getApplicationContext(),""+ja,Toast.LENGTH_LONG).show();
                 if (ja.length() > 0) {
                     tipo = ja.getString(0);
-
+String usu=  edtusuario.getText().toString();
                     if ("Alumno".equals(tipo)) {
                         Intent intentAlu = new Intent(Inicio_Sesion.this, menu_principal_alumno.class);
-                        intentAlu.putExtra("usu", edtusuario.getText().toString());
+                        intentAlu.putExtra("Usu",usu);
+                        Toast.makeText(getApplicationContext(),usu, Toast.LENGTH_LONG).show();
                         intentAlu.putExtra("contra", edtcontrasenia.getText().toString());
                         startActivity(intentAlu);
                         finish();
@@ -99,7 +98,7 @@ public class Inicio_Sesion extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Menu Administrador", Toast.LENGTH_LONG).show();
                             pb.setVisibility(View.INVISIBLE);
                         } else {
-                            Intent intentEmp = new Intent(Inicio_Sesion.this, menu_principal_maestro.class);
+                            Intent intentEmp = new Intent(Inicio_Sesion.this, Menu_Administrador.class);
                             intentEmp.putExtra("usu", edtusuario.getText().toString());
                             intentEmp.putExtra("contra", edtcontrasenia.getText().toString());
                             startActivity(intentEmp);
