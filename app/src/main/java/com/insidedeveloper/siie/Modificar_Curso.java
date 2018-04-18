@@ -112,6 +112,7 @@ public class Modificar_Curso extends AppCompatActivity {
             etfinal.setText("");
             Intent consultacurso = new Intent(Modificar_Curso.this,Consultar_Cursos.class);
             startActivity(consultacurso);
+            finish();
         }
     }
 

@@ -123,8 +123,8 @@ public class Modificar_Materia extends AppCompatActivity implements GestureDetec
 
                 ja = new JSONArray(result);
                 if(ja.length()>0){
-                    etnrc.setText(ja.getString(1));
-                    etnombre.setText(ja.getString(2));
+                    etnrc.setText(ja.getString(0));
+                    etnombre.setText(ja.getString(1));
                 }
                 else {
                     etnombre.setText("");

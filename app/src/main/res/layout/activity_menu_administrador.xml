@@ -50,14 +50,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="10dp"
-                    android:background="@color/lightgray" />
+                    android:background="#0035E8" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Administra materias"
+                    android:text="Administrar"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -96,14 +96,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="10dp"
-                    android:background="@color/lightgray" />
+                    android:background="#0035E8" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Administra maestros"
+                    android:text="Administrar"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -149,14 +149,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="10dp"
-                    android:background="@color/lightgray" />
+                    android:background="#0035E8" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="@string/administra_alumno"
+                    android:text="Administrar"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -194,14 +194,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="10dp"
-                    android:background="@color/lightgray" />
+                    android:background="#0035E8" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Administra tareas"
+                    android:text="Administrar"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -247,7 +247,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="10dp"
-                    android:background="@color/lightgray" />
+                    android:background="#0035E8" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -292,14 +292,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="10dp"
-                    android:background="@color/lightgray" />
+                    android:background="#0035E8" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Administra cursos"
+                    android:text="Administrar"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>

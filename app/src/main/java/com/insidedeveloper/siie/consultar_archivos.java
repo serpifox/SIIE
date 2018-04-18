@@ -31,17 +31,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class consultar_archivos extends AppCompatActivity {
+
     ListView listanombres;
-    Button btnbuscalis;
-    EditText nomlis;
     String usuario;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultar_archivos);
-        listanombres = (ListView) findViewById(R.id.lvnombres);
-        btnbuscalis = (Button) findViewById(R.id.btn_buscalis);
-        nomlis = (EditText) findViewById(R.id.etnomlis);
+        listanombres = findViewById(R.id.lvnombres);
         Bundle bundle = getIntent().getExtras();
 
         new consultar_archivos.Consulta_Tareas().execute("http://10.0.2.2/siie/Consulta_Actividad.php");

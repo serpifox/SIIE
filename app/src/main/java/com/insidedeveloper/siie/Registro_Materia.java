@@ -40,9 +40,16 @@ public class Registro_Materia extends AppCompatActivity implements GestureDetect
         btnregistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Registrar_Materia().execute("http://10.0.2.2/siie/Registro_Materia.php?nrc="+etnrc.getText().toString()+"&nombres="+etnombre.getText().toString());
-                etnrc.setText("");
-                etnombre.setText("");
+
+                if(etnrc.getText().toString().isEmpty() || etnombre.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "No se permiten campos vacios", Toast.LENGTH_LONG).show();
+                    etnrc.setText("");
+                    etnombre.setText("");
+                }else {
+                    new Registrar_Materia().execute("http://10.0.2.2/siie/Registro_Materia.php?nrc="+etnrc.getText().toString()+"&nombres="+etnombre.getText().toString());
+                    etnrc.setText("");
+                    etnombre.setText("");
+                }
             }
         });
     }

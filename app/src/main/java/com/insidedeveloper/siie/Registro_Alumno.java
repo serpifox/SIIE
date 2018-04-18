@@ -12,6 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -68,6 +72,7 @@ public class Registro_Alumno extends AppCompatActivity implements GestureDetecto
         @Override
         protected String doInBackground(String... urls) {
             try {
+
                 return downloadUrl(urls[0]);
             }catch (IOException e){
                 return "No se puede recuperar la página web URL puede ser válido...";
@@ -77,7 +82,27 @@ public class Registro_Alumno extends AppCompatActivity implements GestureDetecto
         @Override
         protected void onPostExecute(String result) {
 
-            Toast.makeText(getApplicationContext(), "Se almacenaron los datos correctamente", Toast.LENGTH_LONG).show();
+            JSONArray ja = null;
+            int afectado;
+            try {
+                JSONObject objson = new JSONObject(result);
+                ja = objson.getJSONArray("Fila");
+                for (int i = 0; i <= ja.length(); i++) {
+                    JSONObject jsa = ja.getJSONObject(i);
+                    afectado = jsa.getInt("fila_afectada");
+
+                    if(afectado > 0){
+                        Toast.makeText(getApplicationContext(), "Se almacenaron los datos correctamente", Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "Error en el registro", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
 
         }
     }

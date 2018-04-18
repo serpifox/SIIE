@@ -51,14 +51,14 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:maxLength="5"
-                        android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMnNnÑñOoPpQqRrSsTtUuVvWwXxYyZz1234567890"
+                        android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnÑñOoPpQqRrSsTtUuVvWwXxYyZz1234567890"
                         android:inputType="textPersonName" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_margin="10dp"
-                        android:background="@color/lightgray" />
+                        android:background="#0035E8" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -113,14 +113,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_margin="10dp"
-                            android:background="@color/lightgray" />
+                            android:background="#0035E8" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:padding="5dp"
-                            android:text="Escriba la fecha de inicio del curso"
+                            android:text="Escriba la fecha de inicio"
                             android:textColor="@android:color/darker_gray" />
 
                     </LinearLayout>
@@ -152,7 +152,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Fecha de fin"
+                            android:text="Fecha de Fin"
                             android:textStyle="bold" />
 
                         <EditText
@@ -168,14 +168,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_margin="10dp"
-                            android:background="@color/lightgray" />
+                            android:background="#0035E8" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:padding="5dp"
-                            android:text="Escriba la fecha de cuando finaliza el curso"
+                            android:text="Escriba la fecha de cuando finaliza"
                             android:textColor="@android:color/darker_gray" />
 
                     </LinearLayout>
@@ -208,7 +208,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Numero de empleado"
+                            android:text="Numero de Empleado"
                             android:textStyle="bold" />
 
                         <EditText
@@ -224,7 +224,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_margin="10dp"
-                            android:background="@color/lightgray" />
+                            android:background="#0035E8" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -263,7 +263,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="NRC de la materia"
+                            android:text="NRC de la Materia"
                             android:textStyle="bold" />
 
                         <EditText
@@ -279,7 +279,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_margin="10dp"
-                            android:background="@color/lightgray" />
+                            android:background="#0035E8" />
 
                         <TextView
                             android:layout_width="wrap_content"

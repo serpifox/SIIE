@@ -10,8 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,19 +28,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cursos extends AppCompatActivity {
+
     ListView listanombres;
-    Button btnbuscalis;
-    EditText nomlis;
     String usuario;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cursos);
-        listanombres =(ListView) findViewById(R.id.lvnombres);
-        btnbuscalis = (Button) findViewById(R.id.btn_buscalis);
-        nomlis = (EditText) findViewById(R.id.etnomlis);
+
+        listanombres = findViewById(R.id.lvnombres);
         Bundle bund = getIntent().getExtras();
         usuario=bund.getString("nombre");
+
         Toast.makeText(getApplicationContext(),usuario,Toast.LENGTH_LONG).show();
         new Cursos.Consulta_Tareas().execute("http://10.0.2.2/siie/Consulta_Tarea.php");
 
@@ -58,7 +56,6 @@ public class Cursos extends AppCompatActivity {
                 intentAlu.putExtra("Id",id);
                 intentAlu.putExtra("usuario",usuario);
                 startActivity(intentAlu);
-                Toast.makeText(getApplicationContext(), "Position: "+ item+" - Valor: "+itemval, Toast.LENGTH_LONG).show();
             }
 
         });

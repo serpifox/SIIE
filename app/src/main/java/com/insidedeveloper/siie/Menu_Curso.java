@@ -7,18 +7,30 @@ import android.support.v7.widget.CardView;
 import android.view.View;
 
 public class Menu_Curso extends AppCompatActivity {
-CardView mos,reg,mod;
+
+    CardView reg,mod;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu__curso);
-        reg=(CardView) findViewById(R.id.registrar);
+
+        reg = findViewById(R.id.registrar);
+        mod = findViewById(R.id.modificar);
+
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent tareas= new Intent(Menu_Curso.this,Registro_Curso.class);
-                startActivity(tareas);
+                Intent reg = new Intent(Menu_Curso.this,Registro_Curso.class);
+                startActivity(reg);
+            }
+        });
 
+        mod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mod = new Intent(Menu_Curso.this,Consultar_Cursos.class);
+                startActivity(mod);
             }
         });
     }

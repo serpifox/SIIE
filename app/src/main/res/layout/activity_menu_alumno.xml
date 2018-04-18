@@ -39,12 +39,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Registrar alumno"
+                    android:text="Registrar Alumno"
                     android:textStyle="bold" />
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/lightgray"
+                    android:background="#0035E8"
                     android:layout_margin="10dp"/>
 
                 <TextView
@@ -91,12 +91,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="consultar alumno"
+                    android:text="Consultar Alumno"
                     android:textStyle="bold" />
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/lightgray"
+                    android:background="#0035E8"
                     android:layout_margin="10dp"/>
 
                 <TextView
@@ -104,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="consultar Alumnos dentro del sistema"
+                    android:text="Consultar Alumnos dentro del sistema"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>

@@ -8,7 +8,7 @@ import android.view.View;
 
 public class menu_maestro extends AppCompatActivity {
 
-    CardView rgMaestro, modMaestro, conMaestro;
+    CardView rgMaestro, conMaestro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +17,6 @@ public class menu_maestro extends AppCompatActivity {
 
         rgMaestro = findViewById(R.id.registrar);
         conMaestro = findViewById(R.id.consultar);
-        modMaestro = findViewById(R.id.modificar);
 
         rgMaestro.setOnClickListener(new View.OnClickListener() {
             @Override

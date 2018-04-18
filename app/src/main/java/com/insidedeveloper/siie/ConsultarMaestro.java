@@ -7,13 +7,10 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -31,22 +28,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConsultarMaestro extends AppCompatActivity {
-CardView maestros;
-    private RecyclerView recycler;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager lManager;
+
+    CardView maestros;
     ListView listanombres;
-    Button btnbuscalis;
-    EditText nomlis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultar_maestro);
 
-        listanombres = (ListView) findViewById(R.id.lvnombres);
-        btnbuscalis = (Button) findViewById(R.id.btn_buscalis);
-        nomlis = (EditText) findViewById(R.id.etnomlis);
+        listanombres = findViewById(R.id.lvnombres);
 
         new Consulta_Maestro().execute("http://10.0.2.2/siie/Consulta_Maestro.php");
 
@@ -126,7 +117,7 @@ CardView maestros;
         InputStream is = null;
         // Mostrar sólo los primeros 500 caracteres del
         // contenido de la página web.
-        int len = 500;
+        int len = 1500;
 
         try {
             URL url = new URL(myurl);

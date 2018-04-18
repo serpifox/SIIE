@@ -8,7 +8,7 @@ import android.view.View;
 
 public class Menu_Materia extends AppCompatActivity {
 
-    CardView rgMateria,rgModificar,rgConsultar;
+    CardView rgMateria, rgConsultar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +16,6 @@ public class Menu_Materia extends AppCompatActivity {
         setContentView(R.layout.activity_menu_materia);
 
         rgMateria = findViewById(R.id.registrar);
-        rgModificar = findViewById(R.id.modificar);
         rgConsultar = findViewById(R.id.consultar);
 
         rgMateria.setOnClickListener(new View.OnClickListener() {

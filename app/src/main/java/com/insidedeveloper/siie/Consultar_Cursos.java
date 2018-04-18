@@ -8,8 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -30,8 +28,6 @@ import java.util.List;
 public class Consultar_Cursos extends AppCompatActivity {
 
     ListView listanombres;
-    Button btnbuscalis;
-    EditText nomlis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +35,6 @@ public class Consultar_Cursos extends AppCompatActivity {
         setContentView(R.layout.activity_consultar__cursos);
 
         listanombres = findViewById(R.id.etlista);
-        nomlis = findViewById(R.id.etnombre);
-        btnbuscalis = findViewById(R.id.btnbuscar);
 
         listanombres.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

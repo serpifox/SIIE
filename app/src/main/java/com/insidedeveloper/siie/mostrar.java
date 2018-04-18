@@ -4,16 +4,12 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,8 +29,6 @@ public class mostrar extends AppCompatActivity {
 
     private RecyclerView.Adapter adapter;
     ListView listanombres;
-    Button btnbuscalis;
-    EditText nomlis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +38,7 @@ public class mostrar extends AppCompatActivity {
         //new Consulta_Materia().execute("http://192.168.0.10/siie/Consulta_Materia.php");
         new Consulta_Materia().execute("http://10.0.2.2/siie/Consulta_Materia.php");
 
-        listanombres =(ListView) findViewById(R.id.lvnombres);
-        btnbuscalis = (Button) findViewById(R.id.btn_buscalis);
-        nomlis = (EditText) findViewById(R.id.etnomlis);
+        listanombres = findViewById(R.id.lvnombres);
 
      listanombres.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 

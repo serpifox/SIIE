@@ -31,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="NOMBRE DE LA MATERIA"
+                    android:text="Nombre de Materia"
                     android:textStyle="bold" />
 
                 <EditText
@@ -40,12 +40,12 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:maxLength="50"
-                    android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMnNnÑñOoPpQqRrSsTtUuVvWwXxYyZz1234567890 "
+                    android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnÑñOoPpQqRrSsTtUuVvWwXxYyZz1234567890 "
                     android:inputType="textPersonName"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/lightgray"
+                    android:background="#0035E8"
                     android:layout_margin="10dp"/>
 
                 <TextView
@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="ESCRIBA EL NOMBRE QUE DESEA ASIGNAR"
+                    android:text="Escriba el nombre"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -102,14 +102,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="10dp"
-                    android:background="@color/lightgray" />
+                    android:background="#0035E8" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="ESCRIBA EL NRC DE LA MATERIA"
+                    android:text="Escriba el NRC de la materia"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>

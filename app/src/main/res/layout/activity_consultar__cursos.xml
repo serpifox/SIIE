@@ -6,28 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".Consultar_Cursos">
 
-    <EditText
-        android:id="@+id/etnombre"
-        android:layout_width="367dp"
-        android:layout_height="54dp"
-        android:layout_alignParentTop="true"
-        android:hint="Nombre"
-        tools:layout_editor_absoluteX="-7dp"
-        tools:layout_editor_absoluteY="-8dp" />
-
-    <Button
-        android:id="@+id/btnbuscar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:text="Buscar" />
-
     <ListView
         android:id="@+id/etlista"
         style="@android:style/Widget.DeviceDefault.ExpandableListView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnbuscar"
         android:background="#F4F2F2"
         android:cacheColorHint="@color/cardview_dark_background"
         android:divider="@color/backgroundcolor"

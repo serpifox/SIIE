@@ -53,14 +53,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_margin="10dp"
-                        android:background="@color/lightgray" />
+                        android:background="#0035E8" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="Sube las tareas asinadas."
+                        android:text="Sube las Tareas asinadas."
                         android:textColor="@android:color/darker_gray" />
 
                 </LinearLayout>
@@ -103,7 +103,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/lightgray"
+                        android:background="#0035E8"
                         android:layout_margin="10dp"/>
 
                     <TextView

@@ -8,8 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -29,8 +27,6 @@ import java.util.List;
 public class Consultar_Alumno extends AppCompatActivity {
 
     ListView listanombres;
-    Button btnbuscalis;
-    EditText nomlis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +36,6 @@ public class Consultar_Alumno extends AppCompatActivity {
         new Consulta_Alumnos().execute("http://10.0.2.2/siie/Consulta_Alumno.php");
 
         listanombres = findViewById(R.id.etlista);
-        nomlis = findViewById(R.id.etnombre);
-        btnbuscalis = findViewById(R.id.btnbuscar);
 
         listanombres.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -118,7 +112,7 @@ public class Consultar_Alumno extends AppCompatActivity {
         InputStream is = null;
         // Mostrar sólo los primeros 500 caracteres del
         // contenido de la página web.
-        int len = 500;
+        int len = 1500;
 
         try {
             URL url = new URL(myurl);

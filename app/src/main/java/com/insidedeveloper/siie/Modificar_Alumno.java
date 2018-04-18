@@ -38,7 +38,7 @@ public class Modificar_Alumno extends AppCompatActivity {
         etusuario = findViewById(R.id.etUsuario);
         etcontra = findViewById(R.id.etContra);
         etcorreo = findViewById(R.id.etCorreo);
-        btnmodificar= findViewById(R.id.btnModificar);
+        btnmodificar = findViewById(R.id.btnModificar);
         Bundle bundle = getIntent().getExtras();
         anombre = bundle.getString("nombre");
         apaterno = bundle.getString("paterno");
@@ -49,14 +49,14 @@ public class Modificar_Alumno extends AppCompatActivity {
         new Modificar_Alumno.ConsultaAlumno().execute("http://10.0.2.2/siie/Buscar_Usuario.php?nombre="+anombre+"&paterno="+apaterno+
             "&materno="+amaterno);
         etusuario.setEnabled(false);
+        etmatricula.setEnabled(false);
 
         btnmodificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new ModificarAlumno().execute("http://10.0.2.2/siie/Modificar_Alumno.php?nombre="+etnombre.getText().toString()+
                         "&paterno="+etpaterno.getText().toString()+"&materno="+etmaterno.getText().toString()+"&correo="+etcorreo.getText().toString()+
-                        "&estatus="+estatus+"&usu="+etusuario.getText().toString()+"&contra="+etcontra.getText().toString()+
-                        "&tipo="+tipo+"&matricula="+etmatricula.getText().toString());
+                        "&contra="+etcontra.getText().toString()+"&tipo="+tipo+"&matricula="+etmatricula.getText().toString());
             }
         });
     }
@@ -83,10 +83,10 @@ public class Modificar_Alumno extends AppCompatActivity {
                     etnombre.setText(ja.getString(0));
                     etpaterno.setText(ja.getString(1));
                     etmaterno.setText(ja.getString(2));
-                    etcorreo.setText(ja.getString(3));
-                    etusuario.setText(ja.getString(4));
-                    etcontra.setText(ja.getString(5));
-                    etmatricula.setText(ja.getString(6));
+                    etmatricula.setText(ja.getString(3));
+                    etusuario.setText(ja.getString(6));
+                    etcontra.setText(ja.getString(7));
+                    etcorreo.setText(ja.getString(4));
                 }
                 else{
                     etnombre.setText("");

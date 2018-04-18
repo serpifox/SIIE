@@ -39,21 +39,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Registrar maestro"
+                    android:text="Registrar Maestro"
                     android:textStyle="bold" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="10dp"
-                    android:background="@color/lightgray" />
+                    android:background="#0035E8" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Registrar maestro dentro del sistema"
+                    android:text="Registrar Maestro dentro del sistema"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -95,21 +95,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="consultar maestro"
+                    android:text="Consultar Maestro"
                     android:textStyle="bold" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="10dp"
-                    android:background="@color/lightgray" />
+                    android:background="#0035E8" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="consultar maestro dentro del sistema"
+                    android:text="Consultar Maestro dentro del sistema"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>

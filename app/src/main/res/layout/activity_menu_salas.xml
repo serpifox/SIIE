@@ -39,12 +39,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="HISTORIA"
+                    android:text="Artes"
                     android:textStyle="bold" />
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/lightgray"
+                    android:background="#0035E8"
                     android:layout_margin="10dp"/>
 
             </LinearLayout>
