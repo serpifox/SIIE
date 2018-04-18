@@ -43,12 +43,17 @@ public class registrar_tarea extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                new Registrar_Tarea().execute("http://10.0.2.2/siie/Registra_Tarea.php?nombre="+edtnombre.getText().toString()+
-                        "&descripcion="+edtdescripcion.getText().toString()+"&fecha="+etPlannedDate.getText().toString());
 
-                edtnombre.setText("");
-                edtdescripcion.setText("");
-                etPlannedDate.setText("");
+                if(edtnombre.getText().toString().isEmpty() || edtdescripcion.getText().toString().isEmpty() || etPlannedDate.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "No se permiten campos vacios", Toast.LENGTH_LONG).show();
+                }else {
+                    new Registrar_Tarea().execute("http://10.0.2.2/siie/Registra_Tarea.php?nombre="+edtnombre.getText().toString()+
+                            "&descripcion="+edtdescripcion.getText().toString()+"&fecha="+etPlannedDate.getText().toString());
+
+                    edtnombre.setText("");
+                    edtdescripcion.setText("");
+                    etPlannedDate.setText("");
+                }
             }
         });
 

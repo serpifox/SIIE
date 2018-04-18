@@ -55,10 +55,16 @@ public class Modificar_Maestro extends AppCompatActivity {
         btnmodificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Modificar_Maestro.ModificaMaestro().execute("http://10.0.2.2/siie/Modificar_Maestro.php?nombre="+etnombre.getText().toString()+
-                        "&paterno="+etpaterno.getText().toString()+"&materno="+etmaterno.getText().toString()+
-                        "&correo="+etcorreo.getText().toString()+"&contra="+etcontra.getText().toString()+"&tipo="+tipo+
-                        "&numempleado="+etnumempleado.getText().toString()+"&puesto="+puesto);
+
+                if(etnombre.getText().toString().isEmpty() || etpaterno.getText().toString().isEmpty() || etmaterno.getText().toString().isEmpty() ||
+                        etcontra.getText().toString().isEmpty() || etcorreo.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "No se permiten campos vacios", Toast.LENGTH_LONG).show();
+                }else {
+                    new Modificar_Maestro.ModificaMaestro().execute("http://10.0.2.2/siie/Modificar_Maestro.php?nombre="+etnombre.getText().toString()+
+                            "&paterno="+etpaterno.getText().toString()+"&materno="+etmaterno.getText().toString()+
+                            "&correo="+etcorreo.getText().toString()+"&contra="+etcontra.getText().toString()+"&tipo="+tipo+
+                            "&numempleado="+etnumempleado.getText().toString()+"&puesto="+puesto);
+                }
             }
         });
     }

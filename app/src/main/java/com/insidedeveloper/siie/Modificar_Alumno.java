@@ -54,9 +54,22 @@ public class Modificar_Alumno extends AppCompatActivity {
         btnmodificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new ModificarAlumno().execute("http://10.0.2.2/siie/Modificar_Alumno.php?nombre="+etnombre.getText().toString()+
-                        "&paterno="+etpaterno.getText().toString()+"&materno="+etmaterno.getText().toString()+"&correo="+etcorreo.getText().toString()+
-                        "&contra="+etcontra.getText().toString()+"&tipo="+tipo+"&matricula="+etmatricula.getText().toString());
+
+                if(etnombre.getText().toString().isEmpty() || etpaterno.getText().toString().isEmpty() || etmaterno.getText().toString().isEmpty() ||
+                        etcontra.getText().toString().isEmpty() || etcorreo.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "No se permiten campos vacios", Toast.LENGTH_LONG).show();
+                }else {
+                    new ModificarAlumno().execute("http://10.0.2.2/siie/Modificar_Alumno.php?nombre="+etnombre.getText().toString()+
+                            "&paterno="+etpaterno.getText().toString()+"&materno="+etmaterno.getText().toString()+"&correo="+etcorreo.getText().toString()+
+                            "&contra="+etcontra.getText().toString()+"&tipo="+tipo+"&matricula="+etmatricula.getText().toString());
+                    etnombre.setText("");
+                    etpaterno.setText("");
+                    etmaterno.setText("");
+                    etmatricula.setText("");
+                    etusuario.setText("");
+                    etcontra.setText("");
+                    etcorreo.setText("");
+                }
             }
         });
     }

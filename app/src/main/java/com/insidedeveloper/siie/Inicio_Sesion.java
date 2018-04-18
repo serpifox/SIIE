@@ -98,7 +98,7 @@ String usu=  edtusuario.getText().toString();
                             Toast.makeText(getApplicationContext(), "Menu Administrador", Toast.LENGTH_LONG).show();
                             pb.setVisibility(View.INVISIBLE);
                         } else {
-                            Intent intentEmp = new Intent(Inicio_Sesion.this, Menu_Administrador.class);
+                            Intent intentEmp = new Intent(Inicio_Sesion.this, menu_principal_maestro.class);
                             intentEmp.putExtra("usu", edtusuario.getText().toString());
                             intentEmp.putExtra("contra", edtcontrasenia.getText().toString());
                             startActivity(intentEmp);

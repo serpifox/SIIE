@@ -51,19 +51,19 @@ public class Registro_Alumno extends AppCompatActivity implements GestureDetecto
             @Override
             public void onClick(View view) {
 
-                /*while(!val.ValidarNombre(etnombre.getText().toString())){
-                    Toast.makeText(getApplicationContext(), "Caracteres invalidos", Toast.LENGTH_LONG).show();
-                }*/
+                if(etnombre.getText().toString().isEmpty() || etpaterno.getText().toString().isEmpty() || etmaterno.getText().toString().isEmpty() || etmatricula.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "No se permiten campos vacios", Toast.LENGTH_LONG).show();
+                }else {
+                    new Registrar_Alumno().execute("http://10.0.2.2/siie/Registro_Alumno.php?nombre="+etnombre.getText().toString()+
+                            "&paterno="+etpaterno.getText().toString()+"&materno="+etmaterno.getText().toString()+"&correo="+etmatricula.getText().toString().concat(correo)+
+                            "&estatus="+estatus+"&usu="+etmatricula.getText().toString()+"&contra="+etmatricula.getText().toString()+
+                            "&tipo="+tipo+"&matricula="+etmatricula.getText().toString());
 
-                new Registrar_Alumno().execute("http://10.0.2.2/siie/Registro_Alumno.php?nombre="+etnombre.getText().toString()+
-                "&paterno="+etpaterno.getText().toString()+"&materno="+etmaterno.getText().toString()+"&correo="+etmatricula.getText().toString().concat(correo)+
-                "&estatus="+estatus+"&usu="+etmatricula.getText().toString()+"&contra="+etmatricula.getText().toString()+
-                "&tipo="+tipo+"&matricula="+etmatricula.getText().toString());
-
-                etnombre.setText("");
-                etpaterno.setText("");
-                etmaterno.setText("");
-                etmatricula.setText("");
+                    etnombre.setText("");
+                    etpaterno.setText("");
+                    etmaterno.setText("");
+                    etmatricula.setText("");
+                }
             }
         });
     }

@@ -46,9 +46,15 @@ public class Modificar_Curso extends AppCompatActivity {
         btnmodificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Modificar_Curso.Modificar().execute("http://10.0.2.2/siie/Modificar_Curso.php?clave="+etclave.getText().toString()+
-                        "&fechaini="+etinicio.getText().toString()+"&fechafin="+etfinal.getText().toString()+
-                        "&idemp="+etempleado.getText().toString()+"&idmat="+etnrc.getText().toString());
+
+                if(etclave.getText().toString().isEmpty() || etinicio.getText().toString().isEmpty() || etfinal.getText().toString().isEmpty() ||
+                        etempleado.getText().toString().isEmpty() || etnrc.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "No se permiten campos vacios", Toast.LENGTH_LONG).show();
+                }else {
+                    new Modificar_Curso.Modificar().execute("http://10.0.2.2/siie/Modificar_Curso.php?clave="+etclave.getText().toString()+
+                            "&fechaini="+etinicio.getText().toString()+"&fechafin="+etfinal.getText().toString()+
+                            "&idemp="+etempleado.getText().toString()+"&idmat="+etnrc.getText().toString());
+                }
             }
         });
     }

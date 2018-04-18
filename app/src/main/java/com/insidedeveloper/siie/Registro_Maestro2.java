@@ -47,16 +47,21 @@ public class Registro_Maestro2 extends AppCompatActivity implements GestureDetec
             @Override
             public void onClick(View view) {
 
-                new Registrar_Maestro().execute("http://10.0.2.2/siie/Registro_Maestro.php?nombre="+etnombre.getText().toString()+
-                        "&paterno="+etpaterno.getText().toString()+"&materno="+etmaterno.getText().toString()+
-                        "&correo="+etnumempleado.getText().toString().concat(email)+"&estatus="+estatus+"&usu="+etnumempleado.getText().toString()+
-                        "&contra="+etnumempleado.getText().toString()+"&tipo="+tipo+"&numempleado="+etnumempleado.getText().toString()+
-                        "&puesto="+puesto);
+                if(etnombre.getText().toString().isEmpty() || etpaterno.getText().toString().isEmpty() || etmaterno.getText().toString().isEmpty() || etnumempleado.getText().toString().isEmpty()) {
 
-                etnombre.setText("");
-                etpaterno.setText("");
-                etmaterno.setText("");
-                etnumempleado.setText("");
+                    Toast.makeText(getApplicationContext(), "No se permiten campos vacios", Toast.LENGTH_LONG).show();
+                }else {
+                    new Registrar_Maestro().execute("http://10.0.2.2/siie/Registro_Maestro.php?nombre="+etnombre.getText().toString()+
+                            "&paterno="+etpaterno.getText().toString()+"&materno="+etmaterno.getText().toString()+
+                            "&correo="+etnumempleado.getText().toString().concat(email)+"&estatus="+estatus+"&usu="+etnumempleado.getText().toString()+
+                            "&contra="+etnumempleado.getText().toString()+"&tipo="+tipo+"&numempleado="+etnumempleado.getText().toString()+
+                            "&puesto="+puesto);
+
+                    etnombre.setText("");
+                    etpaterno.setText("");
+                    etmaterno.setText("");
+                    etnumempleado.setText("");
+                }
             }
         });
     }

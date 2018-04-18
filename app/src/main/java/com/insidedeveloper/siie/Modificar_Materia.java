@@ -52,10 +52,15 @@ public class Modificar_Materia extends AppCompatActivity implements GestureDetec
         btnmodificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new ModificarMateria().execute("http://10.0.2.2/siie/Modificar_Materia.php?nrc="+etnrc.getText().toString()+
-                "&nombres="+etnombre.getText().toString());
-                etnombre.setText("");
-                etnrc.setText("");
+
+                if(etnombre.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "No se permiten campos vacios", Toast.LENGTH_LONG).show();
+                }else {
+                    new ModificarMateria().execute("http://10.0.2.2/siie/Modificar_Materia.php?nrc="+etnrc.getText().toString()+
+                            "&nombres="+etnombre.getText().toString());
+                    etnombre.setText("");
+                    etnrc.setText("");
+                }
             }
         });
 
