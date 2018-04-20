@@ -1,5 +1,6 @@
 package com.insidedeveloper.siie;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -131,6 +132,9 @@ public class Modificar_Alumno extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             Toast.makeText(getApplicationContext(), "Se modificaron los datos correctamente", Toast.LENGTH_LONG).show();
+            Intent consulta = new Intent(Modificar_Alumno.this,Consultar_Alumno.class);
+            startActivity(consulta);
+            finish();
         }
     }
 

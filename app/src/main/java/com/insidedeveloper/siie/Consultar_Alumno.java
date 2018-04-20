@@ -112,7 +112,7 @@ public class Consultar_Alumno extends AppCompatActivity {
         InputStream is = null;
         // Mostrar sólo los primeros 500 caracteres del
         // contenido de la página web.
-        int len = 1500;
+        int len = 2500;
 
         try {
             URL url = new URL(myurl);

@@ -125,7 +125,6 @@ public class Registro_Materia extends AppCompatActivity implements GestureDetect
         protected void onPostExecute(String result) {
 
             Toast.makeText(getApplicationContext(), "Se almacenaron los datos correctamente", Toast.LENGTH_LONG).show();
-
         }
     }
 

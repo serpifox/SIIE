@@ -88,7 +88,9 @@ public class Modificar_Materia extends AppCompatActivity implements GestureDetec
         protected void onPostExecute(String result) {
 
             Toast.makeText(getApplicationContext(), "Se modificaron los datos correctamente", Toast.LENGTH_LONG).show();
-
+            Intent consulta = new Intent(Modificar_Materia.this,mostrar.class);
+            startActivity(consulta);
+            finish();
         }
     }
 

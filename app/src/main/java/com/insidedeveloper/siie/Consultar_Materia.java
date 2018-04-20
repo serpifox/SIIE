@@ -92,7 +92,7 @@ public class Consultar_Materia extends AppCompatActivity implements GestureDetec
         InputStream is = null;
         // Mostrar sólo los primeros 500 caracteres del
         // contenido de la página web.
-        int len = 500;
+        int len = 2500;
 
         try {
             URL url = new URL(myurl);
@@ -181,6 +181,7 @@ public class Consultar_Materia extends AppCompatActivity implements GestureDetec
     public void onLongPress(MotionEvent e) {
         Intent intentMateria = new Intent(Consultar_Materia.this,Menu_Administrador.class);
         startActivity(intentMateria);
+        finish();
     }
 
     @Override

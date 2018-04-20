@@ -54,6 +54,11 @@ public class Modificar_Curso extends AppCompatActivity {
                     new Modificar_Curso.Modificar().execute("http://10.0.2.2/siie/Modificar_Curso.php?clave="+etclave.getText().toString()+
                             "&fechaini="+etinicio.getText().toString()+"&fechafin="+etfinal.getText().toString()+
                             "&idemp="+etempleado.getText().toString()+"&idmat="+etnrc.getText().toString());
+                    etclave.setText("");
+                    etempleado.setText("");
+                    etnrc.setText("");
+                    etinicio.setText("");
+                    etfinal.setText("");
                 }
             }
         });
@@ -111,11 +116,6 @@ public class Modificar_Curso extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
             Toast.makeText(getApplicationContext(), "Se modificaron los datos correctamente", Toast.LENGTH_LONG).show();
-            etclave.setText("");
-            etempleado.setText("");
-            etnrc.setText("");
-            etinicio.setText("");
-            etfinal.setText("");
             Intent consultacurso = new Intent(Modificar_Curso.this,Consultar_Cursos.class);
             startActivity(consultacurso);
             finish();

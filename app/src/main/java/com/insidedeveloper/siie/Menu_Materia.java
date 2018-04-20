@@ -35,7 +35,6 @@ public class Menu_Materia extends AppCompatActivity {
         });
 
     }
-
 }
 
 
