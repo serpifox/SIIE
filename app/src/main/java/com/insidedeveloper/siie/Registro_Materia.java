@@ -43,6 +43,7 @@ public class Registro_Materia extends AppCompatActivity implements GestureDetect
 
                 if(etnrc.getText().toString().isEmpty() || etnombre.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "No se permiten campos vacios", Toast.LENGTH_LONG).show();
+                    SnackBar.make(v,"No se permite campos vacios", Snack.LENGTH_LONG).show();
                 }else {
                     new Registrar_Materia().execute("http://10.0.2.2/siie/Registro_Materia.php?nrc="+etnrc.getText().toString()+"&nombres="+etnombre.getText().toString());
                     etnrc.setText("");
@@ -100,7 +101,8 @@ public class Registro_Materia extends AppCompatActivity implements GestureDetect
     @Override
     public void onLongPress(MotionEvent e) {
         Intent intentMat = new Intent(Registro_Materia.this,Menu_Administrador.class);
-        Registro_Materia.this.startActivity(intentMat);
+        startActivity(intentMat);
+        finish();
     }
 
     @Override
@@ -123,7 +125,6 @@ public class Registro_Materia extends AppCompatActivity implements GestureDetect
 
         @Override
         protected void onPostExecute(String result) {
-
             Toast.makeText(getApplicationContext(), "Se almacenaron los datos correctamente", Toast.LENGTH_LONG).show();
         }
     }
